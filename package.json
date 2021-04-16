@@ -1,0 +1,31 @@
+{
+  "name": "StarImmortal-Dos",
+  "version": "1.0.0",
+  "description": "StarImmortal团队官方文档",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs --temp .temp",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": "https://github.com/StarImmortal/StarImmortal-Dos.git",
+  "author": "william",
+  "license": "MIT",
+  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "async-validator": "1.11.5",
+    "core-js": "^3.10.1",
+    "element-ui": "^2.15.1",
+    "jinrishici": "^1.0.6",
+    "jquery": "^3.6.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "10.1.0",
+    "swiper": "5.4.5",
+    "vue-awesome-swiper": "^4.1.1",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-code-copy": "^1.0.6",
+    "vuepress-plugin-cursor-effects": "^1.0.2",
+    "vuepress-plugin-music-bar": "^3.7.6",
+    "vuepress-plugin-sakura": "^1.1.0"
+  }
+}
