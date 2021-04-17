@@ -1,0 +1,9 @@
+{
+  "short_name": "StarImmortal",
+  "name": "StarImmortal 团队中文文档",
+  "display": "standalone",
+  "start_url": "/",
+  "theme_color": "#3683d6",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary"
+}
