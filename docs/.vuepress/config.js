@@ -58,18 +58,6 @@ module.exports = {
         },
       },
     ],
-    [
-      "music-bar",
-      {
-        playList: [],
-        platform: [
-          {
-            name: "music.163.com",
-            playListIDs: ["368560770"],
-          },
-        ],
-      },
-    ],
   ],
   themeConfig: {
     docsDir: "docs",
