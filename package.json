@@ -1,5 +1,5 @@
 {
-  "name": "StarImmortal-Dos",
+  "name": "StarImmortal-Doc",
   "version": "1.0.0",
   "description": "StarImmortal团队官方文档",
   "main": "index.js",
@@ -18,7 +18,6 @@
     "core-js": "^3.10.1",
     "element-ui": "^2.15.1",
     "jinrishici": "^1.0.6",
-    "jquery": "^3.6.0",
     "node-sass": "^5.0.0",
     "sass-loader": "10.1.0",
     "swiper": "5.4.5",
@@ -26,7 +25,6 @@
     "vuepress": "^1.8.2",
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-cursor-effects": "^1.0.2",
-    "vuepress-plugin-music-bar": "^3.7.6",
     "vuepress-plugin-sakura": "^1.1.0"
   }
 }
