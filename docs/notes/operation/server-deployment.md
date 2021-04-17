@@ -170,14 +170,18 @@ tar -zxvf  node-v10.16.0-linux-x64.tar.gz
 **将【node-v10.16.0-linux-x64】里的数据拷贝至新建node目录下**
 
 ```bash
-mv node-v10.16.0-linux-x64 /root/node
+mv node-v10.16.0-linux-x64 /usr/local/src/
+
+cd /usr/local/src/
+
+mv node-v10.16.0-linux-x64 node-v10.16.0
 ```
 
 ### 配置全局node
 ```bash
-ln -s /root/node/node-v10.16.0-linux-x64/bin/node /usr/local/bin/
+ln -s /usr/local/src/node-v10.16.0/bin/node /usr/local/bin/
 
-ln -s /root/node/node-v10.16.0-linux-x64/bin/npm /usr/local/bin/
+ln -s /usr/local/src/node-v10.16.0/bin/npm /usr/local/bin/
 ```
 
 ## Yarn
