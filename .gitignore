@@ -1,7 +1,9 @@
-/.idea
+﻿/.idea
 /node_modules
 /dist
 .DS_Store
+nohup.out
+# 临时文件夹
 .temp
 # npm debug日志
 npm-debug.log
