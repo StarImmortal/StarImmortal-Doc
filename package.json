@@ -24,7 +24,6 @@
     "vue-awesome-swiper": "^4.1.1",
     "vuepress": "^1.8.2",
     "vuepress-plugin-code-copy": "^1.0.6",
-    "vuepress-plugin-cursor-effects": "^1.0.2",
     "vuepress-plugin-sakura": "^1.1.0"
   }
 }
