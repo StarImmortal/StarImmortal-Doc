@@ -24,7 +24,6 @@ module.exports = {
   plugins: [
     "@vuepress/medium-zoom",
     "@vuepress/back-to-top",
-    "cursor-effects",
     [
       "vuepress-plugin-code-copy",
       {
