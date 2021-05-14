@@ -70,6 +70,7 @@ module.exports = {
       { text: "微信小程序", link: "/wechat/" },
       { text: "学习笔记", link: "/notes/" },
       { text: "常用命令", link: "/command/" },
+      { text: "奇技淫巧", link: "/skill/" },
       { text: "常见问题", link: "/question/" },
       { text: "GitHub", link: "https://github.com/StarImmortal" },
     ],
