@@ -257,7 +257,7 @@ input {
     }
     jdbc {
     # 数据库连接信息
-    jdbc_connection_string => "jdbc:mysql://服务器地址/wallpaper?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8&allowMulQueries=true"
+    jdbc_connection_string => "jdbc:mysql://localhost:3306/wallpaper?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8&allowMulQueries=true"
     # 用户名
     jdbc_user => "root"
     # 密码
@@ -271,16 +271,16 @@ input {
     # 清空上一次的sql_last_value记录
     clean_run => true
     # 你要执行的SQL语句
-    statement => "SELECT * FROM w_wallpaper WHERE update_time > :sql_last_value AND update_time < NOW()"
+    statement => "SELECT * FROM 表名 WHERE update_time > :sql_last_value AND update_time < NOW()"
     }
 }
 output {
     elasticsearch {
-        hosts => "106.12.85.201:9200"
+        hosts => ""
         user => elastic
-        password => yfmVnvTX6gzUBWdZ
+        password => 
         # index名
-        index => "wallpapers"
+        index => ""
         # 需要关联的数据库中有有一个id字段，对应索引的id号
         document_id => "%{id}"
     }
