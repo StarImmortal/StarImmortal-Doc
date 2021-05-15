@@ -128,7 +128,7 @@ scp jar包路径 root@服务器ip地址:存放路径
 ## Jar包
 
 ```bash
-nohup java -jar -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC jar包 >springboot.log 2>&1 &
+nohup java -jar -Dspring.profiles.active=prod -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC jar包 >springboot.log 2>&1 &
 ```
 
 ```bash
