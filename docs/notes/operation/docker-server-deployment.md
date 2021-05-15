@@ -257,11 +257,11 @@ input {
     }
     jdbc {
     # 数据库连接信息
-    jdbc_connection_string => "jdbc:mysql://106.12.85.201/wallpaper?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8&allowMulQueries=true"
+    jdbc_connection_string => "jdbc:mysql://服务器地址/wallpaper?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8&allowMulQueries=true"
     # 用户名
     jdbc_user => "root"
     # 密码
-    jdbc_password => "yfmVnvTX6gzUBWdZ"
+    jdbc_password => ""
     # jdbc驱动包位置
     jdbc_driver_library => "/usr/share/logstash/config/mysql-connector-java-8.0.20.jar"
     # mysql的Driver
