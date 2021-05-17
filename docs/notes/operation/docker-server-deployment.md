@@ -426,24 +426,30 @@ chmod 666 /var/run/docker.sock
 ### 启动
 
 ```bash
-docker run -di -u root --name jenkins -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -v /usr/local/src/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+docker run -di -u root --name jenkins -p 8080:8080 -p 50000:50000 -e TZ=Asia/Shanghai -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -v /usr/local/src/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
 
 ### 安装插件提速
 
 ```bash
+cd /usr/local/src/jenkins/jenkins_home/
+
+vi hudson.model.UpdateCenter.xml
+
+修改url为https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+
 docker exec -it jenkins /bin/bash
 
-sed -i 's/www.google.com/www.baidu.com/g' /var/jenkins_home/updates/default.json
+sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json && sed -i 's/http:\/\/www.google.com/https:\/\/www.baidu.com/g' default.json
 
-sed -i 's/updates.jenkins-ci.org\/download/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' /var/jenkins_home/updates/default.json
+exit
 
 docker restart jenkins
 ```
 
 ### 解锁Jenkins
 
-![解锁Jenkins](https://img.rruu.net/image/602deadda92d6)
+![解锁Jenkins](https://z3.ax1x.com/2021/05/16/ggl4HS.png)
 
 *两种方法*
 
@@ -462,9 +468,23 @@ docker logs jenkins
 - 根据角色管理权限的插件：Role-based Authorization Strategy
 - 远程使用ssh的插件：SSH plugin
 
+### 系统配置
+
+![配置GitHub服务器](https://z3.ax1x.com/2021/05/17/g26i11.png)
+
+:::tip
+Secret text 在github上生成
+
+github --> 头像 --> Settings --> Developer settings --> Personal access tokens --> Generate new token
+:::
+
+![生成 Personal Access Token](https://z3.ax1x.com/2021/05/17/g26Uhj.png)
+
+![Personal Access Token](https://z3.ax1x.com/2021/05/17/g254v4.png)
+
 ### 全局配置
 
-![安装Maven](https://img.rruu.net/image/602e1c40630d5)
+![安装Maven](https://z3.ax1x.com/2021/05/16/gguoSP.png)
 
 ### 配置SSH
 
@@ -480,17 +500,17 @@ ssh-keygen -t rsa
 
 #### 创建构建任务
 
-![创建构建任务](https://img.rruu.net/image/602f33209091e)
+![创建构建任务](https://z3.ax1x.com/2021/05/16/ggKaX8.png)
 
 #### 配置Git仓库
 
-![配置Git仓库](https://img.rruu.net/image/602f33208eee1)
+![配置Git仓库](https://z3.ax1x.com/2021/05/16/ggKzAH.png)
 
-![添加凭证](https://img.rruu.net/image/602f33209078e)
+![添加凭证](https://z3.ax1x.com/2021/05/17/g2IrRO.png)
 
 #### Maven构建配置
 
-![Maven构建配置](https://img.rruu.net/image/602f33207d3ed)
+![Maven构建配置](https://z3.ax1x.com/2021/05/16/ggMigP.png)
 
 #### 编写Shell命令
 
@@ -516,19 +536,15 @@ docker rmi 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT
 fi
 ```
 
-```bash
-clean package -DskipTests docker:build
-```
-
 ```
 docker run -d -p 8081:8081 --name burning-sun-cms -v /usr/local/src/burning-sun/logs:/logs -d 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT
 ```
 
 #### 构建触发器
 
-![构建触发器](https://img.rruu.net/image/602fa8e608625)
+![构建触发器](https://z3.ax1x.com/2021/05/16/ggKb1x.png)
 
-![开启HookUrl](https://img.rruu.net/image/602fa8e61382c)
+![开启HookUrl](https://z3.ax1x.com/2021/05/16/ggQBJs.png)
 
 ## SpringBoot
 
