@@ -222,7 +222,7 @@ class Node {
 
 [树](https://baike.baidu.com/item/树/2699484)是典型的非线性结构，它是包括，2个结点的有穷集合K。在树结构中，有且仅有一个根结点，该结点没有前驱结点。在树结构中的其他结点都有且仅有一个前驱结点，而且可以有两个后继结点，m≥0。
 
-<img src="https://s1.ax1x.com/2020/10/11/0chAUJ.png" alt="0cyMzF.png" border="0" align="left" style="zoom: 50%;" />
+<img src="https://s1.ax1x.com/2020/10/11/0chAUJ.png" alt="0cyMzF.png" />
 
 为什么要有树结构？
 
@@ -279,7 +279,7 @@ class Node {
 
 有一面墙，长度为n，每次选择一段儿墙进行染色
 
-<img src="https://s1.ax1x.com/2020/10/31/BaQuCT.png" align="left" style="zoom: 33%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BaQuCT.png" />
 
 m次操作后，可以看见多少种颜色？
 
@@ -292,7 +292,7 @@ m次操作后，可以在[i, j]区间内看见多少种颜色？
 
 另一类经典问题：区间查询
 
-<img src="https://s1.ax1x.com/2020/10/31/BaQyVI.png" align="left" style="zoom: 33%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BaQyVI.png" />
 
 对于给定区间：
 
@@ -309,7 +309,7 @@ m次操作后，可以在[i, j]区间内看见多少种颜色？
 
 **什么是线段树？**
 
-<img src="https://s1.ax1x.com/2020/10/31/BaDVld.png" align="left" style="zoom: 33%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BaDVld.png" />
 
 线段树是一个平衡二叉树，但不一定是完全二叉树
 
@@ -333,7 +333,7 @@ Trie 又称字典树或前缀树，是一个用于处理多模式字符串匹配
 
 其本质就是共享字符串的公共前缀，即利用字符串之间的公共前缀**，**将重复的前缀合并在一起**。**
 
-<img src="https://s3.ax1x.com/2020/11/14/DCE141.png" align="left" style="zoom: 33%;" />
+<img src="https://s3.ax1x.com/2020/11/14/DCE141.png" />
 
 Trie查找每个条目的时间复杂度和字典中一共有多少条目无关
 
@@ -377,7 +377,7 @@ class Node {
 
 **并查集的时间复杂度分析**
 
-<img src="https://s3.ax1x.com/2020/11/22/DG1UzV.jpg" align="left" style="zoom: 50%;" />
+<img src="https://s3.ax1x.com/2020/11/22/DG1UzV.jpg" />
 
 ### 图(Graph)
 
@@ -391,7 +391,7 @@ class Node {
 
 **二叉堆（Binary Heap）**
 
-<img src="https://s1.ax1x.com/2020/10/25/BmRyr9.png" align="left" style="zoom: 33%;" />
+<img src="https://s1.ax1x.com/2020/10/25/BmRyr9.png" />
 
 二叉堆是一颗完全二叉树（把元素顺序排列成树的结构）
 
@@ -447,7 +447,7 @@ boolean isEmpty();
 
 #### Map
 
-<img src="https://s1.ax1x.com/2020/10/24/BVwGYq.png" align="left" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/24/BVwGYq.png" />
 
 - 存储（键，值）数据对的数据结构（Key, Value）
 
@@ -509,6 +509,6 @@ boolean isEmpty();
   > Sum(arr[n-1...n-1]) = arr[n-1] + Sum(arr[n...n-1])
   
 
-<img src="https://s1.ax1x.com/2020/10/11/0csc2F.png" align="left" style="zoom: 50%;" />
+<img src="https://s1.ax1x.com/2020/10/11/0csc2F.png" />
 
 <RightMenu />
