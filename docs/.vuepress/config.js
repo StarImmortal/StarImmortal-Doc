@@ -97,7 +97,7 @@ module.exports = {
             "server/java-practice",
             "server/python",
             "server/python-practice",
-            "server/c#",
+            "server/c-sharp",
           ],
         },
         {
