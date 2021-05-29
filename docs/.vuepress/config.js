@@ -97,6 +97,7 @@ module.exports = {
             "server/java-practice",
             "server/python",
             "server/python-practice",
+            "server/c#",
           ],
         },
         {
@@ -129,6 +130,7 @@ module.exports = {
             "basic/maven",
             "basic/idea",
             "basic/data-structure",
+            "basic/algorithm",
           ],
         },
         {
