@@ -7,10 +7,10 @@ title: 微信小程序
         <swiper :options="swiperOptions">
             <swiper-slide>
                 <div class="picture">
-                    <img src="/assets/img/burning-sun.png" alt="">
+                    <img src="/assets/img/cool-wallpaper.png" alt="">
                 </div>
                 <div class="detail">
-                    <h3>灼阳壁纸</h3>
+                    <h3>库壁啦</h3>
                 </div>
             </swiper-slide>
             <swiper-slide>
