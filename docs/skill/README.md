@@ -67,4 +67,128 @@ Auto Refresh: 最好选 `1 hour`
 - http://www.network-science.de/ascii
 - https://www.degraeve.com/img2txt.php
 
+## MySQL重新设置自增id
+
+设置主键id自增的数据库表删除数据后，自增id不会自动重新计算 
+
+重新设置自增的id命令如下：
+
+```bash
+alter table table_name AUTO_INCREMENT=1;
+```
+
+*注意：table_name是表名，1表示自增开始的位置*
+
+## MySQL判断一个时间段是否在另一个时间段内
+
+**建表与插入数据**
+
+```sql
+CREATE TABLE `test` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`start_time` DATETIME NULL DEFAULT NULL COMMENT '开始时间',
+	`end_time` DATETIME NULL DEFAULT NULL COMMENT '结束时间',
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=INNODB
+;
+
+INSERT INTO `test` (`start_time`, `end_time`) VALUES ('2020-08-04 10:00:00', '2020-08-04 12:00:00');
+```
+
+方案一：
+
+```sql
+SET @BeignTime = '2020-08-04 05:00:00';
+SET @EndTime   = '2020-08-04 10:00:00';
+SELECT *
+FROM test
+WHERE (
+@BeignTime BETWEEN start_time AND end_time OR
+@EndTime   BETWEEN start_time AND end_time OR
+start_time BETWEEN @BeignTime AND @EndTime OR
+end_time   BETWEEN @BeignTime AND @EndTime
+);
++----+---------------------+---------------------+
+| id | start_time          | end_time            |
++----+---------------------+---------------------+
+|  1 | 2020-08-04 10:00:00 | 2020-08-04 12:00:00 |
++----+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+SET @BeignTime = '2020-08-04 05:00:00';
+SET @EndTime   = '2020-08-04 09:00:00';
+SELECT *
+FROM test
+WHERE (
+@BeignTime BETWEEN start_time AND end_time OR
+@EndTime   BETWEEN start_time AND end_time OR
+start_time BETWEEN @BeignTime AND @EndTime OR
+end_time   BETWEEN @BeignTime AND @EndTime
+);
+Empty set (0.00 sec)
+```
+
+方案二：
+
+```sql
+SET @BeignTime = '2020-08-04 05:00:00';
+SET @EndTime   = '2020-08-04 09:00:00';
+SELECT *
+FROM test
+WHERE (
+	(@BeignTime >= start_time AND @BeignTime <= end_time) OR 
+	(@EndTime   >= start_time AND @EndTime   <= end_time) OR 
+	(start_time >= @BeignTime AND start_time <= @EndTime) OR 
+	(end_time   >= @BeignTime AND end_time   <= @EndTime)
+);
+Empty set (0.00 sec)
+
+SET @BeignTime = '2020-08-04 05:00:00';
+SET @EndTime   = '2020-08-04 10:00:00';
+SELECT *
+FROM test
+WHERE (
+	(@BeignTime >= start_time AND @BeignTime <= end_time) OR 
+	(@EndTime   >= start_time AND @EndTime   <= end_time) OR 
+	(start_time >= @BeignTime AND start_time <= @EndTime) OR 
+	(end_time   >= @BeignTime AND end_time   <= @EndTime)
+);
++----+---------------------+---------------------+
+| id | start_time          | end_time            |
++----+---------------------+---------------------+
+|  1 | 2020-08-04 10:00:00 | 2020-08-04 12:00:00 |
++----+---------------------+---------------------+
+1 row in set (0.00 sec)
+```
+
+## Jackson序列化与反序列化
+
+### 序列化
+
+```java
+User user = new User();
+
+user.setName("小民");	
+user.setEmail("xiaomin@sina.com");
+user.setAge(20);
+
+ObjectMapper mapper = new ObjectMapper();
+
+String json = mapper.writeValueAsString(user);
+```
+
+### 反序列化
+
+```java
+
+
+String json = "{\"name\":\"小民\",\"age\":20,\"email\":\"xiaomin@sina.com\"}";
+
+ObjectMapper mapper = new ObjectMapper();
+
+User user = mapper.readValue(json, User.class);
+```
+
 <RightMenu />
