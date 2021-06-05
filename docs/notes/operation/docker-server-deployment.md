@@ -467,6 +467,7 @@ docker logs jenkins
 
 - 根据角色管理权限的插件：Role-based Authorization Strategy
 - 远程使用ssh的插件：SSH plugin
+- NodeJs
 
 ### 系统配置
 
@@ -486,33 +487,25 @@ github --> 头像 --> Settings --> Developer settings --> Personal access tokens
 
 ![安装Maven](https://z3.ax1x.com/2021/05/16/gguoSP.png)
 
-### 配置SSH
-
-#### Jenkins 服务器
-
-```bash
-ssh-keygen -t rsa
-```
-
-#### 目标服务器
+![安装NodeJs](https://z3.ax1x.com/2021/06/05/2NKpZR.png)
 
 ### 创建持续集成任务
 
-#### 创建构建任务
+#### 创建构建后端任务
 
 ![创建构建任务](https://z3.ax1x.com/2021/05/16/ggKaX8.png)
 
-#### 配置Git仓库
+- 配置Git仓库
 
 ![配置Git仓库](https://z3.ax1x.com/2021/05/16/ggKzAH.png)
 
 ![添加凭证](https://z3.ax1x.com/2021/05/17/g2IrRO.png)
 
-#### Maven构建配置
+- Maven构建配置
 
 ![Maven构建配置](https://z3.ax1x.com/2021/05/16/ggMigP.png)
 
-#### 编写Shell命令
+- 编写Shell命令
 
 ```bash
 #!/bin/bash
@@ -538,6 +531,38 @@ fi
 
 ```
 docker run -d -p 8081:8081 --name burning-sun-cms -v /usr/local/src/burning-sun/logs:/logs -d 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT
+```
+
+####  创建构建前端任务
+
+- 构建一个自由风格的软件项目
+
+![创建构建任务](https://z3.ax1x.com/2021/05/16/ggKaX8.png)
+
+- 添加Git代码仓库相关配置
+
+![添加Git代码仓库相关配置](https://z3.ax1x.com/2021/06/05/2NQyZ9.png)
+
+- 构建环境
+
+![构建环境](https://z3.ax1x.com/2021/06/05/2NQwxU.png)
+  
+- 编写Shell命令
+
+```bash
+# 查看版本信息
+npm -v
+# 解决存放在Github上的sass无法下载的问题
+SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+# 将镜像源替换为淘宝的加速访问
+npm config set registry https://registry.npm.taobao.org
+# 安装项目依赖
+npm install
+rm -rf ./cool-wallpaper/*
+# 项目打包
+npm run build
+rm -rf /home/cool-wallpaper/*
+cp -rf ./cool-wallpaper/* /home/cool-wallpaper/
 ```
 
 #### 构建触发器
