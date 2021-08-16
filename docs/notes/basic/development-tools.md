@@ -38,6 +38,9 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - Statistic：项目信息统计
 - Translation：翻译插件
 - Material Theme UI：主题美化插件
+- Atom Material Icons：图标插件
+- Git Commit Template：Git提交模版插件
+- GitToolBox：Git提交记录插件
 
 ## PyCharm
 
