@@ -27,33 +27,19 @@ npm cache clean --force（清除缓存）
 
 npm config get prefix（全局node包）
 
+npm config set prefix "路径"
+
 npm config get cache（缓存目录）
 
 npm config set cache（设置缓存目录）
 
 npm root -g（查看包的安装路径）
 
-npm run dev（2.x版本）
-
-npm run serve（3.x版本）
-
 npm config get registry
 
 npm config set registry https://registry.npm.taobao.org/
 
 npm install -g cnpm --registry=https://registry.npm.taobao.org（使用淘宝NPM镜像）
-
-npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver
-
-在项目内添加一个 .npmrc 文件：
-phantomjs_cdnurl=http://cnpmjs.org/downloads
-sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
-registry=https://registry.npm.taobao.org
-
-arch: 64
-proxy: none
-node_mirror: http://npm.taobao.org/mirrors/node/
-npm_mirror: https://npm.taobao.org/mirrors/npm/
 ```
 
 ## YARN
