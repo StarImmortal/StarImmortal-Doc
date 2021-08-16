@@ -191,4 +191,26 @@ ObjectMapper mapper = new ObjectMapper();
 User user = mapper.readValue(json, User.class);
 ```
 
+## 修改NPM全局模式的默认安装路径
+
+1. 新建两个文件夹
+
+   - node_global（全局）
+   - npm-cache（缓存）
+
+![](https://z3.ax1x.com/2021/08/01/fSEUhQ.png)
+
+2. 执行命令
+
+```bash
+npm config set prefix "D:\Nodejs\node_global"
+npm config set cache "D:\Nodejs\npm-cache"
+```
+
+3. 配置环境变量
+
+在`Path`变量名中，新建变量值：`D:\NodeJS\node_global`
+
+![](https://z3.ax1x.com/2021/08/01/fSVnbV.png)
+
 <RightMenu />
