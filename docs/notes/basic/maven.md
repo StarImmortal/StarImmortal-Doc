@@ -6,29 +6,25 @@ title: Maven入门
 
 ## 下载并解压
 
-> [下载地址](http://maven.apache.org/download.)
+> [下载地址](https://maven.apache.org/download.cgi)
 
-**选择apache-maven-3.6.0-bin.zip**
-
-![选择版本](https://i.loli.net/2019/06/27/5d14a4191ac5281174.png)
-
-**解压**
-
-![解压](https://i.loli.net/2019/06/27/5d14a84222e8730638.png)
+![](https://z3.ax1x.com/2021/08/01/fSevv9.png)
 
 ## 修改配置文件
 
-> 在Maven的安装目录下找到conf目录下的settings.xml
->
-> 打开此文件配置本地仓库和国内镜像源
+:::tip
+在Maven的安装目录下找到conf目录下的settings.xml
 
-**配置本地路径**
+打开此文件配置本地仓库和国内镜像源
+:::
+
+### 配置本地路径
 
 ```bash
 <localRepository>本地仓库路径</localRepository>
 ```
 
-**配置国内镜像源**
+### 配置国内镜像源
 
 ```bash
 <mirrors>
@@ -40,9 +36,6 @@ title: Maven入门
 	</mirror>
 </mirrors>
 ```
-
-![本地仓库](https://i.loli.net/2019/06/27/5d14a71a1470a70114.png)
-![镜像](https://i.loli.net/2019/06/27/5d14a78f0580a23799.png)
 
 ## 配置环境变量
 
@@ -56,16 +49,18 @@ title: Maven入门
 C:\Maven\apache-maven-3.6.0\bin
 ```
 
-![添加路径](https://i.loli.net/2019/06/27/5d14a53fea1d394436.png)
+![配置环境变量](https://z3.ax1x.com/2021/08/01/fSnTYT.png)
 
 ## 验证是否安装成功
 
-> Win + R 输入 cmd 打开命令提示符
->
-> 输入 mvn -v
->
-> 验证是否安装成功
+:::tip
+Win + R 输入 cmd 打开命令提示符
 
-![安装成功](https://i.loli.net/2019/06/27/5d14a6450271471080.png)
+输入 mvn -v
+
+验证是否安装成功
+:::
+
+![安装成功](https://z3.ax1x.com/2021/08/01/fSn7fU.png)
 
 <RightMenu />
