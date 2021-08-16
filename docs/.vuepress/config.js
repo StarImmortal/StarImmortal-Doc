@@ -141,6 +141,15 @@ module.exports = {
             "database/mysql-specification",
           ],
         },
+        {
+          title: "中间件",
+          children: [
+            "/notes/middleware/",
+            "middleware/nginx",
+            "middleware/elasticsearch",
+            "middleware/rocketmq"
+          ]
+        }
       ],
     },
   },
