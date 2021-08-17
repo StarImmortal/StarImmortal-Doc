@@ -116,9 +116,7 @@ module.exports = {
             "operation/server-deployment",
             "operation/docker-server-deployment",
             "operation/docker",
-            "operation/gitlab",
-            "operation/nginx",
-            "operation/elasticsearch",
+            "operation/gitlab"
           ],
         },
         {
