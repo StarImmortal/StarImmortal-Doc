@@ -327,8 +327,8 @@ docker run -p 80:80 --name nginx \
 - 查看Docker镜像的存放位置：
 
   ```bash
-docker info | grep "Docker Root Dir"
-    ```
+  docker info | grep "Docker Root Dir"
+  ```
 
 - 关闭Docker服务：
 
