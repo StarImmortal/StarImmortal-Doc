@@ -46,7 +46,7 @@ docker run -p 3306:3306 --name mysql \
 -v /usr/local/src/mysql-8.0.19/data:/var/lib/mysql \
 -v /usr/local/src/mysql-8.0.19/conf:/etc/mysql \
 -v /usr/local/src/mysql-8.0.19/mysql-files:/var/lib/mysql-files \
--e MYSQL_ROOT_PASSWORD=yfmVnvTX6gzUBWdZ \
+-e MYSQL_ROOT_PASSWORD=password \
 -d mysql:8.0.19
 ```
 
@@ -80,6 +80,55 @@ use mysql
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '新密码';
 
 flush privileges;
+```
+
+## Redis
+
+### 拉取最新镜像
+
+```bash
+docker pull redis:latest
+```
+
+### 创建映射文件夹
+
+```bash
+mkdir -p /home/redis/data /home/redis/conf
+```
+
+### 创建Redis配置文件
+
+```bash
+touch /home/redis/conf/redis.conf
+```
+
+### Redis配置文件
+
+```bash
+#注释掉下面这行代码表示开启外部访问
+#bind 127.0.0.1
+
+#保护模式，限制为本地访问，修改后解除保护模式
+protected-mode no
+
+#使用守护线程的方式启动
+daemonize no
+
+#设置Redis密码
+requirepass 123456
+
+#开启持久化
+appendonly yes
+```
+
+:::tip
+docker镜像`redis`默认无配置文件以及无配置文件启动
+:::
+
+### 运行容器
+
+```
+docker run --name redis -p 6379:6379 -v /home/redis/data:/data -v /home/redis/conf/redis.conf:/etc/redis/redis.conf -d --restart=always redis:latest redis-server /etc/redis/redis.conf
 ```
 
 ## ElasticSearch
