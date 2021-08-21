@@ -1,8 +1,8 @@
 ---
-title: GitLab代码仓库搭建
+title: GitLab搭建
 ---
 
-# 搭建GitLab代码仓库
+# GitLab代码托管平台
 
 ## 下载Docker镜像
 
