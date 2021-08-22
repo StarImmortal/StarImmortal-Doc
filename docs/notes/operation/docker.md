@@ -500,11 +500,47 @@ docker run -p 80:80 --name nginx \
   ```bash
   docker run -d -p 5000:5000 --restart=always --name registry2 registry:2
   ```
+
+- 修改配置文件（使之能删除镜像）
+
+  ```bash
+  docker exec -it 容器ID vi /etc/docker/registry/config.yml
+  ```
+
+  :::tip
+  增加`delete段`，将`enabled`设置为`true`
+  :::
+
+  ![配置文件](https://z3.ax1x.com/2021/08/22/hp4m79.png)
+
+- 重启容器
   
+  ```bash
+  docker restart registry2
+  ```
+
 - 访问私有仓库
 
   ```bash
   http://ip地址:5000/v2/_catalog
+  ```
+
+- 删除镜像
+
+  :::tip
+  通过命令行获取镜像对应sha256值：
+
+  curl --header "Accept: application/vnd.docker.distribution.manifest.v2+json" -I -X GET http://私有仓库地址/v2/镜像名称/manifests/镜像版本
+  :::
+  
+  ```bash
+  curl -I -X DELETE 私有仓库地址:5000/v2/镜像名称/manifests/sha256:镜像对应sha256值
+
+  docker exec -it registry2 sh
+
+  rm -rf /var/lib/registry/docker/registry/v2/repositories/镜像名称
+
+  exit
   ```
 
 ## Dockerfile常用指令
