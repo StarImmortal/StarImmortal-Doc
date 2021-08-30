@@ -180,7 +180,7 @@ title: CSS样式
 
 # CSS 盒子模型
 
-<img src="https://www.runoob.com/images/box-model.gif" align="left" />
+![](https://www.runoob.com/images/box-model.gif)
 
 - **Margin(外边距)** - 清除边框外的区域，外边距是透明的。
 - **Border(边框)** - 围绕在内边距和内容外的边框。
