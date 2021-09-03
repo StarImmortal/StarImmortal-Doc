@@ -8,7 +8,32 @@ title: Vue入门
 
 > [安装地址](https://cn.vuejs.org/v2/guide/installation.html)
 
-![安装Vue](https://i.loli.net/2019/04/24/5cbfd57239a63.png)
+### 直接`<srcipt>`引入
+
+直接下载并用`<script>`标签引入，Vue 会被注册为一个全局变量。
+
+:::warning
+在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!
+:::
+
+对于制作原型或学习，可以这样使用最新版本：
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+```
+
+对于生产环境，推荐链接到一个明确的版本号和构建文件，以避免新版本造成的不可预期的破坏：
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+```
+
+### NPM
+
+```shell
+# 最新稳定版
+$ npm install vue
+```
 
 ## Vue实例
 
