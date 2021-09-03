@@ -1,8 +1,8 @@
 ---
-title: Redis入门
+title: Redis
 ---
 
-# Redis入门
+# Redis
 
 ## 安装
 
