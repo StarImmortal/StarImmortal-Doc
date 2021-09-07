@@ -213,4 +213,12 @@ npm config set cache "D:\Nodejs\npm-cache"
 
 ![](https://z3.ax1x.com/2021/08/01/fSVnbV.png)
 
+## 自定义VS Code插件安装位置
+
+右键快捷方式，在原本的目标后加入`--extensions-dir "插件新的存储位置"`，例如：
+
+```
+"D:\Microsoft VS Code\Code.exe" --extensions-dir "D:\VS Code Extensions"
+```
+
 <RightMenu />
