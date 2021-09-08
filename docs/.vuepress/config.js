@@ -134,6 +134,7 @@ module.exports = {
           title: "数据库",
           children: [
             "/notes/database/",
+            "database/mysql",
             "database/redis",
             "database/mysql-specification",
           ],
