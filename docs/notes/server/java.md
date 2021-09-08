@@ -1,5 +1,5 @@
 ---
-title: Java工程师
+title: Java
 ---
 
 # 基础篇
@@ -48,11 +48,17 @@ title: Java工程师
 
 - **封装(Encapsulation)**
 
-  所谓封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。封装是面向对象的特征之一，是对象和类概念的主要特性。简单的说，一个类就是一个封装了数据以及操作这些数据的代码的逻辑实体。在一个对象内部，某些代码或某些数据可以是私有的，不能被外界访问。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或错误的使用了对象的私有部分。
+  所谓封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。
+  
+  封装是面向对象的特征之一，是对象和类概念的主要特性。简单的说，一个类就是一个封装了数据以及操作这些数据的代码的逻辑实体。在一个对象内部，某些代码或某些数据可以是私有的，不能被外界访问。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或错误的使用了对象的私有部分。
 
 - **继承(Inheritance)**
 
-  继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。继承的过程，就是从一般到特殊的过程。要实现继承，可以通过“继承”（Inheritance）和“组合”（Composition）来实现。继承概念的实现方式有二类：实现继承与接口继承。实现继承是指直接使用基类的属性和方法而无需额外编码的能力；接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力；
+  继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。
+  
+  通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。继承的过程，就是从一般到特殊的过程。
+  
+  继承概念的实现方式有二类：实现继承与接口继承。实现继承是指直接使用基类的属性和方法而无需额外编码的能力；接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力；
 
 - **多态(Polymorphism)**
 
@@ -64,7 +70,14 @@ title: Java工程师
 
 - **单一职责原则（Single-Responsibility Principle）**
 
-  其核心思想为：一个类，最好只做一件事，只有一个引起它的变化。单一职责原则可以看做是低耦合、高内聚在面向对象原则上的引申，将职责定义为引起变化的原因，以提高内聚性来减少引起变化的原因。职责过多，可能引起它变化的原因就越多，这将导致职责依赖，相互之间就产生影响，从而大大损伤其内聚性和耦合度。通常意义下的单一职责，就是指只有一种单一功能，不要为类实现过多的功能点，以保证实体只有一个引起它变化的原因。
+  其核心思想为：一个类，最好只做一件事，只有一个引起它的变化。
+  
+  单一职责原则可以看做是低耦合、高内聚在面向对象原则上的引申，将职责定义为引起变化的原因，以提高内聚性来减少引起变化的原因。
+  
+  职责过多，可能引起它变化的原因就越多，这将导致职责依赖，相互之间就产生影响，从而大大损伤其内聚性和耦合度。
+  
+  通常意义下的单一职责，就是指只有一种单一功能，不要为类实现过多的功能点，以保证实体只有一个引起它变化的原因。
+
   专注，是一个人优良的品质；同样的，单一也是一个类的优良设计。交杂不清的职责将使得代码看起来特别别扭牵一发而动全身，有失美感和必然导致丑陋的系统错误风险。
 
 - **开放封闭原则（Open-Closed principle）**
@@ -76,23 +89,38 @@ title: Java工程师
   1、对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。
 
   2、对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对其进行任何尝试的修改。
+
   实现开放封闭原则的核心思想就是对抽象编程，而不对具体编程，因为抽象相对稳定。让类依赖于固定的抽象，所以修改就是封闭的；而通过面向对象的继承和多态机制，又可以实现对抽象类的继承，通过覆写其方法来改变固有行为，实现新的拓展方法，所以就是开放的。
+
   “需求总是变化”没有不变的软件，所以就需要用封闭开放原则来封闭变化满足需求，同时还能保持软件内部的封装体系稳定，不被需求的变化影响。
 
 - **Liskov替换原则（Liskov-Substitution Principle）**
 
-  其核心思想是：子类必须能够替换其基类。这一思想体现为对继承机制的约束规范，只有子类能够替换基类时，才能保证系统在运行期内识别子类，这是保证继承复用的基础。在父类和子类的具体行为中，必须严格把握继承层次中的关系和特征，将基类替换为子类，程序的行为不会发生任何变化。同时，这一约束反过来则是不成立的，子类可以替换基类，但是基类不一定能替换子类。
-  Liskov替换原则，主要着眼于对抽象和多态建立在继承的基础上，因此只有遵循了Liskov替换原则，才能保证继承复用是可靠地。实现的方法是面向接口编程：将公共部分抽象为基类接口或抽象类，通过Extract Abstract Class，在子类中通过覆写父类的方法实现新的方式支持同样的职责。
-  Liskov替换原则是关于继承机制的设计原则，违反了Liskov替换原则就必然导致违反开放封闭原则。
+  其核心思想是：子类必须能够替换其基类。这一思想体现为对继承机制的约束规范，只有子类能够替换基类时，才能保证系统在运行期内识别子类，这是保证继承复用的基础。
+  
+  在父类和子类的具体行为中，必须严格把握继承层次中的关系和特征，将基类替换为子类，程序的行为不会发生任何变化。同时，这一约束反过来则是不成立的，子类可以替换基类，但是基类不一定能替换子类。
+
+  Liskov替换原则，主要着眼于对抽象和多态建立在继承的基础上，因此只有遵循了Liskov替换原则，才能保证继承复用是可靠地。
+  
+  实现的方法是面向接口编程：将公共部分抽象为基类接口或抽象类，通过Extract Abstract Class，在子类中通过覆写父类的方法实现新的方式支持同样的职责。Liskov替换原则是关于继承机制的设计原则，违反了Liskov替换原则就必然导致违反开放封闭原则。
+
   Liskov替换原则能够保证系统具有良好的拓展性，同时实现基于多态的抽象机制，能够减少代码冗余，避免运行期的类型判别。
 
 - **依赖倒置原则（Dependecy-Inversion Principle）**
 
-  其核心思想是：依赖于抽象。具体而言就是高层模块不依赖于底层模块，二者都同依赖于抽象；抽象不依赖于具体，具体依赖于抽象。我们知道，依赖一定会存在于类与类、模块与模块之间。当两个模块之间存在紧密的耦合关系时，最好的方法就是分离接口和实现：在依赖之间定义一个抽象的接口使得高层模块调用接口，而底层模块实现接口的定义，以此来有效控制耦合关系，达到依赖于抽象的设计目标。抽象的稳定性决定了系统的稳定性，因为抽象是不变的，依赖于抽象是面向对象设计的精髓，也是依赖倒置原则的核心。依赖于抽象是一个通用的原则，而某些时候依赖于细节则是在所难免的，必须权衡在抽象和具体之间的取舍，方法不是一层不变的。依赖于抽象，就是对接口编程，不要对实现编程。
+  其核心思想是：依赖于抽象。具体而言就是高层模块不依赖于底层模块，二者都同依赖于抽象；抽象不依赖于具体，具体依赖于抽象。
+  
+  我们知道，依赖一定会存在于类与类、模块与模块之间。当两个模块之间存在紧密的耦合关系时，最好的方法就是分离接口和实现：在依赖之间定义一个抽象的接口使得高层模块调用接口，而底层模块实现接口的定义，以此来有效控制耦合关系，达到依赖于抽象的设计目标。
+  
+  抽象的稳定性决定了系统的稳定性，因为抽象是不变的，依赖于抽象是面向对象设计的精髓，也是依赖倒置原则的核心。依赖于抽象是一个通用的原则，而某些时候依赖于细节则是在所难免的，必须权衡在抽象和具体之间的取舍，方法不是一层不变的。依赖于抽象，就是对接口编程，不要对实现编程。
 
 - **接口隔离原则（Interface-Segregation Principle）**
 
-  其核心思想是：使用多个小的专门的接口，而不要使用一个大的总接口。 具体而言，接口隔离原则体现在：接口应该是内聚的，应该避免“胖”接口。一个类对另外一个类的依赖应该建立在最小的接口上，不要强迫依赖不用的方法，这是一种接口污染。 接口有效地将细节和抽象隔离，体现了对抽象编程的一切好处，接口隔离强调接口的单一性。而胖接口存在明显的弊端，会导致实现的类型必须完全实现接口的所有方法、属性等；而某些时候，实现类型并非需要所有的接口定义，在设计上这是“浪费”，而且在实施上这会带来潜在的问题，对胖接口的修改将导致一连串的客户端程序需要修改，有时候这是一种灾难。在这种情况下，将胖接口分解为多个特点的定制化方法，使得客户端仅仅依赖于它们的实际调用的方法，从而解除了客户端不会依赖于它们不用的方法。 
+  其核心思想是：使用多个小的专门的接口，而不要使用一个大的总接口。
+  
+  具体而言，接口隔离原则体现在：接口应该是内聚的，应该避免“胖”接口。一个类对另外一个类的依赖应该建立在最小的接口上，不要强迫依赖不用的方法，这是一种接口污染。
+  
+  接口有效地将细节和抽象隔离，体现了对抽象编程的一切好处，接口隔离强调接口的单一性。而胖接口存在明显的弊端，会导致实现的类型必须完全实现接口的所有方法、属性等；而某些时候，实现类型并非需要所有的接口定义，在设计上这是“浪费”，而且在实施上这会带来潜在的问题，对胖接口的修改将导致一连串的客户端程序需要修改，有时候这是一种灾难。在这种情况下，将胖接口分解为多个特点的定制化方法，使得客户端仅仅依赖于它们的实际调用的方法，从而解除了客户端不会依赖于它们不用的方法。 
 
   分离的手段主要有以下两种：
 
@@ -169,11 +197,11 @@ title: Java工程师
 
 - **定义**
 
-  - **重载**
+  1. 重载
 
     简单说，就是函数或者方法有同样的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。
 
-  - **重写**
+  2. 重写
 
     重写指的是在Java的子类与父类中有两个名称、参数列表都相同的方法的情况。由于他们具有相同的方法签名，所以子类中的新方法将覆盖父类中原有的方法。
 
@@ -227,22 +255,24 @@ title: Java工程师
   所以，当`dog`调用`bark()`方法的时候，就会调用`Hound`类中定义的`bark()`方法。这就是所谓的动态多态性。
 
 - **重写的条件**
-
-  >列表必须完全与被重写方法的相同
-  >
-  >返回类型必须完全与被重写方法的返回类型相同
-  >
-  >访问级别的限制性一定不能比被重写方法的强
-  >
-  >访问级别的限制性可以比被重写方法的弱
-  >
-  >重写方法一定不能抛出新的检查异常或比被重写的方法声明的检查异常更广泛的检查异常
-  >
-  >重写的方法能够抛出更少或更有限的异常（也就是说，被重写的方法声明了异常，但重写的方法可以什么也不声明）
-  >
-  >不能重写被标示为final的方法
-  >
-  >如果不能继承一个方法，则不能重写这个方法
+  
+  :::tip
+  列表必须完全与被重写方法的相同
+  
+  返回类型必须完全与被重写方法的返回类型相同
+  
+  访问级别的限制性一定不能比被重写方法的强
+  
+  访问级别的限制性可以比被重写方法的弱
+  
+  重写方法一定不能抛出新的检查异常或比被重写的方法声明的检查异常更广泛的检查异常
+  
+  重写的方法能够抛出更少或更有限的异常（也就是说，被重写的方法声明了异常，但重写的方法可以什么也不声明）
+  
+  不能重写被标示为final的方法
+  
+  如果不能继承一个方法，则不能重写这个方法
+  :::
 
 - **重载的例子**
 
@@ -267,15 +297,17 @@ title: Java工程师
 
 - **重载的条件**
 
-  > 被重载的方法必须改变参数列
-  >
-  > 被重载的方法可以改变返回类型
-  >
-  > 被重载的方法可以改变访问修饰符
-  >
-  > 被重载的方法可以声明新的或更广的检查异常
-  >
-  > 方法能够在同一个类中或者在一个子类中被重载
+  :::tip
+  被重载的方法必须改变参数列
+  
+  被重载的方法可以改变返回类型
+  
+  被重载的方法可以改变访问修饰符
+  
+  被重载的方法可以声明新的或更广的检查异常
+  
+  方法能够在同一个类中或者在一个子类中被重载
+  :::
 
 - **参考资料**
 
@@ -287,9 +319,9 @@ title: Java工程师
 
 其中继承和实现都体现了`传递性`。而且明确定义如下：
 
-> 继承：如果多个类的某个部分的功能相同，那么可以抽象出一个类出来，把他们的相同部分都放到父类里，让他们都继承这个类。
->
-> 实现：如果多个类处理的目标是一样的，但是处理的方法方式不同，那么就定义一个接口，也就是一个标准，让他们的实现这个接口，各自实现自己具体的处理方法来处理那个目标
+继承：如果多个类的某个部分的功能相同，那么可以抽象出一个类出来，把他们的相同部分都放到父类里，让他们都继承这个类。
+
+实现：如果多个类处理的目标是一样的，但是处理的方法方式不同，那么就定义一个接口，也就是一个标准，让他们的实现这个接口，各自实现自己具体的处理方法来处理那个目标
 
 所以，继承的根本原因是因为要*复用*，而实现的根本原因是需要定义一个*标准*。
 
@@ -297,7 +329,7 @@ title: Java工程师
 
 Java中支持一个类同时实现多个接口，但是不支持同时继承多个类。
 
->简单点说，就是同样是一台汽车，既可以是电动车，也可以是汽油车，也可以是油电混合的，只要实现不同的标准就行了，但是一台车只能属于一个品牌，一个厂商。
+简单点说，就是同样是一台汽车，既可以是电动车，也可以是汽油车，也可以是油电混合的，只要实现不同的标准就行了，但是一台车只能属于一个品牌，一个厂商。
 
 ```java
 class Car extends Benz implements GasolineCar, ElectroCar {
@@ -317,27 +349,25 @@ class Car extends Benz implements GasolineCar, ElectroCar {
 
 - **继承**
 
-  继承（Inheritance）是一种联结类与类的层次模型。指的是一个类（称为子类、子接口）继承另外的一个类（称为父类、父接口）的功能，并可以增加它自己的新功能的能力，继承是类与类或者接口与接口之间最常见的关系；继承是一种[`is-a`](https://zh.wikipedia.org/wiki/Is-a)关系；Java 不支持多继承，但支持多重继承。
+  继承（Inheritance）是一种联结类与类的层次模型。指的是一个类（称为子类、子接口）继承另外的一个类（称为父类、父接口）的功能，并可以增加它自己的新功能的能力，继承是类与类或者接口与接口之间最常见的关系；继承是一种[`is-a`](https://zh.wikipedia.org/wiki/Is-a)关系。
 
-  <img src="http://www.hollischuang.com/wp-content/uploads/2016/03/Generalization.jpg" align="left" />
-
-  <img src="https://s1.ax1x.com/2020/10/13/04CBMd.png" align="left" style="zoom: 67%;" />
+  <img src="https://s1.ax1x.com/2020/10/13/04CBMd.png" />
 
 - **组合**
 
   组合(Composition)体现的是整体与部分、拥有的关系，即[`has-a`](https://en.wikipedia.org/wiki/Has-a)的关系。
 
-  <img src="http://www.hollischuang.com/wp-content/uploads/2016/03/Composition.jpg" align="left" />
+  <img src="http://www.hollischuang.com/wp-content/uploads/2016/03/Composition.jpg" />
 
 - **组合与继承的区别和联系**
 
-  > 在`继承`结构中，父类的内部细节对于子类是可见的。所以我们通常也可以说通过继承的代码复用是一种`白盒式代码复用`。（如果基类的实现发生改变，那么派生类的实现也将随之改变。这样就导致了子类行为的不可预知性；）
-  >
-  > `组合`是通过对现有的对象进行拼装（组合）产生新的、更复杂的功能。因为在对象之间，各自的内部细节是不可见的，所以我们也说这种方式的代码复用是`黑盒式代码复用`。（因为组合中一般都定义一个类型，所以在编译期根本不知道具体会调用哪个实现类的方法）
-  >
-  > `继承`，在写代码的时候就要指名具体继承哪个类，所以，在`编译期`就确定了关系。（从基类继承来的实现是无法在运行期动态改变的，因此降低了应用的灵活性。）
-  >
-  > `组合`，在写代码的时候可以采用面向接口编程。所以，类的组合关系一般在`运行期`确定。
+  在`继承`结构中，父类的内部细节对于子类是可见的。所以我们通常也可以说通过继承的代码复用是一种`白盒式代码复用`。（如果基类的实现发生改变，那么派生类的实现也将随之改变。这样就导致了子类行为的不可预知性；）
+  
+  `组合`是通过对现有的对象进行拼装（组合）产生新的、更复杂的功能。因为在对象之间，各自的内部细节是不可见的，所以我们也说这种方式的代码复用是`黑盒式代码复用`。（因为组合中一般都定义一个类型，所以在编译期根本不知道具体会调用哪个实现类的方法）
+  
+  `继承`，在写代码的时候就要指名具体继承哪个类，所以，在`编译期`就确定了关系。（从基类继承来的实现是无法在运行期动态改变的，因此降低了应用的灵活性。）
+  
+  `组合`，在写代码的时候可以采用面向接口编程。所以，类的组合关系一般在`运行期`确定。
 
 - **优缺点对比**
 
@@ -362,9 +392,9 @@ class Car extends Benz implements GasolineCar, ElectroCar {
 
   注意，并不是说继承就一点用都没有了，前面说的是【在同样可行的情况下】。有一些场景还是需要使用继承的，或者是更适合使用继承。
 
-  > 继承要慎用，其使用场合仅限于你确信使用该技术有效的情况。一个判断方法是，问一问自己是否需要从新类向基类进行向上转型。如果是必须的，则继承是必要的。反之则应该好好考虑是否需要继承。《[Java编程思想](http://s.click.taobao.com/t?e=m%3D2%26s%3DHzJzud6zOdocQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67vo5P8BMUBgoEC56fBbgyn5pS4hLH%2FP02ckKYNRBWOBBey11vvWwHXSniyi5vWXIZhtlrJbLMDAQihpQCXu2JnPFYKQlNeOGCsYMXU3NNCg%2F&pvid=10_125.119.86.125_222_1458652212179)》
-  >
-  > 只有当子类真正是超类的子类型时，才适合用继承。换句话说，对于两个类A和B，只有当两者之间确实存在[`is-a`](https://zh.wikipedia.org/wiki/Is-a)关系的时候，类B才应该继承类A。《[Effective Java](http://s.click.taobao.com/t?e=m%3D2%26s%3DwIPn8%2BNPqLwcQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67vo5P8BMUBgoUOZr0mLjusdpS4hLH%2FP02ckKYNRBWOBBey11vvWwHXSniyi5vWXIZvgXwmdyquYbNLnO%2BjzYQLqKnzbV%2FMLqnMYMXU3NNCg%2F&pvid=10_125.119.86.125_345_1458652241780)》
+  继承要慎用，其使用场合仅限于你确信使用该技术有效的情况。一个判断方法是，问一问自己是否需要从新类向基类进行向上转型。如果是必须的，则继承是必要的。反之则应该好好考虑是否需要继承。《[Java编程思想](http://s.click.taobao.com/t?e=m%3D2%26s%3DHzJzud6zOdocQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67vo5P8BMUBgoEC56fBbgyn5pS4hLH%2FP02ckKYNRBWOBBey11vvWwHXSniyi5vWXIZhtlrJbLMDAQihpQCXu2JnPFYKQlNeOGCsYMXU3NNCg%2F&pvid=10_125.119.86.125_222_1458652212179)》
+  
+  只有当子类真正是超类的子类型时，才适合用继承。换句话说，对于两个类A和B，只有当两者之间确实存在[`is-a`](https://zh.wikipedia.org/wiki/Is-a)关系的时候，类B才应该继承类A。《[Effective Java](http://s.click.taobao.com/t?e=m%3D2%26s%3DwIPn8%2BNPqLwcQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67vo5P8BMUBgoUOZr0mLjusdpS4hLH%2FP02ckKYNRBWOBBey11vvWwHXSniyi5vWXIZvgXwmdyquYbNLnO%2BjzYQLqKnzbV%2FMLqnMYMXU3NNCg%2F&pvid=10_125.119.86.125_345_1458652241780)》
 
 #### super 与 this 关键字
 
@@ -755,7 +785,7 @@ public class Variables {
 
   4. 编译上面的程序后，会发现产生了两个 .class 文件，即成员内部类的 .class 文件总是这样：外部类名$内部类名.class
 
-     <img src="https://s2.ax1x.com/2020/02/02/1NSiod.png" align="left" />
+    <img src="https://s2.ax1x.com/2020/02/02/1NSiod.png" />
 
   **友情提示：**
 
@@ -855,13 +885,19 @@ public class Variables {
 
 - **匿名内部类（Anonymous Class）**
 
-  - 匿名类：没有名称的类，其名称由Java编译器给出，一般是形如：外部类名称+$+匿名类顺序，没有名称也就是其他地方就不能引用，不能实例化，只用一次，当然也就不能有构造器
-  - 匿名类就是利用父类的构造函数和自身类体构造成一个类
-  - 格式中的“父类”是子类需要继承或者实现外部的类或者接口
-    ![1NpsEQ.png](https://s2.ax1x.com/2020/02/02/1NpsEQ.png)
-  - 匿名类可以继承父类的方法，也可以重写父类的方法
-  - 匿名类可以访问外部类的成员变量和方法，匿名类的类体不可以声明称static成员变量和static方法
-  - 匿名类由于是一个new的结果，所以其实可以赋值给一个父类对象。因此可以分为两种匿名类，成员匿名类和局部匿名类（作为函数参数）
+  :::tip
+  匿名类：没有名称的类，其名称由Java编译器给出，一般是形如：外部类名称+$+匿名类顺序，没有名称也就是其他地方就不能引用，不能实例化，只用一次，当然也就不能有构造器
+
+  匿名类就是利用父类的构造函数和自身类体构造成一个类
+
+  格式中的“父类”是子类需要继承或者实现外部的类或者接口
+
+  匿名类可以继承父类的方法，也可以重写父类的方法
+
+  匿名类可以访问外部类的成员变量和方法，匿名类的类体不可以声明称static成员变量和static方法
+
+  匿名类由于是一个new的结果，所以其实可以赋值给一个父类对象。因此可以分为两种匿名类，成员匿名类和局部匿名类（作为函数参数）
+  :::
 
 ### 平台无关性
 
@@ -887,13 +923,13 @@ public class Variables {
 
 - **编译原理基础**
 
-  我们在[Java代码的编译与反编译那些事儿](http://www.hollischuang.com/archives/58)中介绍过，在计算机世界中，计算机只认识0和1，所以，真正被计算机执行的其实是由0和1组成的二进制文件。
+  在计算机世界中，计算机只认识0和1，所以，真正被计算机执行的其实是由0和1组成的二进制文件。
 
-  但是，我们日常开发使用的C、C++、Java、Python等都属于高级语言，而非二进制语言。所以，想要让计算机认识我们写出来的Java代码，那就需要把他"翻译"成由0和1组成的二进制文件。这个过程就叫做编译。负责这一过程的处理的工具叫做编译器。
+  但是，日常开发使用的C、C++、Java、Python等都属于高级语言，而非二进制语言。所以，想要让计算机认识我们写出来的Java代码，那就需要把他"翻译"成由0和1组成的二进制文件。这个过程就叫做编译。负责这一过程的处理的工具叫做编译器。
 
   在[深入分析Java的编译原理](https://www.hollischuang.com/archives/2322)中我们介绍过，在Java平台中，想要把Java文件，编译成二进制文件，需要经过两步编译，前端编译和后端编译：
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539284762449.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539284762449.jpg" />
 
   前端编译主要指与源语言有关但与目标机无关的部分。Java中，我们所熟知的`javac`的编译就是前端编译。除了这种以外，我们使用的很多IDE，如eclipse，idea等，都内置了前端编译器。主要功能就是把`.java`代码转换成`.class`代码。
 
@@ -901,11 +937,11 @@ public class Variables {
 
   后端编译主要是将中间代码再翻译成机器语言。Java中，这一步骤就是Java虚拟机来执行的。
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539289530245.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539289530245.jpg" />
 
   所以，我们说的，Java的平台无关性实现主要作用于以上阶段。如下图所示：
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539291533175.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539291533175.jpg" />
 
   我们从后往前介绍一下这三位主演：Java虚拟机、Class文件、Java语言规范
 
@@ -917,13 +953,13 @@ public class Variables {
 
   而这一工作，主要由我们的Java虚拟机完成。虽然Java语言是平台无关的，但是JVM却是平台有关的，不同的操作系统上面要安装对应的JVM。
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539297082025.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539297082025.jpg" />
 
   上图是Oracle官网下载JDK的指引，不同的操作系统需要下载对应的Java虚拟机。
 
   有了Java虚拟机，想要执行a+b操作，A操作系统上面的虚拟机就会把指令翻译成10001000，B操作系统上面的虚拟机就会把指令翻译成11101110。
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539303829914.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2019/03/15539303829914.jpg" />
 
   所以，Java之所以可以做到跨平台，是因为Java虚拟机充当了桥梁。他扮演了运行时Java程序与其下的硬件和操作系统之间的缓冲角色。
 
@@ -1086,20 +1122,58 @@ shared void run() {
 
 #### 值传递、引用传递
 
+- **值传递与引用传递**
+
+  上面提到了，当调用一个有参函数的时候，会把实际参数传递给形式参数。但是，在程序语言中，这个传递过程中传递的两种情况，即值传递和引用传递。我们来看下程序语言中是如何定义和区分值传递和引用传递的。
+
+  值传递（pass by value）：在调用函数时将实际参数`复制`一份传递到函数中，这样在函数中如果对`参数`进行修改，将不会影响到实际参数。
+  
+  引用传递（pass by reference）：在调用函数时将实际参数的地址`直接`传递到函数中，那么在函数中对`参数`所进行的修改，将影响到实际参数。
+
+  值传递和引用传递之前的区别的重点：
+
+  <img src="http://www.hollischuang.com/wp-content/uploads/2018/04/pass.jpg" />
+
+  形象的例子：
+
+  你有一把钥匙，当你的朋友想要去你家的时候，如果你`直接`把你的钥匙给他了，这就是引用传递。这种情况下，如果他对这把钥匙做了什么事情，比如他在钥匙上刻下了自己名字，那么这把钥匙还给你的时候，你自己的钥匙上也会多出他刻的名字。
+
+  你有一把钥匙，当你的朋友想要去你家的时候，你`复刻`了一把新钥匙给他，自己的还在自己手里，这就是值传递。这种情况下，他对这把钥匙做什么都不会影响你手里的这把钥匙。
+
+- **参考资料**
+
+  [Evaluation strategy](https://en.wikipedia.org/wiki/Evaluation_strategy)
+
+  [关于值传递和引用传递](http://chenwenbo.github.io/2016/05/11/%E5%85%B3%E4%BA%8E%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/)
+
+  [Is Java “ pass-by-reference” or “ pass-by-value” ?](https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value)
+
+#### 为什么说Java中只有值传递
+
+- **错误理解**
+
+  :::danger
+  错误理解一：值传递和引用传递，区分的条件是传递的内容，如果是个值，就是值传递。如果是个引用，就是引用传递。
+  
+  错误理解二：Java是引用传递。
+  
+  错误理解三：传递的参数如果是普通类型，那就是值传递，如果是对象，那就是引用传递。
+  :::
+
 - **实参与形参**
 
   参数在程序语言中分为形式参数和实际参数
 
-  > 形式参数：是在定义函数名和函数体的时候使用的参数,目的是用来接收调用该函数时传入的参数。
-  >
-  > 实际参数：在调用有参函数时，主调函数和被调函数之间有数据传递关系。在主调函数中调用一个函数时，函数名后面括号中的参数称为“实际参数”。
+  形式参数：是在定义函数名和函数体的时候使用的参数,目的是用来接收调用该函数时传入的参数。
+  
+  实际参数：在调用有参函数时，主调函数和被调函数之间有数据传递关系。在主调函数中调用一个函数时，函数名后面括号中的参数称为“实际参数”。
 
   简单举个例子：
 
   ```java
   public static void main(String[] args) {
     ParamTest pt = new ParamTest();
-    pt.sout("Hollis");//实际参数为 Hollis
+    pt.sout("William");//实际参数为 Hollis
   }
   
   public void sout(String name) { //形式参数为 name
@@ -1109,37 +1183,9 @@ shared void run() {
 
   实际参数是调用有参方法的时候真正传递的内容，而形式参数是用于接收实参内容的参数。
 
-- **值传递与引用传递**
-
-  上面提到了，当我们调用一个有参函数的时候，会把实际参数传递给形式参数。但是，在程序语言中，这个传递过程中传递的两种情况，即值传递和引用传递。我们来看下程序语言中是如何定义和区分值传递和引用传递的。
-
-  > 值传递（pass by value）：在调用函数时将实际参数`复制`一份传递到函数中，这样在函数中如果对`参数`进行修改，将不会影响到实际参数。
-  >
-  > 引用传递（pass by reference）：在调用函数时将实际参数的地址`直接`传递到函数中，那么在函数中对`参数`所进行的修改，将影响到实际参数。
-
-  值传递和引用传递之前的区别的重点：
-
-  <img src="http://www.hollischuang.com/wp-content/uploads/2018/04/pass.jpg" align="left" />
-
-  形象的例子：
-
-  你有一把钥匙，当你的朋友想要去你家的时候，如果你`直接`把你的钥匙给他了，这就是引用传递。这种情况下，如果他对这把钥匙做了什么事情，比如他在钥匙上刻下了自己名字，那么这把钥匙还给你的时候，你自己的钥匙上也会多出他刻的名字。
-
-  你有一把钥匙，当你的朋友想要去你家的时候，你`复刻`了一把新钥匙给他，自己的还在自己手里，这就是值传递。这种情况下，他对这把钥匙做什么都不会影响你手里的这把钥匙。
-
-#### 为什么说Java中只有值传递
-
-- **错误理解**
-
-  > 错误理解一：值传递和引用传递，区分的条件是传递的内容，如果是个值，就是值传递。如果是个引用，就是引用传递。
-  >
-  > 错误理解二：Java是引用传递。
-  >
-  > 错误理解三：传递的参数如果是普通类型，那就是值传递，如果是对象，那就是引用传递。
-
 - **求值策略**
 
-  我们说当进行方法调用的时候，需要把实际参数传递给形式参数，那么传递的过程中到底传递的是什么东西呢？
+  当进行方法调用的时候，需要把实际参数传递给形式参数，那么传递的过程中到底传递的是什么东西呢？
 
   这其实是程序设计中**求值策略（Evaluation strategies）**的概念。
 
@@ -1153,15 +1199,15 @@ shared void run() {
 
   在严格求值中有几个关键的求值策略是我们比较关心的，那就是**传值调用**（Call by value）、**传引用调用**（Call by reference）以及**传共享对象调用**（Call by sharing）。
 
-  - 传值调用（值传递）
+  1. 传值调用（值传递）
 
     在传值调用中，实际参数先被求值，然后其值通过复制，被传递给被调函数的形式参数。因为形式参数拿到的只是一个"局部拷贝"，所以如果在被调函数中改变了形式参数的值，并不会改变实际参数的值
 
-  - 传引用调用（引用传递）
+  2. 传引用调用（引用传递）
 
     在传引用调用中，传递给函数的是它的实际参数的隐式引用而不是实参的拷贝。因为传递的是引用，所以，如果在被调函数中改变了形式参数的值，改变对于调用者来说是可见的。
 
-  - 传共享对象调用（共享对象传递）
+  3. 传共享对象调用（共享对象传递）
 
     传共享对象调用中，先获取到实际参数的地址，然后将其复制，并把该地址的拷贝传递给被调函数的形式参数。因为参数的地址都指向同一个对象，所以我们也称之为"传共享对象"，所以，如果在被调函数中改变了形式参数的值，调用者是可以看到这种变化的。
 
@@ -1171,7 +1217,7 @@ shared void run() {
 
   那么，共享对象传递和值传递以及引用传递之间到底有什么关系呢？
 
-  对于这个问题，我们应该关注过程，而不是结果，**因为传共享对象调用的过程和传值调用的过程是一样的，而且都有一步关键的操作，那就是"复制"，所以，通常我们认为传共享对象调用是传值调用的特例**
+  对于这个问题，应该关注过程，而不是结果，**因为传共享对象调用的过程和传值调用的过程是一样的，而且都有一步关键的操作，那就是"复制"，所以，通常我们认为传共享对象调用是传值调用的特例**
 
   传值调用和传引用调用两者的最主要区别就是直接传递的，还是传递的是一个副本。
 
@@ -1185,16 +1231,16 @@ shared void run() {
 
   ```java
   public static void main(String[] args) {
-    Test pt = new Test();s
-    User hollis = new User();
-    hollis.setName("Hollis");
+    Test pt = new Test();
+    User user = new User();
+    hollis.setName("William");
     hollis.setGender("Male");
     pt.pass(hollis);
-    System.out.println("print in main , user is " + hollis);
+    System.out.println("print in main , user is " + user);
   }
   
   public void pass(User user) {
-    user.setName("hollischuang");
+    user.setName("william");
     System.out.println("print in pass , user is " + user);
   }
   ```
@@ -1202,8 +1248,8 @@ shared void run() {
   输出结果：
 
   ```
-  print in pass , user is User{name='hollischuang', gender='Male'}
-  print in main , user is User{name='hollischuang', gender='Male'}
+  print in pass , user is User{name='william', gender='Male'}
+  print in main , user is User{name='william', gender='Male'}
   ```
 
   可以看到，对象类型在被传递到pass方法后，在方法内改变了其内容，最终调用方main方法中的对象也变了。
@@ -1244,7 +1290,7 @@ shared void run() {
 
   我们先回到上面的例子中来，看一下调用过程中实际上发生了什么？
 
-  <img src="http://www.hollischuang.com/wp-content/uploads/2018/04/pass21.png" align="left" />
+  <img src="http://www.hollischuang.com/wp-content/uploads/2018/04/pass21.png" />
 
   在参数传递的过程中，实际参数的地址`0X1213456`被拷贝给了形参。这个过程其实就是值传递，只不过传递的值得内容是对象的引用。
 
@@ -1275,7 +1321,7 @@ shared void run() {
 
   再看一下整个过程中发生了什么：
 
-  <img src="http://www.hollischuang.com/wp-content/uploads/2018/04/pass1.png" align="left" />
+  <img src="http://www.hollischuang.com/wp-content/uploads/2018/04/pass1.png" />
 
   这个过程，就好像你复制了一把钥匙给到你的朋友，你的朋友拿到你给他的钥匙之后，找个锁匠把他修改了一下，他手里的那把钥匙变成了开他家锁的钥匙。这时候，他打开自己家，就算是把房子点了，对你手里的钥匙，和你家的房子来说都是没有任何影响的。
 
@@ -1334,9 +1380,9 @@ add(2,1); // 传递多个参数
 add(new Integer[] {1, 3, 2}); // 传递数组
 ```
 
-## Java 基础知识
+## Java 语言基础
 
-### Java标识符命名规则
+### 标识符命名规则
 
 - 由26个英文字母大小写，数字：0-9 符号：_ $ ￥ 组成
 - 标识符应以字母、_ 、$ 开头
@@ -1348,29 +1394,27 @@ add(new Integer[] {1, 3, 2}); // 传递数组
 
 Java中有8种基本数据类型分为三大类：
 
-- **字符型**
+- **字符型：char**
 
-  char
-
-- **布尔型**
-
-  boolean
+- **布尔型：boolean**
 
 - **数值型**
 
-  > 整型：byte、short、int、long
-  >
-  > 浮点型：float、double
+  整型：byte、short、int、long
 
-*String不是基本数据类型，是引用类型*
+  浮点型：float、double
+
+:::tip
+注意：String不是基本数据类型，是引用类型
+:::
 
 实际上，Java 中还存在另外一种基本类型 `void`，它也有对应的包装类 `java.lang.Void`，不过我们无法直接对它们进行操作。
 
 #### 基本数据类型有什么好处
 
-我们都知道在 Java 语言中，`new` 一个对象是存储在堆里的，我们通过栈中的引用来使用这些对象；所以，对象本身来说是比较消耗资源的。
+我们都知道在`Java`语言中，`new` 一个对象是存储在堆里的，我们通过栈中的引用来使用这些对象；所以，对象本身来说是比较消耗资源的。
 
-对于经常用到的类型，如 int 等，如果我们每次使用这种变量的时候都需要 new 一个 Java 对象的话，就会比较笨重。所以，和 C++ 一样，Java 提供了基本数据类型，这种数据的变量不需要使用 new 创建，他们不会在堆上创建，而是直接在栈内存中存储，因此会更加高效。
+对于经常用到的类型，如`int`等，如果我们每次使用这种变量的时候都需要`new`一个`Java`对象的话，就会比较笨重。所以，和`C++`一样，Java提供了基本数据类型，这种数据的变量不需要使用`new`创建，他们不会在堆上创建，而是直接在栈内存中存储，因此会更加高效。
 
 #### 整型的取值范围
 
@@ -1378,7 +1422,13 @@ Java中的整型主要包含byte、short、int和long这四种，表示的数字
 
 先来个简答的科普，1字节=8位（bit）。java中的整型属于有符号数。
 
-先来看计算中8bit可以表示的数字： 最小值：10000000 （-128）(-2^7) 最大值：01111111（127）(2^7-1) 具体计算方式参考：[Java中，为什么byte类型的取值范围为-128~127? - CSDN博客](https://blog.csdn.net/qq_23418393/article/details/57421688)
+先来看计算中8bit可以表示的数字： 
+
+最小值：10000000 （-128）(-2^7) 
+
+最大值：01111111（127）(2^7-1) 
+
+具体计算方式参考：[Java中，为什么byte类型的取值范围为-128~127? - CSDN博客](https://blog.csdn.net/qq_23418393/article/details/57421688)
 
 | 类型  | 字节数  |                             范围                             |        默认值         |
 | :---: | :-----: | :----------------------------------------------------------: | :-------------------: |
@@ -1409,7 +1459,7 @@ System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
 
 1的二进制是01，1.0/2=0.5，那么，0.5的二进制表示应该为(0.1)，以此类推，0.25的二进制表示为0.01，所以，并不是说所有的十进制小数都能准确的用二进制表示出来，如0.1，因此只能使用近似值的方式表达。
 
-也就是说，，十进制的小数在计算机中是由一个整数或定点数（即尾数）乘以某个基数（计算机中通常是2）的整数次幂得到的，这种表示方法类似于基数为10的科学计数法。
+也就是说，十进制的小数在计算机中是由一个整数或定点数（即尾数）乘以某个基数（计算机中通常是2）的整数次幂得到的，这种表示方法类似于基数为10的科学计数法。
 
 一个浮点数a由两个数m和e来表示：a = m × be。在任意一个这样的系统中，我们选择一个基数b（记数系统的基）和精度p（即使用多少位来存储）。m（即尾数）是形如±d.ddd...ddd的p位数（每一位是一个介于0到b-1之间的整数，包括0和b-1）。如果m的第一位是非0整数，m称作正规化的。有一些描述使用一个单独的符号位（s 代表+或者-）来表示正负，这样m必须是正的。e是指数。
 
@@ -1417,9 +1467,9 @@ System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
 
 #### 什么是单精度和双精度？
 
-单精度浮点数在计算机存储器中占用4个字节（32 bits），利用“浮点”（浮动小数点）的方法，可以表示一个范围很大的数值。
+单精度浮点数在计算机存储器中占用4个字节（32bits），利用“浮点”（浮动小数点）的方法，可以表示一个范围很大的数值。
 
-比起单精度浮点数，双精度浮点数(double)使用 64 位（8字节） 来存储一个浮点数。
+比起单精度浮点数，双精度浮点数（double）使用`64`位（8字节）来存储一个浮点数。
 
 #### 为什么不能用浮点型表示金额？
 
@@ -1427,12 +1477,13 @@ System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
 
 建议使用BigDecimal或者Long（单位为分）来表示金额。
 
-####  什么是 char 类型？
+####  什么是char类型？
 
-char 类型是一个采用 UTF-16 编码表示 Unicode 码点的代码单元，单一的 16 位 Unicode 字符，最小值是 `\u0000(0)`，最大值是 `\uffff(65535)`
+char类型是一个采用`UTF-16`编码表示`Unicode`码点的代码单元，单一的`16`位`Unicode`字符，最小值是`\u0000(0)`，最大值是`\uffff(65535)`
 
 ```java
 public static void main(String\u005B\ u00SD args)
+
 \u005B 和 \u005D 是 [ 和 ] 的编码。
 ```
 
@@ -1588,19 +1639,19 @@ public class selfAddMinus{
 
 #### transient
 
-> Java语言的关键字，变量修饰符，如果用transient声明一个实例变量，当对象存储时，它的值不需要维持。这里的对象存储是指，Java的serialization提供的一种持久化对象实例的机制。当一个对象被序列化的时候，transient型变量的值不包括在序列化的表示中，然而非transient型的变量是被包括进去的。使用情况是：当持久化对象时，可能有一个特殊的对象数据成员，我们不想用serialization机制来保存它。为了在一个特定对象的一个域上关闭serialization，可以在这个域前加上关键字transient。
+Java语言的关键字，变量修饰符，如果用transient声明一个实例变量，当对象存储时，它的值不需要维持。这里的对象存储是指，Java的serialization提供的一种持久化对象实例的机制。当一个对象被序列化的时候，transient型变量的值不包括在序列化的表示中，然而非transient型的变量是被包括进去的。使用情况是：当持久化对象时，可能有一个特殊的对象数据成员，我们不想用serialization机制来保存它。为了在一个特定对象的一个域上关闭serialization，可以在这个域前加上关键字transient。
 
-简单点说，就是被transient修饰的成员变量，在序列化的时候其值会被忽略，在被反序列化后，transient 变量的值被设为初始值，如 int 型的是 0，对象型的是 null。
+简单点说，就是被transient修饰的成员变量，在序列化的时候其值会被忽略，在被反序列化后，transient变量的值被设为初始值，如`int`型的是`0`，对象型的是`null`。
 
 #### instanceof
 
-instanceof 是 Java 的一个二元操作符，类似于 ==，>，< 等操作符。
+instanceof是Java的一个二元操作符，类似于`==，>，<`等操作符。
 
-instanceof 是 Java 的保留关键字。它的作用是测试它左边的对象是否是它右边的类的实例，返回 boolean 的数据类型。
+instanceof是Java的保留关键字。它的作用是测试它左边的对象是否是它右边的类的实例，返回`boolean`的数据类型。
 
-以下实例创建了 displayObjectClass() 方法来演示 Java instanceof 关键字用法：
+以下实例创建了`displayObjectClass()`方法来演示`Java instanceof`关键字用法：
 
-```python
+```java
 public static void displayObjectClass(Object o) {
   if (o instanceof Vector)
      System.out.println("对象是 java.util.Vector 类的实例");
@@ -1634,7 +1685,7 @@ public static void displayObjectClass(Object o) {
 
 final是Java中的一个关键字，它所表示的是“这部分是无法修改的”。
 
-使用 final 可以定义 ：变量、方法、类。
+使用final可以定义：变量、方法、类。
 
 - **final变量**
 
@@ -1642,7 +1693,7 @@ final是Java中的一个关键字，它所表示的是“这部分是无法修�
 
   ```java
   class Test{
-       final String name = "Hollis";
+    final String name = "william";
   }
   ```
 
@@ -1654,9 +1705,9 @@ final是Java中的一个关键字，它所表示的是“这部分是无法修�
 
   ```java
   class Parent {
-      final void name() {
-          System.out.println("Hollis");
-      }
+    final void name() {
+        System.out.println("william");
+    }
   }
   ```
 
@@ -1701,15 +1752,15 @@ static表示“静态”的意思，用来修饰成员变量和成员方法，�
   ```java
   //static method example
   public static void setCount(int count) {
-      if(count >= 0)
-      	StaticExample.count = count;
+    if(count >= 0)
+    StaticExample.count = count;
   }
   
   //static util method
   public static int addInts(int i, int... js) {
-      int sum = i;
-      for (int x : js) sum += x;
-      return sum;
+    int sum = i;
+    for (int x : js) sum += x;
+    return sum;
   }
   ```
 
@@ -1835,6 +1886,1125 @@ static表示“静态”的意思，用来修饰成员变量和成员方法，�
 #### const
 
 const是Java预留关键字，用于后期扩展用，用法跟final相似，不常用
+
+### String
+
+#### 字符串的不可变性
+
+- **定义一个字符串**
+
+  ```java
+  String s = "abcd";
+  ```
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/String-Immutability-1.jpeg" />
+
+  `s`中保存了string对象的引用，下面的箭头可以理解为“存储他的引用”
+
+- **使用变量来赋值变量**
+
+  ```java
+  String s2 = s;
+  ```
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/String-Immutability-2.jpeg" />
+
+  s2保存了相同的引用值，因为他们代表同一个对象
+
+- **字符串拼接**
+
+  ```java
+  s = s.concat("ef");
+  ```
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/string-immutability-650x279.jpeg" />
+
+  `s`中保存的是一个重新创建出来的string对象的引用
+
+- **总结**
+
+  一旦一个string对象在内存(堆)中被创建出来，他就无法被修改。特别要注意的是，String类的所有方法都没有改变字符串本身的值，都是返回了一个新的对象。
+
+  如果你需要一个可修改的字符串，应该使用StringBuffer 或者 StringBuilder。否则会有大量时间浪费在垃圾回收上，因为每次试图修改都有新的string对象被创建出来。
+
+#### JDK 6和JDK 7中substring的原理及区别
+
+`substring(int beginIndex, int endIndex)`方法在不同版本的JDK中的实现是不同的。了解他们的区别可以帮助你更好的使用他。为简单起见，后文中用`substring()`代表`substring(int beginIndex, int endIndex)`方法。
+
+- **subString()的作用**
+
+  `substring(int beginIndex, int endIndex)`方法截取字符串并返回其`[beginIndex,endIndex-1]`范围内的内容。
+
+  ```java
+  String x = "abcdef";
+  x = x.substring(1,3);
+  System.out.println(x);
+  ```
+
+  输出内容：
+
+  ```java
+  bc
+  ```
+
+- **调用subString()时发生了什么？**
+
+  因为x是不可变的，当使用`x.substring(1,3)`对x赋值的时候，它会指向一个全新的字符串：
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2013/09/string-immutability1-650x303.jpeg" />
+
+  然而，这个图不是完全正确的表示堆中发生的事情。因为在jdk6 和 jdk7中调用substring时发生的事情并不一样。
+
+- **JDK 6中的subString()**
+
+  String是通过字符数组实现的。在jdk 6 中，String类包含三个成员变量：`char value[]`， `int offset`，`int count`。他们分别用来存储真正的字符数组，数组的第一个位置索引以及字符串中包含的字符个数。
+
+  当调用substring方法的时候，会创建一个新的string对象，但是这个string的值仍然指向堆中的同一个字符数组。这两个对象中只有count和offset 的值是不同的。
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2013/09/string-substring-jdk6-650x389.jpeg" />
+
+  Java源码中的关键代码：
+
+  ```java
+  //JDK 6
+  String(int offset, int count, char value[]) {
+      this.value = value;
+      this.offset = offset;
+      this.count = count;
+  }
+  
+  public String substring(int beginIndex, int endIndex) {
+      //check boundary
+      return new String(offset + beginIndex, endIndex - beginIndex, value);
+  }
+  ```
+
+- **JDK 6中的subString()导致的问题**
+
+  如果你有一个很长很长的字符串，但是当你使用substring进行切割的时候你只需要很短的一段。这可能导致性能问题，因为你需要的只是一小段字符序列，但是你却引用了整个字符串（因为这个非常长的字符数组一直在被引用，所以无法被回收，就可能导致内存泄露）。在JDK 6中，一般用以下方式来解决该问题，原理其实就是生成一个新的字符串并引用他。
+
+  ```java
+  x = x.substring(x, y) + ""
+  ```
+
+  > 内存泄露：在计算机科学中，内存泄漏指由于疏忽或错误造成程序未能释放已经不再使用的内存。 内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，导致在释放该段内存之前就失去了对该段内存的控制，从而造成了内存的浪费。
+
+- **JDK 7中的subString()**
+
+  在JDK 7 中，substring方法会在堆内存中创建一个新的数组
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2013/09/string-substring-jdk71-650x389.jpeg" />
+
+  Java源码中关于这部分的主要代码如下：
+
+  ```java
+  //JDK 7
+  public String(char value[], int offset, int count) {
+      //check boundary
+      this.value = Arrays.copyOfRange(value, offset, offset + count);
+  }
+  
+  public String substring(int beginIndex, int endIndex) {
+      //check boundary
+      int subLen = endIndex - beginIndex;
+      return new String(value, beginIndex, subLen);
+  }
+  ```
+
+  以上是JDK 7中的subString方法，其使用`new String`创建了一个新字符串，避免对老字符串的引用。从而解决了内存泄露问题。
+
+  所以，如果你的生产环境中使用的JDK版本小于1.7，当你使用String的subString方法时一定要注意，避免内存泄露。
+
+#### replaceFirst、replaceAll、replace区别
+
+replace、replaceAll和replaceFirst是Java中常用的替换字符的方法,它们的方法定义是：
+
+replace(CharSequence target, CharSequence replacement) ，用replacement替换所有的target，两个参数都是字符串。
+
+replaceAll(String regex, String replacement) ，用replacement替换所有的regex匹配项，regex很明显是个正则表达式，replacement是字符串。
+
+replaceFirst(String regex, String replacement) ，基本和replaceAll相同，区别是只替换第一个匹配项。
+
+可以看到，其中replaceAll以及replaceFirst是和正则表达式有关的，而replace和正则表达式无关。
+
+replaceAll和replaceFirst的区别主要是替换的内容不同，replaceAll是替换所有匹配的字符，而replaceFirst()仅替换第一次出现的字符
+
+**用法例子**
+
+1. replaceAll() 替换符合正则的所有文字
+
+   ```java
+   //文字替换（全部） 
+   Pattern pattern = Pattern.compile("正则表达式"); 
+   Matcher matcher = pattern.matcher("正则表达式 Hello World,正则表达式 Hello World"); 
+   //替换第一个符合正则的数据 
+   System.out.println(matcher.replaceAll("Java")); 
+   ```
+
+2. replaceFirst() 替换第一个符合正则的数据
+
+   ```java
+   //文字替换（首次出现字符） 
+   Pattern pattern = Pattern.compile("正则表达式"); 
+   Matcher matcher = pattern.matcher("正则表达式 Hello World,正则表达式 Hello World"); 
+   //替换第一个符合正则的数据 
+   System.out.println(matcher.replaceFirst("Java")); 
+   ```
+
+3. replaceAll()替换所有html标签
+
+   ```java
+   //去除html标记 
+   Pattern pattern = Pattern.compile("<.+?>", Pattern.DOTALL); 
+   Matcher matcher = pattern.matcher("<a href=\"index.html\">主页</a>"); 
+   String string = matcher.replaceAll(""); 
+   System.out.println(string); 
+   ```
+
+4. replaceAll() 替换指定文字
+
+   ```java
+   //替换指定{}中文字 
+   String str = "Java目前的发展史是由{0}年-{1}年";
+   String[][] object = {
+    new String[] {
+        "\\{0\\}",
+        "1995"
+    },
+    new String[] {
+        "\\{1\\}",
+        "2007"
+    }
+   };
+   System.out.println(replace(str, object));
+   public static String replace(final String sourceString, Object[] object) {
+    String temp = sourceString;
+    for (int i = 0; i < object.length; i++) {
+        String[] result = (String[]) object[i];
+        Pattern pattern = Pattern.compile(result[0]);
+        Matcher matcher = pattern.matcher(temp);
+        temp = matcher.replaceAll(result[1]);
+    }
+    return temp;
+   }
+   ```
+
+5. replace()替换字符串
+
+   ```java
+   System.out.println("abac".replace("a", "\\a")); //\ab\ac
+   ```
+
+#### String对“+”的重载
+
+1. String s = "a" + "b"，编译器会进行常量折叠(因为两个都是编译期常量，编译期可知)，即变成 String s = "ab"
+2. 对于能够进行优化的(String s = "a" + 变量 等)用 StringBuilder 的 append() 方法替代，最后调用 toString() 方法 (底层就是一个 new String())
+
+#### 字符串拼接的几种方式和区别
+
+基于jdk1.8.0_181
+
+- **字符串拼接**
+
+  **String是Java中一个不可变的类**，所以他一旦被实例化就无法被修改
+
+  > 不可变类的实例一旦创建，其成员变量的值就不能被修改。这样设计有很多好处，比如可以缓存hashcode、使用更加便利以及更加安全。
+
+  **字符串不变性与字符串拼接**
+
+  其实，所有的所谓字符串拼接，都是重新生成了一个新的字符串。下面一段字符串拼接代码：
+
+  ```java
+  String s = "abcd";
+  s = s.concat("ef");
+  ```
+
+  其实最后得到的s已经是一个新的字符串了。如下图：
+
+  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/string-immutability-650x279.jpeg" />
+
+  `s`中保存的是一个重新创建出来的String对象的引用
+
+  常见的字符串拼接方式：
+
+  **使用`+`拼接字符串**
+
+  在Java中，拼接字符串最简单的方式就是直接使用符号`+`来拼接。如：
+
+  ```java
+  String wechat = "Hollis";
+  String introduce = "每日更新Java相关技术文章";
+  String hollis = wechat + "," + introduce;
+  ```
+
+  这里要特别说明一点，有人把Java中使用`+`拼接字符串的功能理解为**运算符重载**。其实并不是，**Java是不支持运算符重载的**。这其实只是Java提供的一个**语法糖**。后面再详细介绍。
+
+  > 运算符重载：在计算机程序设计中，运算符重载（英语：operator overloading）是多态的一种。运算符重载，就是对已有的运算符重新进行定义，赋予其另一种功能，以适应不同的数据类型。
+  >
+  > 语法糖：语法糖（Syntactic sugar），也译为糖衣语法，是由英国计算机科学家彼得·兰丁发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能没有影响，但是更方便程序员使用。语法糖让程序更加简洁，有更高的可读性。
+
+  **concat**
+
+  除了使用`+`拼接字符串之外，还可以使用String类中的方法concat方法来拼接字符串。如：
+
+  ```java
+  String wechat = "Hollis";
+  String introduce = "每日更新Java相关技术文章";
+  String hollis = wechat.concat(",").concat(introduce);
+  ```
+
+  **StringBuffer**
+
+  关于字符串，Java中除了定义了一个可以用来定义**字符串常量**的`String`类以外，还提供了可以用来定义**字符串变量**的`StringBuffer`类，它的对象是可以扩充和修改的。
+
+  使用`StringBuffer`可以方便的对字符串进行拼接。如：
+
+  ```java
+  StringBuffer wechat = new StringBuffer("Hollis");
+  String introduce = "每日更新Java相关技术文章";
+  StringBuffer hollis = wechat.append(",").append(introduce);
+  ```
+
+  **StringBuilder**
+
+  除了`StringBuffer`以外，还有一个类`StringBuilder`也可以使用，其用法和`StringBuffer`类似。如：
+
+  ```java
+  StringBuilder wechat = new StringBuilder("Hollis");
+  String introduce = "每日更新Java相关技术文章";
+  StringBuilder hollis = wechat.append(",").append(introduce);
+  ```
+
+  **StringUtils.join**
+
+  除了JDK中内置的字符串拼接方法，还可以使用一些开源类库中提供的字符串拼接方法名，如`apache.commons中`提供的`StringUtils`类，其中的`join`方法可以拼接字符串，如：
+
+  ```java
+  String wechat = "Hollis";
+  String introduce = "每日更新Java相关技术文章";
+  System.out.println(StringUtils.join(wechat, ",", introduce));
+  ```
+
+  这里简单说一下，StringUtils中提供的join方法，最主要的功能是：将数组或集合以某拼接符拼接到一起形成新的字符串，如：
+
+  ```java
+  String[] list = {"Hollis","每日更新Java相关技术文章"};
+  String result = StringUtils.join(list, ",");
+  System.out.println(result);
+  //结果：Hollis,每日更新Java相关技术文章
+  ```
+
+  并且，Java8中的String类中也提供了一个静态的join方法，用法和StringUtils.join类似。
+
+  以上就是比较常用的五种在Java种拼接字符串的方式，那么到底哪种更好用呢？为什么阿里巴巴Java开发手册中不建议在循环体中使用`+`进行字符串拼接呢？
+
+  <img src="https://www.hollischuang.com/wp-content/uploads/2019/01/15472850170230.jpg" />
+
+  
+- **使用`+`拼接字符串的实现原理**
+
+  使用`+`拼接字符串，其实只是Java提供的一个语法糖
+
+  代码：
+
+  ```java
+  String wechat = "Hollis";
+  String introduce = "每日更新Java相关技术文章";
+  String hollis = wechat + "," + introduce;
+  ```
+
+  反编译工具为jad，反编译后的内容如下：
+
+  ```java
+  String wechat = "Hollis";
+  String introduce = "\u6BCF\u65E5\u66F4\u65B0Java\u76F8\u5173\u6280\u672F\u6587\u7AE0";//每日更新Java相关技术文章
+  String hollis = (new StringBuilder()).append(wechat).append(",").append(introduce).toString();
+  ```
+
+  原来字符串常量在拼接过程中，是将String转成了StringBuilder后，使用其append方法进行处理的。
+
+  那么也就是说，Java中的`+`对字符串的拼接，其实现原理是使用`StringBuilder.append`。
+
+- **concat是如何实现的**
+
+  concat方法的源代码：
+
+  ```java
+  public String concat(String str) {
+      int otherLen = str.length();
+      if (otherLen == 0) {
+          return this;
+      }
+      int len = value.length;
+      char buf[] = Arrays.copyOf(value, len + otherLen);
+      str.getChars(buf, len);
+      return new String(buf, true);
+  }
+  ```
+
+  这段代码首先创建了一个字符数组，长度是已有字符串和待拼接字符串的长度之和，再把两个字符串的值复制到新的字符数组中，并使用这个字符数组创建一个新的String对象并返回。
+
+  通过源码也可以看到，经过concat方法，其实是new了一个新的String，这也就呼应到前面说的字符串的不变性问题上了。
+
+- **StringBuffer和StringBuilder**
+
+  和`String`类类似，`StringBuilder`类也封装了一个字符数组，定义如下：
+
+  ```java
+  char[] value;
+  ```
+
+  与`String`不同的是，它并不是`final`的，所以他是可以修改的。另外，与`String`不同，字符数组中不一定所有位置都已经被使用，它有一个实例变量，表示数组中已经使用的字符个数，定义如下：
+
+  ```java
+  int count;
+  ```
+
+  其append源码如下：
+
+  ```java
+  public StringBuilder append(String str) {
+      super.append(str);
+      return this;
+  }
+  ```
+
+  该类继承了`AbstractStringBuilder`类，看下其`append`方法：
+
+  ```java
+  public AbstractStringBuilder append(String str) {
+      if (str == null)
+          return appendNull();
+      int len = str.length();
+      ensureCapacityInternal(count + len);
+      str.getChars(0, len, value, count);
+      count += len;
+      return this;
+  }
+  ```
+
+  append会直接拷贝字符到内部的字符数组中，如果字符数组长度不够，会进行扩展。
+
+  `StringBuffer`和`StringBuilder`类似，最大的区别就是`StringBuffer`是线程安全的，看一下`StringBuffer`的`append`方法。
+
+  ```java
+  public synchronized StringBuffer append(String str) {
+      toStringCache = null;
+      super.append(str);
+      return this;
+  }
+  ```
+
+  该方法使用`synchronized`进行声明，说明是一个线程安全的方法。而`StringBuilder`则不是线程安全的。
+
+- **StringUtils.join是如何实现的**
+
+  通过查看`StringUtils.join`的源代码，可以发现，其实它也是通过`StringBuilder`来实现的。
+
+  ```java
+  public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
+      if (array == null) {
+          return null;
+      }
+      if (separator == null) {
+          separator = EMPTY;
+      }
+  
+      // endIndex - startIndex > 0: Len = NofStrings * (len(firstString) + len(separator))
+      // (Assuming that all Strings are roughly equally long)
+      final int noOfItems = endIndex - startIndex;
+      if (noOfItems <= 0) {
+          return EMPTY;
+      }
+  
+      final StringBuilder buf = new StringBuilder(noOfItems * 16);
+  
+      for (int i = startIndex; i < endIndex; i++) {
+          if (i > startIndex) {
+              buf.append(separator);
+          }
+          if (array[i] != null) {
+              buf.append(array[i]);
+          }
+      }
+      return buf.toString();
+  }
+  ```
+
+- **效率比较**
+
+  ```java
+  long t1 = System.currentTimeMillis();
+  //这里是初始字符串定义
+  for (int i = 0; i < 50000; i++) {
+      //这里是字符串拼接代码
+  }
+  long t2 = System.currentTimeMillis();
+  System.out.println("cost:" + (t2 - t1));
+  ```
+
+  使用形如以上形式的代码，分别测试下五种字符串拼接代码的运行时间。得到结果如下：
+
+  ```java
+  + cost:5119
+  StringBuilder cost:3
+  StringBuffer cost:4
+  concat cost:3623
+  StringUtils.join cost:25726
+  ```
+
+  从结果可以看出，用时从短到长的对比是：
+
+  `StringBuilder`<`StringBuffer`<`concat`<`+`<`StringUtils.join`
+
+  `StringBuffer`在`StringBuilder`的基础上，做了同步处理，所以在耗时上会相对多一些
+
+  StringUtils.join也是使用了StringBuilder，并且其中还是有很多其他操作，所以耗时较长，这个也容易理解。其实StringUtils.join更擅长处理字符串数组或者列表的拼接。
+
+  使用`+`拼接字符串的实现原理也是使用的`StringBuilder`，那为什么结果相差这么多，高达1000多倍呢？
+
+  再把以下代码反编译下：
+
+  ```java
+  long t1 = System.currentTimeMillis();
+  String str = "hollis";
+  for (int i = 0; i < 50000; i++) {
+      String s = String.valueOf(i);
+      str += s;
+  }
+  long t2 = System.currentTimeMillis();
+  System.out.println("+ cost:" + (t2 - t1));
+  ```
+
+  反编译后代码如下：
+
+  ```java
+  long t1 = System.currentTimeMillis();
+  String str = "hollis";
+  for(int i = 0; i < 50000; i++)
+  {
+      String s = String.valueOf(i);
+      str = (new StringBuilder()).append(str).append(s).toString();
+  }
+  
+  long t2 = System.currentTimeMillis();
+  System.out.println((new StringBuilder()).append("+ cost:").append(t2 - t1).toString());
+  ```
+
+  可以看到，反编译后的代码，在`for`循环中，每次都是`new`了一个`StringBuilder`，然后再把`String`转成`StringBuilder`，再进行`append`。
+
+  而频繁的新建对象当然要耗费很多时间了，不仅仅会耗费时间，频繁的创建对象，还会造成内存资源的浪费。
+
+  所以，阿里巴巴Java开发手册建议：循环体内，字符串的连接方式，使用 `StringBuilder` 的 `append` 方法进行扩展。而不要使用`+`。
+
+- **总结**
+
+  虽然字符串是不可变的，但是还是可以通过新建字符串的方式来进行字符串的拼接。
+
+  常用的字符串拼接方式有五种，分别是使用`+`、使用`concat`、使用`StringBuilder`、使用`StringBuffer`以及使用`StringUtils.join`。
+
+  由于字符串拼接过程中会创建新的对象，所以如果要在一个循环体中进行字符串拼接，就要考虑内存问题和效率问题。
+
+  因此，经过对比，直接使用`StringBuilder`的方式是效率最高的。因为`StringBuilder`天生就是设计来定义可变字符串和字符串的变化操作的。
+
+  但是，还要强调的是：
+
+  1、如果不是在循环体中进行字符串拼接的话，直接使用`+`就好了。
+
+  2、如果在并发场景中进行字符串拼接的话，要使用`StringBuffer`来代替`StringBuilder`。
+
+#### 检测字符串是否相等
+
+可以使用 **equals** 方法检测两个字符串是否相等。对于表达式：s.equals(t)
+
+如果字符串 s 与字符串 t 相等， 则返回 true ; 否则，返回 false。需要注意，s 与 t 可以是字符串变量， 也可以是字符串字面量。
+
+例如， 下列表达式是合法的：
+
+```java
+"Hello".equals(greeting)  
+```
+
+要想检测两个字符串是否相等，而不区分大小写，可以使用 **equalsIgnoreCase** 方法：
+
+```java
+"Hello".equalsIgnoreCase("hel1o") 
+```
+
+*注意：一定不要使用 == 运算符检测两个字符串是否相等！这个运算符只能够确定两个字串是否放置在同一个位置上。*
+
+如果虚拟机始终将相同的字符串共享，就可以使用 == 运算符检测是否相等。但实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不是共享的。
+
+  - **==**
+
+    > 如果作用于基本数据类型的变量，则直接比较其存储的 “值” 是否相等
+    >
+    > 如果作用于引用类型的变量，则比较的是所指向的对象的地址
+
+- **equals**
+
+  > equals方法不能作用于基本数据类型的变量，equals继承Object类，比较的是是否是同一个对象，如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址，诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容
+
+#### 空串与NULL串
+
+空串 **""** 是长度为 0 的字符串。
+
+检查一个字符串是否为空：
+
+```java
+if (str.lengthQ = 0)
+或
+if (str.equals(""))
+```
+
+空串是一个 Java 对象，有自己的串长度（0）和内容（空）。不过，String 变量还可以存放一个特殊的值，名为null，这表示目前没有任何对象与该变量关联。
+
+要检查一个字符串是否为 null，要使用以下条件：
+
+```java
+if (str == null)
+```
+
+检查一个字符串既不是 null 也不为空串，这种情况下就需要使用以下条件：
+
+```java
+if (str != null && str.length() != 0)
+```
+
+首先要检查 str 不为 null。
+
+#### 码点与代码单元
+
+length 方法将返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量。
+
+```java
+String greeting = "Hello";
+int n = greeting.length(); // is 5.
+```
+
+要想得到实际的长度，即码点数量，可以调用：
+
+```java
+int cpCount = greeting.codePointCount(0, greeting.length());
+```
+
+调用 s.charAt(n) 将返回位置 n 的代码单元，n 介于 0 ~ s.length()-1 之间。例如：
+
+```java
+char first = greeting.charAt(0); // first is 'H'
+char last = greeting.charAt(4); // last is ’o’
+```
+
+要想得到第 i 个码点，应该使用下列语句：
+
+```java
+int index = greeting.offsetByCodePoints(0,i);
+int cp = greeting.codePointAt(index);  
+```
+
+如果想要遍历一个字符串，并且依次査看每一个码点，可以使用下列语句：
+
+```java
+int cp = sentence.codePointAt(i);
+if (Character.isSupplementaryCodePoint(cp)) i += 2;
+else i++;
+```
+
+可以使用下列语句实现回退操作：
+
+```java
+i++;
+if (Character.isSurrogate(sentence.charAt(i))) i--;
+int cp = sentence.codePointAt(i);  
+```
+
+更容易的办法是使用 codePoints 方法，它会生成一个 int 值的“ 流”，每个 int 值对应一个码点。可以将它转换为一个数组，再完成遍历。
+
+```java
+int[] codePoints = str.codePoints().toArray();
+```
+
+反之，要把一个码点数组转换为一个字符串，可以使用构造函数：
+
+```java
+String str = new String(codePoints, 0, codePoints.length);
+```
+
+#### String.valueOf和Integer.toString的区别
+
+有三种方式将一个int类型的变量变成呢过String类型，那么他们有什么区别？
+
+```java
+int i = 5;
+String i1 = "" + i;
+String i2 = String.valueOf(i);
+String i3 = Integer.toString(i);
+```
+
+第三行和第四行没有任何区别，因为String.valueOf(i)也是调用Integer.toString(i)来实现的。
+
+第二行代码其实是String i1 = (new StringBuilder()).append(i).toString();，首先创建一个StringBuilder对象，然后再调用append方法，再调用toString方法。
+
+#### switch 对 String 的支持
+
+Java 7中，switch的参数可以是String类型了，到目前为止switch支持这样几种数据类型：`byte` `short` `int` `char` `String` 。但是，作为一个程序员我们不仅要知道他有多么好用，还要知道它是如何实现的，switch对整型的支持是怎么实现的呢？对字符型是怎么实现的呢？String类型呢？有一点Java开发经验的人这个时候都会猜测switch对String的支持是使用equals()方法和hashcode()方法。
+
+- **switch对整型支持的实现**
+
+  下面是一段很简单的Java代码，定义一个int型变量a，然后使用switch语句进行判断。执行这段代码输出内容为5
+
+  ```java
+  public class switchDemoInt {
+      public static void main(String[] args) {
+          int a = 5;
+          switch (a) {
+          case 1:
+              System.out.println(1);
+              break;
+          case 5:
+              System.out.println(5);
+              break;
+          default:
+              break;
+          }
+      }
+  }
+  //output 5
+  ```
+
+  反编译后的代码如下：
+
+  ```java
+  public class switchDemoInt
+  {
+      public switchDemoInt()
+      {
+      }
+      public static void main(String args[])
+      {
+          int a = 5;
+          switch(a)
+          {
+          case 1: // '\001'
+              System.out.println(1);
+              break;
+  
+          case 5: // '\005'
+              System.out.println(5);
+              break;
+          }
+      }
+  }
+  ```
+
+  反编译后的代码和之前的代码比较除了多了两行注释以外没有任何区别，那么就知道，**switch对int的判断是直接比较整数的值**。
+
+- **switch对字符型支持的实现**
+
+  ```java
+  public class switchDemoInt {
+      public static void main(String[] args) {
+          char a = 'b';
+          switch (a) {
+          case 'a':
+              System.out.println('a');
+              break;
+          case 'b':
+              System.out.println('b');
+              break;
+          default:
+              break;
+          }
+      }
+  }
+  ```
+
+  编译后的代码如下：
+
+  ```java
+  public class switchDemoChar
+  {
+      public switchDemoChar()
+      {
+      }
+      public static void main(String args[])
+      {
+          char a = 'b';
+          switch(a)
+          {
+          case 97: // 'a'
+              System.out.println('a');
+              break;
+          case 98: // 'b'
+              System.out.println('b');
+              break;
+          }
+    }
+  }
+  ```
+
+  通过以上的代码作比较发现：对char类型进行比较的时候，实际上比较的是ascii码，编译器会把char型变量转换成对应的int型变量
+
+- **switch对字符串支持的实现**
+
+  ```java
+  public class switchDemoString {
+      public static void main(String[] args) {
+          String str = "world";
+          switch (str) {
+          case "hello":
+              System.out.println("hello");
+              break;
+          case "world":
+              System.out.println("world");
+              break;
+          default:
+              break;
+          }
+      }
+  }
+  ```
+
+  对代码进行反编译：
+
+  ```java
+  public class switchDemoString
+  {
+      public switchDemoString()
+      {
+      }
+      public static void main(String args[])
+      {
+          String str = "world";
+          String s;
+          switch((s = str).hashCode())
+          {
+          default:
+              break;
+          case 99162322:
+              if(s.equals("hello"))
+                  System.out.println("hello");
+              break;
+          case 113318802:
+              if(s.equals("world"))
+                  System.out.println("world");
+              break;
+          }
+      }
+  }
+  ```
+
+  看到这个代码，你知道原来字符串的switch是通过`equals()`和`hashCode()`方法来实现的。**记住，switch中只能使用整型**，比如`byte`，`short`，`char`(ascii码是整型)以及`int`。还好`hashCode()`方法返回的是`int`，而不是`long`。通过这个很容易记住`hashCode`返回的是`int`这个事实。仔细看下可以发现，进行`switch`的实际是哈希值，然后通过使用equals方法比较进行安全检查，这个检查是必要的，因为哈希可能会发生碰撞。因此它的性能是不如使用枚举进行switch或者使用纯整数常量，但这也不是很差。因为Java编译器只增加了一个`equals`方法，如果你比较的是字符串字面量的话会非常快，比如”abc” ==”abc”。如果你把`hashCode()`方法的调用也考虑进来了，那么还会再多一次的调用开销，因为字符串一旦创建了，它就会把哈希值缓存起来。因此如果这个`switch`语句是用在一个循环里的，比如逐项处理某个值，或者游戏引擎循环地渲染屏幕，这里`hashCode()`方法的调用开销其实不会很大。
+
+  **其实switch只支持一种数据类型，那就是整型，其他数据类型都是转换成整型之后在使用switch的。**
+
+#### 字符串池
+
+String作为一个Java类，可以通过以下两种方式创建一个字符串：
+
+```java
+String str = "Hollis";
+
+String str = new String("Hollis")；
+```
+
+而第一种是比较常用的做法，这种形式叫做"字面量"。
+
+在JVM中，为了减少相同的字符串的重复创建，为了达到节省内存的目的。会单独开辟一块内存，用于保存字符串常量，这个内存区域被叫做字符串常量池。
+
+当代码中出现双引号形式（字面量）创建字符串对象时，JVM 会先对这个字符串进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回；否则，创建新的字符串对象，然后将这个引用放入字符串常量池，并返回该引用。
+
+这种机制，就是字符串驻留或池化。
+
+**字符串常量池的位置**
+
+在JDK 7以前的版本中，字符串常量池是放在永久代中的。
+
+因为按照计划，JDK会在后续的版本中通过元空间来代替永久代，所以首先在JDK 7中，将字符串常量池先从永久代中移出，暂时放到了堆内存中。
+
+在JDK 8中，彻底移除了永久代，使用元空间替代了永久代，于是字符串常量池再次从堆内存移动到元空间中，和堆相互独立。
+
+#### Class常量池
+
+在Java中，常量池的概念想必很多人都听说过。这也是面试中比较常考的题目之一。在Java有关的面试题中，一般习惯通过String的有关问题来考察面试者对于常量池的知识的理解，几道简单的String面试题难倒了无数的开发者。所以说，常量池是Java体系中一个非常重要的概念。
+
+谈到常量池，在Java体系中，共用三种常量池。分别是**字符串常量池**、**Class常量池**和**运行时常量池**。
+
+- **什么是Class文件**
+
+  Java语言中负责编译出字节码的编译器是一个命令是`javac`。
+
+  > javac是收录于JDK中的Java语言编译器。该工具可以将后缀名为.java的源文件编译为后缀名为.class的可以运行于Java虚拟机的字节码。
+
+  以下简单的`HelloWorld.java`代码：
+
+  ```java
+  public class HelloWorld {
+      public static void main(String[] args) {
+          String s = "Hollis";
+      }
+  }
+  ```
+
+  通过javac命令生成class文件：
+
+  ```
+  javac HelloWorld.java
+  ```
+
+  生成`HelloWorld.class`文件:
+
+  <img src="http://www.hollischuang.com/wp-content/uploads/2018/10/15401179593014.jpg" />
+
+  > 如何使用16进制打开class文件：使用 `vim test.class` ，然后在交互模式下，输入`:%!xxd` 即可。
+
+  上面的文件就是Class文件，Class文件中包含了Java虚拟机指令集和符号表以及若干其他辅助信息。
+
+  > `HelloWorld.class`文件中的前八个字母是`cafe babe`，这就是Class文件的魔数（[Java中的”魔数”](http://www.hollischuang.com/archives/491)）
+
+  在Class文件的4个字节的魔数后面的分别是4个字节的Class文件的版本号（第5、6个字节是次版本号，第7、8个字节是主版本号，我生成的Class文件的版本号是52，这是Java 8对应的版本。也就是说，这个版本的字节码，在JDK 1.8以下的版本中无法运行）在版本号后面的，就是Class常量池入口了。
+
+- **Class常量池**
+
+  Class常量池可以理解为是Class文件中的资源仓库。 Class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常量池(constant pool table)，用于存放编译器生成的各种字面量(Literal)和符号引用(Symbolic References)。
+
+  由于不同的Class文件中包含的常量的个数是不固定的，所以在Class文件的常量池入口处会设置两个字节的常量池容量计数器，记录了常量池中常量的个数。
+
+  <img src="http://www.hollischuang.com/wp-content/uploads/2018/10/15401192359009.jpg" />
+
+  当然，还有一种比较简单的查看Class文件中常量池的方法，那就是通过`javap`命令。对于以上的`HelloWorld.class`，可以通过
+
+  ```
+  javap -v  HelloWorld.class
+  ```
+
+  查看常量池内容如下:
+
+  <img src="http://www.hollischuang.com/wp-content/uploads/2018/10/15401195127619.jpg" />
+
+  > 从上图中可以看到，反编译后的class文件常量池中共有16个常量。而Class文件中常量计数器的数值是0011，将该16进制数字转换成10进制的结果是17。
+  >
+  > 原因是与Java的语言习惯不同，常量池计数器是从0开始而不是从1开始的，常量池的个数是10进制的17，这就代表了其中有16个常量，索引值范围为1-16。
+
+- **常量池中有什么**
+
+  常量池中主要存放两大类常量：字面量（literal）和符号引用（symbolic references）。
+
+- **字面量**
+
+  > 在计算机科学中，字面量（literal）是用于表达源代码中一个固定值的表示法（notation）。几乎所有计算机编程语言都具有对基本值的字面量表示，诸如：整数、浮点数以及字符串；而有很多也对布尔类型和字符类型的值也支持字面量表示；还有一些甚至对枚举类型的元素以及像数组、记录和对象等复合类型的值也支持字面量表示法。
+
+  说简单点，字面量就是指由字母、数字等构成的字符串或者数值。
+
+  字面量只可以右值出现，所谓右值是指等号右边的值，如：int a=123这里的a为左值，123为右值。在这个例子中123就是字面量。
+
+  ```java
+  int a = 123;
+  String s = "hollis";
+  ```
+
+  上面的代码事例中，123和hollis都是字面量。
+
+- 符号引用
+
+  符号引用是编译原理中的概念，是相对于直接引用来说的。主要包括了以下三类常量： * 类和接口的全限定名 * 字段的名称和描述符 * 方法的名称和描述符
+
+  这也就可以印证前面的常量池中还包含一些`com/hollis/HelloWorld`、`main`、`([Ljava/lang/String;)V`等常量的原因了。
+
+- **Class常量池有什么用**
+
+  首先，可以明确的是，Class常量池是Class文件中的资源仓库，其中保存了各种常量。而这些常量都是开发者定义出来，需要在程序的运行期使用的。
+
+  在《深入理解Java虚拟机》中有这样的表述：
+
+  Java代码在进行`Javac`编译的时候，并不像C和C++那样有“连接”这一步骤，而是在虚拟机加载Class文件的时候进行动态连接。也就是说，在Class文件中不会保存各个方法、字段的最终内存布局信息，因此这些字段、方法的符号引用不经过运行期转换的话无法得到真正的内存入口地址，也就无法直接被虚拟机使用。当虚拟机运行时，需要从常量池获得对应的符号引用，再在类创建时或运行时解析、翻译到具体的内存地址之中。关于类的创建和动态连接的内容，在虚拟机类加载过程时再进行详细讲解。
+
+  前面这段话，看起来很绕，不是很容易理解。其实他的意思就是： Class是用来保存常量的一个媒介场所，并且是一个中间场所。在JVM真的运行时，需要把常量池中的常量加载到内存中。
+
+- 参考资料
+
+  《深入理解java虚拟机》 [《Java虚拟机原理图解》 1.2.2、Class文件中的常量池详解（上）](https://blog.csdn.net/luanlouis/article/details/39960815)
+
+#### 运行时常量池
+
+运行时常量池（ Runtime Constant Pool）是每一个类或接口的常量池（ Constant_Pool）的运行时表示形式。
+
+它包括了若干种不同的常量：从编译期可知的数值字面量到必须运行期解析后才能获得的方法或字段引用。运行时常量池扮演了类似传统语言中符号表（ SymbolTable）的角色，不过它存储数据范围比通常意义上的符号表要更为广泛。
+
+每一个运行时常量池都分配在 Java 虚拟机的`方法区`之中，在类和接口被加载到虚拟机后，对应的运行时常量池就被创建出来。
+
+以上，是Java虚拟机规范中关于运行时常量池的定义。
+
+- **运运行时常量池在JDK各个版本中的实现**
+
+  根据Java虚拟机规范约定：每一个运行时常量池都在Java虚拟机的`方法区`中分配，在加载类和接口到虚拟机后，就创建对应的运行时常量池。
+
+  在不同版本的JDK中，运行时常量池所处的位置也不一样。以HotSpot为例：
+
+  在JDK 1.7之前，方法区位于堆内存的永久代中，运行时常量池作为方法区的一部分，也处于永久代中。
+
+  因为使用永久代实现方法区可能导致内存泄露问题，所以，从JDK1.7开始，JVM尝试解决这一问题，在1.7中，将原本位于永久代中的运行时常量池移动到堆内存中。（永久代在JDK 1.7并没有完全移除，只是原来方法区中的运行时常量池、类的静态变量等移动到了堆内存中。）
+
+  在JDK 1.8中，彻底移除了永久代，方法区通过元空间的方式实现。随之，运行时常量池也在元空间中实现。
+
+- **运行时常量池中常量的来源**
+
+  运行时常量池中包含了若干种不同的常量：
+
+  编译期可知的字面量和符号引用（来自Class常量池） 运行期解析后可获得的常量（如String的intern方法）
+
+  所以，运行时常量池中的内容包含：Class常量池中的常量、字符串常量池中的内容
+
+- **运行时常量池、Class常量池、字符串常量池的区别与联系**
+
+  虚拟机启动过程中，会将各个Class文件中的常量池载入到运行时常量池中。
+
+  所以， Class常量池只是一个媒介场所。在JVM真的运行时，需要把常量池中的常量加载到内存中，进入到运行时常量池。
+
+  字符串常量池可以理解为运行时常量池分出来的部分。加载时，对于class的静态常量池，字符串会被装到字符串常量池中。
+
+#### intern
+
+当代码中出现双引号形式（字面量）创建字符串对象时，JVM 会先对这个字符串进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回；否则，创建新的字符串对象，然后将这个引用放入字符串常量池，并返回该引用。
+
+除了以上方式之外，还有一种可以在运行期将字符串内容放置到字符串常量池的办法，那就是使用intern
+
+intern的功能很简单：
+
+在每次赋值的时候使用 String 的 intern 方法，如果常量池中有相同值，就会重复使用该对象，返回对象引用。
+
+#### String有没有长度限制？
+
+- **String的长度限制**
+
+  String类中有很多重载的构造函数，其中有几个是支持用户传入length来执行长度的：
+
+  ```java
+  public String(byte bytes[], int offset, int length) 
+  ```
+
+  可以看到，这里面的参数length是使用int类型定义的，那么也就是说，String定义的时候，最大支持的长度就是int的最大范围值。
+
+  根据Integer类的定义，`java.lang.Integer#MAX_VALUE`的最大值是2^31 - 1
+
+  那么，是不是就可以认为String能支持的最大长度就是这个值了呢？
+
+  其实并不是，这个值只是在运行期，构造String的时候可以支持的一个最大长度，而实际上，在编译期，定义字符串的时候也是有长度限制的。
+
+  如以下代码：
+
+  ```java
+  String s = "11111...1111";//其中有10万个字符"1"
+  ```
+
+  当使用如上形式定义一个字符串的时候，当执行javac编译时，是会抛出异常的，提示如下：
+
+  ```
+  错误: 常量字符串过长
+  ```
+
+  那么，明明String的构造函数指定的长度是可以支持2147483647(2^31 - 1)的，为什么像以上形式定义的时候无法编译呢？
+
+  其实，形如`String s = "xxx";`定义String的时候，xxx被称之为字面量，这种字面量在编译之后会以常量的形式进入到Class常量池。
+
+  那么问题就来了，因为要进入常量池，就要遵守常量池的有关规定。
+
+- **常量池限制**
+
+  javac是将Java文件编译成class文件的一个命令，那么在Class文件生成过程中，就需要遵守一定的格式。
+
+  根据《Java虚拟机规范》中第4.4章节常量池的定义，CONSTANT_String_info 用于表示 java.lang.String 类型的常量对象，格式如下：
+
+  ```j
+  CONSTANT_String_info {
+      u1 tag;
+      u2 string_index;
+  }
+  ```
+
+  其中，string_index 项的值必须是对常量池的有效索引， 常量池在该索引处的项必须是 CONSTANT_Utf8_info 结构，表示一组 Unicode 码点序列，这组 Unicode 码点序列最终会被初始化为一个 String 对象。
+
+  CONSTANT_Utf8_info 结构用于表示字符串常量的值：
+
+  ```
+  CONSTANT_Utf8_info {
+      u1 tag;
+      u2 length;
+      u1 bytes[length];
+  }
+  ```
+
+  其中，length则指明了 bytes[]数组的长度，其类型为u2，
+
+  通过翻阅《规范》，可以获悉。u2表示两个字节的无符号数，那么1个字节有8位，2个字节就有16位。
+
+  16位无符号数可表示的最大值位2^16 - 1 = 65535。
+
+  也就是说，Class文件中常量池的格式规定了，其字符串常量的长度不能超过65535。
+
+  那么，尝试使用以下方式定义字符串：
+
+  ```java
+   String s = "11111...1111";//其中有65535个字符"1"
+  ```
+
+  尝试使用javac编译，同样会得到"错误: 常量字符串过长"，那么原因是什么呢？
+
+  其实，这个原因在javac的代码中是可以找到的，在Gen类中有如下代码：
+
+  ```java
+  private void checkStringConstant(DiagnosticPosition var1, Object var2) {
+      if (this.nerrs == 0 && var2 != null && var2 instanceof String && ((String)var2).length() >= 65535) {
+          this.log.error(var1, "limit.string", new Object[0]);
+          ++this.nerrs;
+      }
+  }
+  ```
+
+  代码中可以看出，当参数类型为String，并且长度大于等于65535的时候，就会导致编译失败。
+
+  如果尝试以65534个字符定义字符串，则会发现可以正常编译。
+
+  其实，关于这个值，在《Java虚拟机规范》也有过说明：
+
+  > if the Java Virtual Machine code for a method is exactly 65535 bytes long and ends with an instruction that is 1 byte long, then that instruction cannot be protected by an exception handler. A compiler writer can work around this bug by limiting the maximum size of the generated Java Virtual Machine code for any method, instance initialization method, or static initializer (the size of any code array) to 65534 bytes
+
+- **运行期限制**
+
+  上面提到的这种String长度的限制是编译期的限制，也就是使用String s= “”;这种字面值方式定义的时候才会有的限制。
+
+  那么，String在运行期有没有限制呢，答案是有的，就是前文提到的那个Integer.MAX_VALUE ，这个值约等于4G，在运行期，如果String的长度超过这个范围，就可能会抛出异常。(在jdk 1.9之前）
+
+  int 是一个 32 位变量类型，取正数部分来算的话，他们最长可以有：
+
+  ```
+  2^31-1 =2147483647 个 16-bit Unicodecharacter
+  
+  2147483647 * 16 = 34359738352 位
+  34359738352 / 8 = 4294967294 (Byte)
+  4294967294 / 1024 = 4194303.998046875 (KB)
+  4194303.998046875 / 1024 = 4095.9999980926513671875 (MB)
+  4095.9999980926513671875 / 1024 = 3.99999999813735485076904296875 (GB)
+  ```
+
+  有近 4G 的容量。
+
+  很多人会有疑惑，编译的时候最大长度都要求小于65535了，运行期怎么会出现大于65535的情况呢。这其实很常见，如以下代码：
+
+  ```java
+  String s = "";
+  for (int i = 0; i <100000 ; i++) {
+      s+="i";
+  }
+  ```
+
+  得到的字符串长度就有10万
+
+- **总结**
+
+  字符串有长度限制，在编译期，要求字符串常量池中的常量不能超过65535，并且在javac执行过程中控制了最大值为65534。
+
+  在运行期，长度不能超过Int的范围，否则会抛异常。
 
 ### 自动拆装箱
 
@@ -2220,7 +3390,7 @@ Boolean isSuccess
 
 在阿里巴巴Java开发手册中关于这一点，有过一个『强制性』规定：
 
-<img src="http://www.hollischuang.com/wp-content/uploads/2018/12/15449439364854.jpg" align="left" />
+<img src="http://www.hollischuang.com/wp-content/uploads/2018/12/15449439364854.jpg" />
 
 POJO中布尔类型变量不同的命名区别：
 
@@ -2289,7 +3459,7 @@ public boolean is<PropertyName>();
 public void set<PropertyName>(boolean m);
 ```
 
-<img src="http://www.hollischuang.com/wp-content/uploads/2018/12/15449455942045.jpg" align="left" />
+<img src="http://www.hollischuang.com/wp-content/uploads/2018/12/15449455942045.jpg" />
 
 通过对照这份JavaBeans规范，我们发现，在Model4中，变量名为isSuccess，如果严格按照规范定义的话，他的getter方法应该叫isIsSuccess。但是很多IDE都会默认生成为isSuccess。
 
@@ -2348,13 +3518,13 @@ Serializable Result With jackson :{"success":true,"hollis":"hollischuang"}
 
 在fastjson和jackson的结果中，原来类中的isSuccess字段被序列化成success，并且其中还包含hollis值。而Gson中只有isSuccess字段。
 
-我们可以得出结论：fastjson和jackson在把对象序列化成json字符串的时候，是通过反射遍历出该类中的所有getter方法，得到getHollis和isSuccess，然后根据JavaBeans规则，他会认为这是两个属性hollis和success的值。直接序列化成json:{"hollis":"hollischuang","success":true}
+可以得出结论：fastjson和jackson在把对象序列化成json字符串的时候，是通过反射遍历出该类中的所有getter方法，得到getHollis和isSuccess，然后根据JavaBeans规则，他会认为这是两个属性hollis和success的值。直接序列化成json:{"hollis":"hollischuang","success":true}
 
 但是Gson并不是这么做的，他是通过反射遍历该类中的所有属性，并把其值序列化成json:{"isSuccess":true}
 
 可以看到，由于不同的序列化工具，在进行序列化的时候使用到的策略是不一样的，所以，对于同一个类的同一个对象的序列化结果可能是不同的。
 
-前面提到的关于对getHollis的序列化只是为了说明fastjson、jackson和Gson之间的序列化策略的不同，我们暂且把他放到一边，我们把他从Model3中删除后，重新执行下以上代码，得到结果：
+前面提到的关于对getHollis的序列化只是为了说明fastjson、jackson和Gson之间的序列化策略的不同，暂且把他放到一边，把他从Model3中删除后，重新执行下以上代码，得到结果：
 
 ```java
 Serializable Result With fastjson :{"success":true}
@@ -2398,13 +3568,13 @@ class Model3 implements Serializable {
 Model3[isSuccess=false]
 ```
 
-这和我们预期的结果完全相反，原因是因为JSON框架通过扫描所有的getter后发现有一个isSuccess方法，然后根据JavaBeans的规范，解析出变量名为success，把model对象序列化城字符串后内容为`{"success":true}`。
+这和预期的结果完全相反，原因是因为JSON框架通过扫描所有的getter后发现有一个isSuccess方法，然后根据JavaBeans的规范，解析出变量名为success，把model对象序列化城字符串后内容为`{"success":true}`。
 
 根据`{"success":true}`这个json串，Gson框架在通过解析后，通过反射寻找Model类中的success属性，但是Model类中只有isSuccess属性，所以，最终反序列化后的Model类的对象中，isSuccess则会使用默认值false。
 
 但是，一旦以上代码发生在生产环境，这绝对是一个致命的问题。
 
-所以，作为开发者，我们应该想办法尽量避免这种问题的发生，对于POJO的设计者来说，只需要做简单的一件事就可以解决这个问题了，那就是把isSuccess改为success。这样，该类里面的成员变量是success，getter方法是isSuccess，这是完全符合JavaBeans规范的。无论哪种序列化框架，执行结果都一样。就从源头避免了这个问题。
+所以，作为开发者，应该想办法尽量避免这种问题的发生，对于POJO的设计者来说，只需要做简单的一件事就可以解决这个问题了，那就是把isSuccess改为success。这样，该类里面的成员变量是success，getter方法是isSuccess，这是完全符合JavaBeans规范的。无论哪种序列化框架，执行结果都一样。就从源头避免了这个问题。
 
 所以，**在定义POJO中的布尔类型的变量时，不要使用isSuccess这种形式，而要直接使用success！**
 
@@ -2414,7 +3584,7 @@ boolean是基本数据类型，而Boolean是包装类型。关于基本数据类
 
 那么，在定义一个成员变量的时候到底是使用包装类型更好还是使用基本数据类型呢？
 
-我们来看一段简单的代码
+来看一段简单的代码
 
 ```java
  /**
@@ -2456,17 +3626,17 @@ class Model {
 default model : Model[success=null, failure=false]
 ```
 
-可以看到，当我们没有设置Model对象的字段的值的时候，Boolean类型的变量会设置默认值为`null`，而boolean类型的变量会设置默认值为`false`。
+可以看到，当没有设置Model对象的字段的值的时候，Boolean类型的变量会设置默认值为`null`，而boolean类型的变量会设置默认值为`false`。
 
 即对象的默认值是`null`，boolean基本数据类型的默认值是`false`。
 
 在阿里巴巴Java开发手册中，对于POJO中如何选择变量的类型也有着一些规定：
 
-<img src="http://www.hollischuang.com/wp-content/uploads/2018/12/640.jpeg" align="left" />
+<img src="http://www.hollischuang.com/wp-content/uploads/2018/12/640.jpeg" />
 
-这里建议我们使用包装类型，原因是什么呢？
+这里建议使用包装类型，原因是什么呢？
 
-举一个扣费的例子，我们做一个扣费系统，扣费时需要从外部的定价系统中读取一个费率的值，我们预期该接口的返回值中会包含一个浮点型的费率字段。当我们取到这个值得时候就使用公式：金额*费率=费用 进行计算，计算结果进行划扣。
+举一个扣费的例子，做一个扣费系统，扣费时需要从外部的定价系统中读取一个费率的值，预期该接口的返回值中会包含一个浮点型的费率字段。当取到这个值得时候就使用公式：金额*费率=费用 进行计算，计算结果进行划扣。
 
 如果由于计费系统异常，他可能会返回个默认值，如果这个字段是Double类型的话，该默认值为null，如果该字段是double类型的话，该默认值为0.0。
 
@@ -2476,1133 +3646,11 @@ default model : Model[success=null, failure=false]
 
 **以上，就是建议在POJO和RPC的返回值中使用包装类型的原因。**
 
-但是关于这一点，作者之前也有过不同的看法：对于布尔类型的变量，我认为可以和其他类型区分开来，作者并不认为使用null进而导致NPE是一种最好的实践。因为布尔类型只有true/false两种值，我们完全可以和外部调用方约定好当返回值为false时的明确语义。
+但是关于这一点，作者之前也有过不同的看法：对于布尔类型的变量，我认为可以和其他类型区分开来，作者并不认为使用null进而导致NPE是一种最好的实践。因为布尔类型只有true/false两种值，完全可以和外部调用方约定好当返回值为false时的明确语义。
 
 **尽量使用包装类型**
 
 **尽量避免在你的代码中出现不确定的null值**
-
-### String
-
-#### 字符串的不可变性
-
-- **定义一个字符串**
-
-  ```java
-  String s = "abcd";
-  ```
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/String-Immutability-1.jpeg" align="left" />
-
-  `s`中保存了string对象的引用，下面的箭头可以理解为“存储他的引用”
-
-- **使用变量来赋值变量**
-
-  ```java
-  String s2 = s;
-  ```
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/String-Immutability-2.jpeg" align="left" />
-
-  s2保存了相同的引用值，因为他们代表同一个对象
-
-- **字符串拼接**
-
-  ```java
-  s = s.concat("ef");
-  ```
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/string-immutability-650x279.jpeg" align="left" />
-
-  `s`中保存的是一个重新创建出来的string对象的引用
-
-- **总结**
-
-  一旦一个string对象在内存(堆)中被创建出来，他就无法被修改。特别要注意的是，String类的所有方法都没有改变字符串本身的值，都是返回了一个新的对象。
-
-  如果你需要一个可修改的字符串，应该使用StringBuffer 或者 StringBuilder。否则会有大量时间浪费在垃圾回收上，因为每次试图修改都有新的string对象被创建出来。
-
-#### JDK 6和JDK 7中substring的原理及区别
-
-`substring(int beginIndex, int endIndex)`方法在不同版本的JDK中的实现是不同的。了解他们的区别可以帮助你更好的使用他。为简单起见，后文中用`substring()`代表`substring(int beginIndex, int endIndex)`方法。
-
-- **subString()的作用**
-
-  `substring(int beginIndex, int endIndex)`方法截取字符串并返回其`[beginIndex,endIndex-1]`范围内的内容。
-
-  ```java
-  String x = "abcdef";
-  x = x.substring(1,3);
-  System.out.println(x);
-  ```
-
-  输出内容：
-
-  ```java
-  bc
-  ```
-
-- **调用subString()时发生了什么？**
-
-  因为x是不可变的，当使用`x.substring(1,3)`对x赋值的时候，它会指向一个全新的字符串：
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2013/09/string-immutability1-650x303.jpeg" align="left" />
-
-  然而，这个图不是完全正确的表示堆中发生的事情。因为在jdk6 和 jdk7中调用substring时发生的事情并不一样。
-
-- **JDK 6中的subString()**
-
-  String是通过字符数组实现的。在jdk 6 中，String类包含三个成员变量：`char value[]`， `int offset`，`int count`。他们分别用来存储真正的字符数组，数组的第一个位置索引以及字符串中包含的字符个数。
-
-  当调用substring方法的时候，会创建一个新的string对象，但是这个string的值仍然指向堆中的同一个字符数组。这两个对象中只有count和offset 的值是不同的。
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2013/09/string-substring-jdk6-650x389.jpeg" align="left" />
-
-  Java源码中的关键代码：
-
-  ```java
-  //JDK 6
-  String(int offset, int count, char value[]) {
-      this.value = value;
-      this.offset = offset;
-      this.count = count;
-  }
-  
-  public String substring(int beginIndex, int endIndex) {
-      //check boundary
-      return new String(offset + beginIndex, endIndex - beginIndex, value);
-  }
-  ```
-
-- **JDK 6中的subString()导致的问题**
-
-  如果你有一个很长很长的字符串，但是当你使用substring进行切割的时候你只需要很短的一段。这可能导致性能问题，因为你需要的只是一小段字符序列，但是你却引用了整个字符串（因为这个非常长的字符数组一直在被引用，所以无法被回收，就可能导致内存泄露）。在JDK 6中，一般用以下方式来解决该问题，原理其实就是生成一个新的字符串并引用他。
-
-  ```java
-  x = x.substring(x, y) + ""
-  ```
-
-  > 内存泄露：在计算机科学中，内存泄漏指由于疏忽或错误造成程序未能释放已经不再使用的内存。 内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，导致在释放该段内存之前就失去了对该段内存的控制，从而造成了内存的浪费。
-
-- **JDK 7中的subString()**
-
-  在JDK 7 中，substring方法会在堆内存中创建一个新的数组
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2013/09/string-substring-jdk71-650x389.jpeg" align="left" />
-
-  Java源码中关于这部分的主要代码如下：
-
-  ```java
-  //JDK 7
-  public String(char value[], int offset, int count) {
-      //check boundary
-      this.value = Arrays.copyOfRange(value, offset, offset + count);
-  }
-  
-  public String substring(int beginIndex, int endIndex) {
-      //check boundary
-      int subLen = endIndex - beginIndex;
-      return new String(value, beginIndex, subLen);
-  }
-  ```
-
-  以上是JDK 7中的subString方法，其使用`new String`创建了一个新字符串，避免对老字符串的引用。从而解决了内存泄露问题。
-
-  所以，如果你的生产环境中使用的JDK版本小于1.7，当你使用String的subString方法时一定要注意，避免内存泄露。
-
-#### replaceFirst、replaceAll、replace区别
-
-replace、replaceAll和replaceFirst是Java中常用的替换字符的方法,它们的方法定义是：
-
-replace(CharSequence target, CharSequence replacement) ，用replacement替换所有的target，两个参数都是字符串。
-
-replaceAll(String regex, String replacement) ，用replacement替换所有的regex匹配项，regex很明显是个正则表达式，replacement是字符串。
-
-replaceFirst(String regex, String replacement) ，基本和replaceAll相同，区别是只替换第一个匹配项。
-
-可以看到，其中replaceAll以及replaceFirst是和正则表达式有关的，而replace和正则表达式无关。
-
-replaceAll和replaceFirst的区别主要是替换的内容不同，replaceAll是替换所有匹配的字符，而replaceFirst()仅替换第一次出现的字符
-
-**用法例子**
-
-1. replaceAll() 替换符合正则的所有文字
-
-   ```java
-   //文字替换（全部） 
-   Pattern pattern = Pattern.compile("正则表达式"); 
-   Matcher matcher = pattern.matcher("正则表达式 Hello World,正则表达式 Hello World"); 
-   //替换第一个符合正则的数据 
-   System.out.println(matcher.replaceAll("Java")); 
-   ```
-
-2. replaceFirst() 替换第一个符合正则的数据
-
-   ```java
-   //文字替换（首次出现字符） 
-   Pattern pattern = Pattern.compile("正则表达式"); 
-   Matcher matcher = pattern.matcher("正则表达式 Hello World,正则表达式 Hello World"); 
-   //替换第一个符合正则的数据 
-   System.out.println(matcher.replaceFirst("Java")); 
-   ```
-
-3. replaceAll()替换所有html标签
-
-   ```java
-   //去除html标记 
-   Pattern pattern = Pattern.compile("<.+?>", Pattern.DOTALL); 
-   Matcher matcher = pattern.matcher("<a href=\"index.html\">主页</a>"); 
-   String string = matcher.replaceAll(""); 
-   System.out.println(string); 
-   ```
-
-4. replaceAll() 替换指定文字
-
-   ```java
-   //替换指定{}中文字 
-   String str = "Java目前的发展史是由{0}年-{1}年";
-   String[][] object = {
-    new String[] {
-        "\\{0\\}",
-        "1995"
-    },
-    new String[] {
-        "\\{1\\}",
-        "2007"
-    }
-   };
-   System.out.println(replace(str, object));
-   public static String replace(final String sourceString, Object[] object) {
-    String temp = sourceString;
-    for (int i = 0; i < object.length; i++) {
-        String[] result = (String[]) object[i];
-        Pattern pattern = Pattern.compile(result[0]);
-        Matcher matcher = pattern.matcher(temp);
-        temp = matcher.replaceAll(result[1]);
-    }
-    return temp;
-   }
-   ```
-
-5. replace()替换字符串
-
-   ```java
-   System.out.println("abac".replace("a", "\\a")); //\ab\ac
-   ```
-
-#### String对“+”的重载
-
-1. String s = "a" + "b"，编译器会进行常量折叠(因为两个都是编译期常量，编译期可知)，即变成 String s = "ab"
-2. 对于能够进行优化的(String s = "a" + 变量 等)用 StringBuilder 的 append() 方法替代，最后调用 toString() 方法 (底层就是一个 new String())
-
-#### 字符串拼接的几种方式和区别
-
-基于jdk1.8.0_181
-
-- **字符串拼接**
-
-  **String是Java中一个不可变的类**，所以他一旦被实例化就无法被修改
-
-  > 不可变类的实例一旦创建，其成员变量的值就不能被修改。这样设计有很多好处，比如可以缓存hashcode、使用更加便利以及更加安全。
-
-  **字符串不变性与字符串拼接**
-
-  其实，所有的所谓字符串拼接，都是重新生成了一个新的字符串。下面一段字符串拼接代码：
-
-  ```java
-  String s = "abcd";
-  s = s.concat("ef");
-  ```
-
-  其实最后我们得到的s已经是一个新的字符串了。如下图：
-
-  <img src="http://www.programcreek.com/wp-content/uploads/2009/02/string-immutability-650x279.jpeg" align="left" />
-
-  `s`中保存的是一个重新创建出来的String对象的引用
-
-  常见的字符串拼接方式：
-
-  **使用`+`拼接字符串**
-
-  在Java中，拼接字符串最简单的方式就是直接使用符号`+`来拼接。如：
-
-  ```java
-  String wechat = "Hollis";
-  String introduce = "每日更新Java相关技术文章";
-  String hollis = wechat + "," + introduce;
-  ```
-
-  这里要特别说明一点，有人把Java中使用`+`拼接字符串的功能理解为**运算符重载**。其实并不是，**Java是不支持运算符重载的**。这其实只是Java提供的一个**语法糖**。后面再详细介绍。
-
-  > 运算符重载：在计算机程序设计中，运算符重载（英语：operator overloading）是多态的一种。运算符重载，就是对已有的运算符重新进行定义，赋予其另一种功能，以适应不同的数据类型。
-  >
-  > 语法糖：语法糖（Syntactic sugar），也译为糖衣语法，是由英国计算机科学家彼得·兰丁发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能没有影响，但是更方便程序员使用。语法糖让程序更加简洁，有更高的可读性。
-
-  **concat**
-
-  除了使用`+`拼接字符串之外，还可以使用String类中的方法concat方法来拼接字符串。如：
-
-  ```java
-  String wechat = "Hollis";
-  String introduce = "每日更新Java相关技术文章";
-  String hollis = wechat.concat(",").concat(introduce);
-  ```
-
-  **StringBuffer**
-
-  关于字符串，Java中除了定义了一个可以用来定义**字符串常量**的`String`类以外，还提供了可以用来定义**字符串变量**的`StringBuffer`类，它的对象是可以扩充和修改的。
-
-  使用`StringBuffer`可以方便的对字符串进行拼接。如：
-
-  ```java
-  StringBuffer wechat = new StringBuffer("Hollis");
-  String introduce = "每日更新Java相关技术文章";
-  StringBuffer hollis = wechat.append(",").append(introduce);
-  ```
-
-  **StringBuilder**
-
-  除了`StringBuffer`以外，还有一个类`StringBuilder`也可以使用，其用法和`StringBuffer`类似。如：
-
-  ```java
-  StringBuilder wechat = new StringBuilder("Hollis");
-  String introduce = "每日更新Java相关技术文章";
-  StringBuilder hollis = wechat.append(",").append(introduce);
-  ```
-
-  **StringUtils.join**
-
-  除了JDK中内置的字符串拼接方法，还可以使用一些开源类库中提供的字符串拼接方法名，如`apache.commons中`提供的`StringUtils`类，其中的`join`方法可以拼接字符串，如：
-
-  ```java
-  String wechat = "Hollis";
-  String introduce = "每日更新Java相关技术文章";
-  System.out.println(StringUtils.join(wechat, ",", introduce));
-  ```
-
-  这里简单说一下，StringUtils中提供的join方法，最主要的功能是：将数组或集合以某拼接符拼接到一起形成新的字符串，如：
-
-  ```java
-  String[] list = {"Hollis","每日更新Java相关技术文章"};
-  String result = StringUtils.join(list, ",");
-  System.out.println(result);
-  //结果：Hollis,每日更新Java相关技术文章
-  ```
-
-  并且，Java8中的String类中也提供了一个静态的join方法，用法和StringUtils.join类似。
-
-  以上就是比较常用的五种在Java种拼接字符串的方式，那么到底哪种更好用呢？为什么阿里巴巴Java开发手册中不建议在循环体中使用`+`进行字符串拼接呢？
-
-  <img src="https://www.hollischuang.com/wp-content/uploads/2019/01/15472850170230.jpg" align="left" />
-
-  
-
-- **使用`+`拼接字符串的实现原理**
-
-  使用`+`拼接字符串，其实只是Java提供的一个语法糖
-
-  代码：
-
-  ```java
-  String wechat = "Hollis";
-  String introduce = "每日更新Java相关技术文章";
-  String hollis = wechat + "," + introduce;
-  ```
-
-  反编译工具为jad，反编译后的内容如下：
-
-  ```java
-  String wechat = "Hollis";
-  String introduce = "\u6BCF\u65E5\u66F4\u65B0Java\u76F8\u5173\u6280\u672F\u6587\u7AE0";//每日更新Java相关技术文章
-  String hollis = (new StringBuilder()).append(wechat).append(",").append(introduce).toString();
-  ```
-
-  原来字符串常量在拼接过程中，是将String转成了StringBuilder后，使用其append方法进行处理的。
-
-  那么也就是说，Java中的`+`对字符串的拼接，其实现原理是使用`StringBuilder.append`。
-
-- **concat是如何实现的**
-
-  concat方法的源代码：
-
-  ```java
-  public String concat(String str) {
-      int otherLen = str.length();
-      if (otherLen == 0) {
-          return this;
-      }
-      int len = value.length;
-      char buf[] = Arrays.copyOf(value, len + otherLen);
-      str.getChars(buf, len);
-      return new String(buf, true);
-  }
-  ```
-
-  这段代码首先创建了一个字符数组，长度是已有字符串和待拼接字符串的长度之和，再把两个字符串的值复制到新的字符数组中，并使用这个字符数组创建一个新的String对象并返回。
-
-  通过源码我们也可以看到，经过concat方法，其实是new了一个新的String，这也就呼应到前面我们说的字符串的不变性问题上了。
-
-- **StringBuffer和StringBuilder**
-
-  和`String`类类似，`StringBuilder`类也封装了一个字符数组，定义如下：
-
-  ```java
-  char[] value;
-  ```
-
-  与`String`不同的是，它并不是`final`的，所以他是可以修改的。另外，与`String`不同，字符数组中不一定所有位置都已经被使用，它有一个实例变量，表示数组中已经使用的字符个数，定义如下：
-
-  ```java
-  int count;
-  ```
-
-  其append源码如下：
-
-  ```java
-  public StringBuilder append(String str) {
-      super.append(str);
-      return this;
-  }
-  ```
-
-  该类继承了`AbstractStringBuilder`类，看下其`append`方法：
-
-  ```java
-  public AbstractStringBuilder append(String str) {
-      if (str == null)
-          return appendNull();
-      int len = str.length();
-      ensureCapacityInternal(count + len);
-      str.getChars(0, len, value, count);
-      count += len;
-      return this;
-  }
-  ```
-
-  append会直接拷贝字符到内部的字符数组中，如果字符数组长度不够，会进行扩展。
-
-  `StringBuffer`和`StringBuilder`类似，最大的区别就是`StringBuffer`是线程安全的，看一下`StringBuffer`的`append`方法。
-
-  ```java
-  public synchronized StringBuffer append(String str) {
-      toStringCache = null;
-      super.append(str);
-      return this;
-  }
-  ```
-
-  该方法使用`synchronized`进行声明，说明是一个线程安全的方法。而`StringBuilder`则不是线程安全的。
-
-- **StringUtils.join是如何实现的**
-
-  通过查看`StringUtils.join`的源代码，我们可以发现，其实它也是通过`StringBuilder`来实现的。
-
-  ```java
-  public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
-      if (array == null) {
-          return null;
-      }
-      if (separator == null) {
-          separator = EMPTY;
-      }
-  
-      // endIndex - startIndex > 0: Len = NofStrings * (len(firstString) + len(separator))
-      // (Assuming that all Strings are roughly equally long)
-      final int noOfItems = endIndex - startIndex;
-      if (noOfItems <= 0) {
-          return EMPTY;
-      }
-  
-      final StringBuilder buf = new StringBuilder(noOfItems * 16);
-  
-      for (int i = startIndex; i < endIndex; i++) {
-          if (i > startIndex) {
-              buf.append(separator);
-          }
-          if (array[i] != null) {
-              buf.append(array[i]);
-          }
-      }
-      return buf.toString();
-  }
-  ```
-
-- **效率比较**
-
-  ```java
-  long t1 = System.currentTimeMillis();
-  //这里是初始字符串定义
-  for (int i = 0; i < 50000; i++) {
-      //这里是字符串拼接代码
-  }
-  long t2 = System.currentTimeMillis();
-  System.out.println("cost:" + (t2 - t1));
-  ```
-
-  使用形如以上形式的代码，分别测试下五种字符串拼接代码的运行时间。得到结果如下：
-
-  ```java
-  + cost:5119
-  StringBuilder cost:3
-  StringBuffer cost:4
-  concat cost:3623
-  StringUtils.join cost:25726
-  ```
-
-  从结果可以看出，用时从短到长的对比是：
-
-  `StringBuilder`<`StringBuffer`<`concat`<`+`<`StringUtils.join`
-
-  `StringBuffer`在`StringBuilder`的基础上，做了同步处理，所以在耗时上会相对多一些
-
-  StringUtils.join也是使用了StringBuilder，并且其中还是有很多其他操作，所以耗时较长，这个也容易理解。其实StringUtils.join更擅长处理字符串数组或者列表的拼接。
-
-  使用`+`拼接字符串的实现原理也是使用的`StringBuilder`，那为什么结果相差这么多，高达1000多倍呢？
-
-  我们再把以下代码反编译下：
-
-  ```java
-  long t1 = System.currentTimeMillis();
-  String str = "hollis";
-  for (int i = 0; i < 50000; i++) {
-      String s = String.valueOf(i);
-      str += s;
-  }
-  long t2 = System.currentTimeMillis();
-  System.out.println("+ cost:" + (t2 - t1));
-  ```
-
-  反编译后代码如下：
-
-  ```java
-  long t1 = System.currentTimeMillis();
-  String str = "hollis";
-  for(int i = 0; i < 50000; i++)
-  {
-      String s = String.valueOf(i);
-      str = (new StringBuilder()).append(str).append(s).toString();
-  }
-  
-  long t2 = System.currentTimeMillis();
-  System.out.println((new StringBuilder()).append("+ cost:").append(t2 - t1).toString());
-  ```
-
-  我们可以看到，反编译后的代码，在`for`循环中，每次都是`new`了一个`StringBuilder`，然后再把`String`转成`StringBuilder`，再进行`append`。
-
-  而频繁的新建对象当然要耗费很多时间了，不仅仅会耗费时间，频繁的创建对象，还会造成内存资源的浪费。
-
-  所以，阿里巴巴Java开发手册建议：循环体内，字符串的连接方式，使用 `StringBuilder` 的 `append` 方法进行扩展。而不要使用`+`。
-
-- **总结**
-
-  虽然字符串是不可变的，但是还是可以通过新建字符串的方式来进行字符串的拼接。
-
-  常用的字符串拼接方式有五种，分别是使用`+`、使用`concat`、使用`StringBuilder`、使用`StringBuffer`以及使用`StringUtils.join`。
-
-  由于字符串拼接过程中会创建新的对象，所以如果要在一个循环体中进行字符串拼接，就要考虑内存问题和效率问题。
-
-  因此，经过对比，直接使用`StringBuilder`的方式是效率最高的。因为`StringBuilder`天生就是设计来定义可变字符串和字符串的变化操作的。
-
-  但是，还要强调的是：
-
-  1、如果不是在循环体中进行字符串拼接的话，直接使用`+`就好了。
-
-  2、如果在并发场景中进行字符串拼接的话，要使用`StringBuffer`来代替`StringBuilder`。
-
-#### 检测字符串是否相等
-
-可以使用 **equals** 方法检测两个字符串是否相等。对于表达式：s.equals(t)
-
-如果字符串 s 与字符串 t 相等， 则返回 true ; 否则，返回 false。需要注意，s 与 t 可以是字符串变量， 也可以是字符串字面量。
-
-例如， 下列表达式是合法的：
-
-```java
-"Hello".equals(greeting)  
-```
-
-要想检测两个字符串是否相等，而不区分大小写，可以使用 **equalsIgnoreCase** 方法：
-
-```java
-"Hello".equalsIgnoreCase("hel1o") 
-```
-
-*注意：一定不要使用 == 运算符检测两个字符串是否相等！这个运算符只能够确定两个字串是否放置在同一个位置上。*
-
-如果虚拟机始终将相同的字符串共享，就可以使用 == 运算符检测是否相等。但实际上只有字符串常量是共享的，而 + 或 substring 等操作产生的结果并不是共享的。
-
-  - **==**
-
-    > 如果作用于基本数据类型的变量，则直接比较其存储的 “值” 是否相等
-    >
-    > 如果作用于引用类型的变量，则比较的是所指向的对象的地址
-
-- **equals**
-
-  > equals方法不能作用于基本数据类型的变量，equals继承Object类，比较的是是否是同一个对象，如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址，诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容
-
-#### 空串与NULL串
-
-空串 **""** 是长度为 0 的字符串。
-
-检查一个字符串是否为空：
-
-```java
-if (str.lengthQ = 0)
-或
-if (str.equals(""))
-```
-
-空串是一个 Java 对象，有自己的串长度（0）和内容（空）。不过，String 变量还可以存放一个特殊的值，名为null，这表示目前没有任何对象与该变量关联。
-
-要检查一个字符串是否为 null，要使用以下条件：
-
-```java
-if (str == null)
-```
-
-检查一个字符串既不是 null 也不为空串，这种情况下就需要使用以下条件：
-
-```java
-if (str != null && str.length() != 0)
-```
-
-首先要检查 str 不为 null。
-
-#### 码点与代码单元
-
-length 方法将返回采用 UTF-16 编码表示的给定字符串所需要的代码单元数量。
-
-```java
-String greeting = "Hello";
-int n = greeting.length(); // is 5.
-```
-
-要想得到实际的长度，即码点数量，可以调用：
-
-```java
-int cpCount = greeting.codePointCount(0, greeting.length());
-```
-
-调用 s.charAt(n) 将返回位置 n 的代码单元，n 介于 0 ~ s.length()-1 之间。例如：
-
-```java
-char first = greeting.charAt(0); // first is 'H'
-char last = greeting.charAt(4); // last is ’o’
-```
-
-要想得到第 i 个码点，应该使用下列语句：
-
-```java
-int index = greeting.offsetByCodePoints(0,i);
-int cp = greeting.codePointAt(index);  
-```
-
-如果想要遍历一个字符串，并且依次査看每一个码点，可以使用下列语句：
-
-```java
-int cp = sentence.codePointAt(i);
-if (Character.isSupplementaryCodePoint(cp)) i += 2;
-else i++;
-```
-
-可以使用下列语句实现回退操作：
-
-```java
-i++;
-if (Character.isSurrogate(sentence.charAt(i))) i--;
-int cp = sentence.codePointAt(i);  
-```
-
-更容易的办法是使用 codePoints 方法，它会生成一个 int 值的“ 流”，每个 int 值对应一个码点。可以将它转换为一个数组，再完成遍历。
-
-```java
-int[] codePoints = str.codePoints().toArray();
-```
-
-反之，要把一个码点数组转换为一个字符串，可以使用构造函数：
-
-```java
-String str = new String(codePoints, 0, codePoints.length);
-```
-
-
-
-#### String.valueOf和Integer.toString的区别
-
-我们有三种方式将一个int类型的变量变成呢过String类型，那么他们有什么区别？
-
-```java
-int i = 5;
-String i1 = "" + i;
-String i2 = String.valueOf(i);
-String i3 = Integer.toString(i);
-```
-
-第三行和第四行没有任何区别，因为String.valueOf(i)也是调用Integer.toString(i)来实现的。
-
-第二行代码其实是String i1 = (new StringBuilder()).append(i).toString();，首先创建一个StringBuilder对象，然后再调用append方法，再调用toString方法。
-
-#### switch 对 String 的支持
-
-Java 7中，switch的参数可以是String类型了，到目前为止switch支持这样几种数据类型：`byte` `short` `int` `char` `String` 。但是，作为一个程序员我们不仅要知道他有多么好用，还要知道它是如何实现的，switch对整型的支持是怎么实现的呢？对字符型是怎么实现的呢？String类型呢？有一点Java开发经验的人这个时候都会猜测switch对String的支持是使用equals()方法和hashcode()方法。
-
-- **switch对整型支持的实现**
-
-  下面是一段很简单的Java代码，定义一个int型变量a，然后使用switch语句进行判断。执行这段代码输出内容为5
-
-  ```java
-  public class switchDemoInt {
-      public static void main(String[] args) {
-          int a = 5;
-          switch (a) {
-          case 1:
-              System.out.println(1);
-              break;
-          case 5:
-              System.out.println(5);
-              break;
-          default:
-              break;
-          }
-      }
-  }
-  //output 5
-  ```
-
-  反编译后的代码如下：
-
-  ```java
-  public class switchDemoInt
-  {
-      public switchDemoInt()
-      {
-      }
-      public static void main(String args[])
-      {
-          int a = 5;
-          switch(a)
-          {
-          case 1: // '\001'
-              System.out.println(1);
-              break;
-  
-          case 5: // '\005'
-              System.out.println(5);
-              break;
-          }
-      }
-  }
-  ```
-
-  反编译后的代码和之前的代码比较除了多了两行注释以外没有任何区别，那么我们就知道，**switch对int的判断是直接比较整数的值**。
-
-- **switch对字符型支持的实现**
-
-  ```java
-  public class switchDemoInt {
-      public static void main(String[] args) {
-          char a = 'b';
-          switch (a) {
-          case 'a':
-              System.out.println('a');
-              break;
-          case 'b':
-              System.out.println('b');
-              break;
-          default:
-              break;
-          }
-      }
-  }
-  ```
-
-  编译后的代码如下：
-
-  ```java
-  public class switchDemoChar
-  {
-      public switchDemoChar()
-      {
-      }
-      public static void main(String args[])
-      {
-          char a = 'b';
-          switch(a)
-          {
-          case 97: // 'a'
-              System.out.println('a');
-              break;
-          case 98: // 'b'
-              System.out.println('b');
-              break;
-          }
-    }
-  }
-  ```
-
-  通过以上的代码作比较我们发现：对char类型进行比较的时候，实际上比较的是ascii码，编译器会把char型变量转换成对应的int型变量
-
-- **switch对字符串支持的实现**
-
-  ```java
-  public class switchDemoString {
-      public static void main(String[] args) {
-          String str = "world";
-          switch (str) {
-          case "hello":
-              System.out.println("hello");
-              break;
-          case "world":
-              System.out.println("world");
-              break;
-          default:
-              break;
-          }
-      }
-  }
-  ```
-
-  对代码进行反编译：
-
-  ```java
-  public class switchDemoString
-  {
-      public switchDemoString()
-      {
-      }
-      public static void main(String args[])
-      {
-          String str = "world";
-          String s;
-          switch((s = str).hashCode())
-          {
-          default:
-              break;
-          case 99162322:
-              if(s.equals("hello"))
-                  System.out.println("hello");
-              break;
-          case 113318802:
-              if(s.equals("world"))
-                  System.out.println("world");
-              break;
-          }
-      }
-  }
-  ```
-
-  看到这个代码，你知道原来字符串的switch是通过`equals()`和`hashCode()`方法来实现的。**记住，switch中只能使用整型**，比如`byte`，`short`，`char`(ascii码是整型)以及`int`。还好`hashCode()`方法返回的是`int`，而不是`long`。通过这个很容易记住`hashCode`返回的是`int`这个事实。仔细看下可以发现，进行`switch`的实际是哈希值，然后通过使用equals方法比较进行安全检查，这个检查是必要的，因为哈希可能会发生碰撞。因此它的性能是不如使用枚举进行switch或者使用纯整数常量，但这也不是很差。因为Java编译器只增加了一个`equals`方法，如果你比较的是字符串字面量的话会非常快，比如”abc” ==”abc”。如果你把`hashCode()`方法的调用也考虑进来了，那么还会再多一次的调用开销，因为字符串一旦创建了，它就会把哈希值缓存起来。因此如果这个`switch`语句是用在一个循环里的，比如逐项处理某个值，或者游戏引擎循环地渲染屏幕，这里`hashCode()`方法的调用开销其实不会很大。
-
-  **其实switch只支持一种数据类型，那就是整型，其他数据类型都是转换成整型之后在使用switch的。**
-
-#### 字符串池
-
-String作为一个Java类，可以通过以下两种方式创建一个字符串：
-
-```java
-String str = "Hollis";
-
-String str = new String("Hollis")；
-```
-
-而第一种是我们比较常用的做法，这种形式叫做"字面量"。
-
-在JVM中，为了减少相同的字符串的重复创建，为了达到节省内存的目的。会单独开辟一块内存，用于保存字符串常量，这个内存区域被叫做字符串常量池。
-
-当代码中出现双引号形式（字面量）创建字符串对象时，JVM 会先对这个字符串进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回；否则，创建新的字符串对象，然后将这个引用放入字符串常量池，并返回该引用。
-
-这种机制，就是字符串驻留或池化。
-
-**字符串常量池的位置**
-
-在JDK 7以前的版本中，字符串常量池是放在永久代中的。
-
-因为按照计划，JDK会在后续的版本中通过元空间来代替永久代，所以首先在JDK 7中，将字符串常量池先从永久代中移出，暂时放到了堆内存中。
-
-在JDK 8中，彻底移除了永久代，使用元空间替代了永久代，于是字符串常量池再次从堆内存移动到元空间中，和堆相互独立。
-
-#### Class常量池
-
-在Java中，常量池的概念想必很多人都听说过。这也是面试中比较常考的题目之一。在Java有关的面试题中，一般习惯通过String的有关问题来考察面试者对于常量池的知识的理解，几道简单的String面试题难倒了无数的开发者。所以说，常量池是Java体系中一个非常重要的概念。
-
-谈到常量池，在Java体系中，共用三种常量池。分别是**字符串常量池**、**Class常量池**和**运行时常量池**。
-
-- **什么是Class文件**
-
-  Java语言中负责编译出字节码的编译器是一个命令是`javac`。
-
-  > javac是收录于JDK中的Java语言编译器。该工具可以将后缀名为.java的源文件编译为后缀名为.class的可以运行于Java虚拟机的字节码。
-
-  以下简单的`HelloWorld.java`代码：
-
-  ```java
-  public class HelloWorld {
-      public static void main(String[] args) {
-          String s = "Hollis";
-      }
-  }
-  ```
-
-  通过javac命令生成class文件：
-
-  ```
-  javac HelloWorld.java
-  ```
-
-  生成`HelloWorld.class`文件:
-
-  <img src="http://www.hollischuang.com/wp-content/uploads/2018/10/15401179593014.jpg" align="left" />
-
-  > 如何使用16进制打开class文件：使用 `vim test.class` ，然后在交互模式下，输入`:%!xxd` 即可。
-
-  上面的文件就是Class文件，Class文件中包含了Java虚拟机指令集和符号表以及若干其他辅助信息。
-
-  > `HelloWorld.class`文件中的前八个字母是`cafe babe`，这就是Class文件的魔数（[Java中的”魔数”](http://www.hollischuang.com/archives/491)）
-
-  在Class文件的4个字节的魔数后面的分别是4个字节的Class文件的版本号（第5、6个字节是次版本号，第7、8个字节是主版本号，我生成的Class文件的版本号是52，这是Java 8对应的版本。也就是说，这个版本的字节码，在JDK 1.8以下的版本中无法运行）在版本号后面的，就是Class常量池入口了。
-
-- **Class常量池**
-
-  Class常量池可以理解为是Class文件中的资源仓库。 Class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常量池(constant pool table)，用于存放编译器生成的各种字面量(Literal)和符号引用(Symbolic References)。
-
-  由于不同的Class文件中包含的常量的个数是不固定的，所以在Class文件的常量池入口处会设置两个字节的常量池容量计数器，记录了常量池中常量的个数。
-
-  <img src="http://www.hollischuang.com/wp-content/uploads/2018/10/15401192359009.jpg" align="left" />
-
-  当然，还有一种比较简单的查看Class文件中常量池的方法，那就是通过`javap`命令。对于以上的`HelloWorld.class`，可以通过
-
-  ```
-  javap -v  HelloWorld.class
-  ```
-
-  查看常量池内容如下:
-
-  <img src="http://www.hollischuang.com/wp-content/uploads/2018/10/15401195127619.jpg" align="left" />
-
-  > 从上图中可以看到，反编译后的class文件常量池中共有16个常量。而Class文件中常量计数器的数值是0011，将该16进制数字转换成10进制的结果是17。
-  >
-  > 原因是与Java的语言习惯不同，常量池计数器是从0开始而不是从1开始的，常量池的个数是10进制的17，这就代表了其中有16个常量，索引值范围为1-16。
-
-- **常量池中有什么**
-
-  常量池中主要存放两大类常量：字面量（literal）和符号引用（symbolic references）。
-
-- **字面量**
-
-  > 在计算机科学中，字面量（literal）是用于表达源代码中一个固定值的表示法（notation）。几乎所有计算机编程语言都具有对基本值的字面量表示，诸如：整数、浮点数以及字符串；而有很多也对布尔类型和字符类型的值也支持字面量表示；还有一些甚至对枚举类型的元素以及像数组、记录和对象等复合类型的值也支持字面量表示法。
-
-  说简单点，字面量就是指由字母、数字等构成的字符串或者数值。
-
-  字面量只可以右值出现，所谓右值是指等号右边的值，如：int a=123这里的a为左值，123为右值。在这个例子中123就是字面量。
-
-  ```java
-  int a = 123;
-  String s = "hollis";
-  ```
-
-  上面的代码事例中，123和hollis都是字面量。
-
-- 符号引用
-
-  符号引用是编译原理中的概念，是相对于直接引用来说的。主要包括了以下三类常量： * 类和接口的全限定名 * 字段的名称和描述符 * 方法的名称和描述符
-
-  这也就可以印证前面的常量池中还包含一些`com/hollis/HelloWorld`、`main`、`([Ljava/lang/String;)V`等常量的原因了。
-
-- **Class常量池有什么用**
-
-  首先，可以明确的是，Class常量池是Class文件中的资源仓库，其中保存了各种常量。而这些常量都是开发者定义出来，需要在程序的运行期使用的。
-
-  在《深入理解Java虚拟机》中有这样的表述：
-
-  Java代码在进行`Javac`编译的时候，并不像C和C++那样有“连接”这一步骤，而是在虚拟机加载Class文件的时候进行动态连接。也就是说，在Class文件中不会保存各个方法、字段的最终内存布局信息，因此这些字段、方法的符号引用不经过运行期转换的话无法得到真正的内存入口地址，也就无法直接被虚拟机使用。当虚拟机运行时，需要从常量池获得对应的符号引用，再在类创建时或运行时解析、翻译到具体的内存地址之中。关于类的创建和动态连接的内容，在虚拟机类加载过程时再进行详细讲解。
-
-  前面这段话，看起来很绕，不是很容易理解。其实他的意思就是： Class是用来保存常量的一个媒介场所，并且是一个中间场所。在JVM真的运行时，需要把常量池中的常量加载到内存中。
-
-- 参考资料
-
-  《深入理解java虚拟机》 [《Java虚拟机原理图解》 1.2.2、Class文件中的常量池详解（上）](https://blog.csdn.net/luanlouis/article/details/39960815)
-
-#### 运行时常量池
-
-运行时常量池（ Runtime Constant Pool）是每一个类或接口的常量池（ Constant_Pool）的运行时表示形式。
-
-它包括了若干种不同的常量：从编译期可知的数值字面量到必须运行期解析后才能获得的方法或字段引用。运行时常量池扮演了类似传统语言中符号表（ SymbolTable）的角色，不过它存储数据范围比通常意义上的符号表要更为广泛。
-
-每一个运行时常量池都分配在 Java 虚拟机的`方法区`之中，在类和接口被加载到虚拟机后，对应的运行时常量池就被创建出来。
-
-以上，是Java虚拟机规范中关于运行时常量池的定义。
-
-- **运运行时常量池在JDK各个版本中的实现**
-
-  根据Java虚拟机规范约定：每一个运行时常量池都在Java虚拟机的`方法区`中分配，在加载类和接口到虚拟机后，就创建对应的运行时常量池。
-
-  在不同版本的JDK中，运行时常量池所处的位置也不一样。以HotSpot为例：
-
-  在JDK 1.7之前，方法区位于堆内存的永久代中，运行时常量池作为方法区的一部分，也处于永久代中。
-
-  因为使用永久代实现方法区可能导致内存泄露问题，所以，从JDK1.7开始，JVM尝试解决这一问题，在1.7中，将原本位于永久代中的运行时常量池移动到堆内存中。（永久代在JDK 1.7并没有完全移除，只是原来方法区中的运行时常量池、类的静态变量等移动到了堆内存中。）
-
-  在JDK 1.8中，彻底移除了永久代，方法区通过元空间的方式实现。随之，运行时常量池也在元空间中实现。
-
-- **运行时常量池中常量的来源**
-
-  运行时常量池中包含了若干种不同的常量：
-
-  编译期可知的字面量和符号引用（来自Class常量池） 运行期解析后可获得的常量（如String的intern方法）
-
-  所以，运行时常量池中的内容包含：Class常量池中的常量、字符串常量池中的内容
-
-- **运行时常量池、Class常量池、字符串常量池的区别与联系**
-
-  虚拟机启动过程中，会将各个Class文件中的常量池载入到运行时常量池中。
-
-  所以， Class常量池只是一个媒介场所。在JVM真的运行时，需要把常量池中的常量加载到内存中，进入到运行时常量池。
-
-  字符串常量池可以理解为运行时常量池分出来的部分。加载时，对于class的静态常量池，字符串会被装到字符串常量池中。
-
-#### intern
-
-当代码中出现双引号形式（字面量）创建字符串对象时，JVM 会先对这个字符串进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回；否则，创建新的字符串对象，然后将这个引用放入字符串常量池，并返回该引用。
-
-除了以上方式之外，还有一种可以在运行期将字符串内容放置到字符串常量池的办法，那就是使用intern
-
-intern的功能很简单：
-
-在每次赋值的时候使用 String 的 intern 方法，如果常量池中有相同值，就会重复使用该对象，返回对象引用。
-
-#### String有没有长度限制？
-
-- **String的长度限制**
-
-  String类中有很多重载的构造函数，其中有几个是支持用户传入length来执行长度的：
-
-  ```java
-  public String(byte bytes[], int offset, int length) 
-  ```
-
-  可以看到，这里面的参数length是使用int类型定义的，那么也就是说，String定义的时候，最大支持的长度就是int的最大范围值。
-
-  根据Integer类的定义，`java.lang.Integer#MAX_VALUE`的最大值是2^31 - 1
-
-  那么，我们是不是就可以认为String能支持的最大长度就是这个值了呢？
-
-  其实并不是，这个值只是在运行期，我们构造String的时候可以支持的一个最大长度，而实际上，在编译期，定义字符串的时候也是有长度限制的。
-
-  如以下代码：
-
-  ```java
-  String s = "11111...1111";//其中有10万个字符"1"
-  ```
-
-  当我们使用如上形式定义一个字符串的时候，当我们执行javac编译时，是会抛出异常的，提示如下：
-
-  ```
-  错误: 常量字符串过长
-  ```
-
-  那么，明明String的构造函数指定的长度是可以支持2147483647(2^31 - 1)的，为什么像以上形式定义的时候无法编译呢？
-
-  其实，形如`String s = "xxx";`定义String的时候，xxx被我们称之为字面量，这种字面量在编译之后会以常量的形式进入到Class常量池。
-
-  那么问题就来了，因为要进入常量池，就要遵守常量池的有关规定。
-
-- **常量池限制**
-
-  javac是将Java文件编译成class文件的一个命令，那么在Class文件生成过程中，就需要遵守一定的格式。
-
-  根据《Java虚拟机规范》中第4.4章节常量池的定义，CONSTANT_String_info 用于表示 java.lang.String 类型的常量对象，格式如下：
-
-  ```j
-  CONSTANT_String_info {
-      u1 tag;
-      u2 string_index;
-  }
-  ```
-
-  其中，string_index 项的值必须是对常量池的有效索引， 常量池在该索引处的项必须是 CONSTANT_Utf8_info 结构，表示一组 Unicode 码点序列，这组 Unicode 码点序列最终会被初始化为一个 String 对象。
-
-  CONSTANT_Utf8_info 结构用于表示字符串常量的值：
-
-  ```
-  CONSTANT_Utf8_info {
-      u1 tag;
-      u2 length;
-      u1 bytes[length];
-  }
-  ```
-
-  其中，length则指明了 bytes[]数组的长度，其类型为u2，
-
-  通过翻阅《规范》，我们可以获悉。u2表示两个字节的无符号数，那么1个字节有8位，2个字节就有16位。
-
-  16位无符号数可表示的最大值位2^16 - 1 = 65535。
-
-  也就是说，Class文件中常量池的格式规定了，其字符串常量的长度不能超过65535。
-
-  那么，我们尝试使用以下方式定义字符串：
-
-  ```java
-   String s = "11111...1111";//其中有65535个字符"1"
-  ```
-
-  尝试使用javac编译，同样会得到"错误: 常量字符串过长"，那么原因是什么呢？
-
-  其实，这个原因在javac的代码中是可以找到的，在Gen类中有如下代码：
-
-  ```java
-  private void checkStringConstant(DiagnosticPosition var1, Object var2) {
-      if (this.nerrs == 0 && var2 != null && var2 instanceof String && ((String)var2).length() >= 65535) {
-          this.log.error(var1, "limit.string", new Object[0]);
-          ++this.nerrs;
-      }
-  }
-  ```
-
-  代码中可以看出，当参数类型为String，并且长度大于等于65535的时候，就会导致编译失败。
-
-  如果我们尝试以65534个字符定义字符串，则会发现可以正常编译。
-
-  其实，关于这个值，在《Java虚拟机规范》也有过说明：
-
-  > if the Java Virtual Machine code for a method is exactly 65535 bytes long and ends with an instruction that is 1 byte long, then that instruction cannot be protected by an exception handler. A compiler writer can work around this bug by limiting the maximum size of the generated Java Virtual Machine code for any method, instance initialization method, or static initializer (the size of any code array) to 65534 bytes
-
-- **运行期限制**
-
-  上面提到的这种String长度的限制是编译期的限制，也就是使用String s= “”;这种字面值方式定义的时候才会有的限制。
-
-  那么，String在运行期有没有限制呢，答案是有的，就是我们前文提到的那个Integer.MAX_VALUE ，这个值约等于4G，在运行期，如果String的长度超过这个范围，就可能会抛出异常。(在jdk 1.9之前）
-
-  int 是一个 32 位变量类型，取正数部分来算的话，他们最长可以有：
-
-  ```
-  2^31-1 =2147483647 个 16-bit Unicodecharacter
-  
-  2147483647 * 16 = 34359738352 位
-  34359738352 / 8 = 4294967294 (Byte)
-  4294967294 / 1024 = 4194303.998046875 (KB)
-  4194303.998046875 / 1024 = 4095.9999980926513671875 (MB)
-  4095.9999980926513671875 / 1024 = 3.99999999813735485076904296875 (GB)
-  ```
-
-  有近 4G 的容量。
-
-  很多人会有疑惑，编译的时候最大长度都要求小于65535了，运行期怎么会出现大于65535的情况呢。这其实很常见，如以下代码：
-
-  ```java
-  String s = "";
-  for (int i = 0; i <100000 ; i++) {
-      s+="i";
-  }
-  ```
-
-  得到的字符串长度就有10万
-
-- **总结**
-
-  字符串有长度限制，在编译期，要求字符串常量池中的常量不能超过65535，并且在javac执行过程中控制了最大值为65534。
-
-  在运行期，长度不能超过Int的范围，否则会抛异常。
 
 ### 异常
 
@@ -3626,9 +3674,9 @@ Java中的异常，主要可以分为两⼤类， 即受检异常（ checked exc
   public void test() throw new Exception{ }
   ```
 
-  那么，当我们在程序中调⽤他的时候，⼀定要对该异常进⾏处理（ 捕获或者向上抛出），否则是⽆法编译通过的。这是⼀种强制规范。
+  那么，在程序中调⽤他的时候，⼀定要对该异常进⾏处理（ 捕获或者向上抛出），否则是⽆法编译通过的。这是⼀种强制规范。
 
-  这种异常在IO操作中比较多。 ⽐如FileNotFoundException，当我们使用IO流处理⼀个⽂件的时候，有⼀种特殊情况，就是⽂件不存在，所以，在⽂件处理的接口定义时他会显示抛出FileNotFoundException，目的就是告诉这个⽅法的调用者，我这个⽅法不保证⼀定可以成功，是有可能找不到对应的⽂件的，你要明确的对这种情况做特殊处理。
+  这种异常在IO操作中比较多。 ⽐如FileNotFoundException，当使用IO流处理⼀个⽂件的时候，有⼀种特殊情况，就是⽂件不存在，所以，在⽂件处理的接口定义时他会显示抛出FileNotFoundException，目的就是告诉这个⽅法的调用者，我这个⽅法不保证⼀定可以成功，是有可能找不到对应的⽂件的，你要明确的对这种情况做特殊处理。
 
   所以说，当我们希望我们的⽅法调用者，明确的处理⼀些特殊情况的时候，就应该使用受检异常。
 
@@ -3776,11 +3824,11 @@ TreeMap是按key排序的，元素在插入TreeSet时compareTo()方法要被调�
 
 **分类：**
 
-<img src="https://s1.ax1x.com/2020/10/28/B3ivSH.png" align="left" style="zoom: 67%;" />
+<img src="https://s1.ax1x.com/2020/10/28/B3ivSH.png" style="zoom: 67%;" />
 
 **I/O 还可以根据操作对象来进行区分：**
 
-<img src="https://s1.ax1x.com/2020/10/28/B3Fumq.png" align="left" style="zoom: 67%;" />
+<img src="https://s1.ax1x.com/2020/10/28/B3Fumq.png" style="zoom: 67%;" />
 
 #### File对象
 
@@ -3873,7 +3921,7 @@ System.out.println(File.separator); // 根据当前平台打印"\"或"/"
 
 **文件和目录**
 
-`File`对象既可以表示文件，也可以表示目录。特别要注意的是，构造一个`File`对象，即使传入的文件或目录不存在，代码也不会出错，因为构造一个`File`对象，并不会导致任何磁盘操作。只有当我们调用`File`对象的某些方法的时候，才真正进行磁盘操作。
+`File`对象既可以表示文件，也可以表示目录。特别要注意的是，构造一个`File`对象，即使传入的文件或目录不存在，代码也不会出错，因为构造一个`File`对象，并不会导致任何磁盘操作。只有调用`File`对象的某些方法的时候，才真正进行磁盘操作。
 
 调用`exist()`，判断该`File`对象是否存在文件或文件夹：
 
@@ -4015,11 +4063,11 @@ public class FileDemo {
 
 - **输入流**
 
-  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115142HWK.png" align="left" />
+  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115142HWK.png" />
 
   Java 流相关的类都封装在 java.io 包中，而且每个数据流都是一个对象。所有输入流类都是 InputStream 抽象类（字节输入流）和 Reader 抽象类（字符输入流）的子类。其中 InputStream 类是字节输入流的抽象类，是所有字节输入流的父类。
 
-  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115145253550.png" align="left" />
+  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115145253550.png" />
 
   <center>InputStream 类常用方法</center>
 
@@ -4039,11 +4087,11 @@ public class FileDemo {
 
 - **输出流**
 
-  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115142K1644.png" align="left" />
+  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115142K1644.png" />
 
   在 Java 中所有输出流类都是 OutputStream 抽象类（字节输出流）和 Writer 抽象类（字符输出流）的子类。其中 OutputStream 类是字节输出流的抽象类，是所有字节输出流的父类。
 
-  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115151G3J0.png" align="left" />
+  <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115151G3J0.png" />
 
   <center>OutputStream 类常用方法</center>
 
@@ -4120,7 +4168,7 @@ InputStreamReader 是字节流通向字符流的桥梁
 
 #### Class类
 
-Java的Class类是java反射机制的基础，通过Class类我们可以获得关于一个类的相关信息。
+Java的Class类是java反射机制的基础，通过Class类可以获得关于一个类的相关信息。
 
 Java.lang.Class是一个比较特殊的类，它用于封装被装入到JVM中的类（包括类和接口）的信息。当一个类或接口被装入的JVM时便会产生一个与之关联的java.lang.Class对象，可以通过这个Class对象对被装入类的详细信息进行访问。
 
@@ -4150,7 +4198,7 @@ Java.lang.Class是一个比较特殊的类，它用于封装被装入到JVM中�
 
 - **反射机制的优缺点**
 
-  反射机制的优点：可以实现动态创建对象和编译，体现出很大的灵活性（特别是在J2EE的开发中它的灵活性就表现的十分明显）。通过反射机制我们可以获得类的各种内容，进行反编译。对于JAVA这种先编译再运行的语言来说，反射机制可以使代码更加灵活，更加容易实现面向对象。
+  反射机制的优点：可以实现动态创建对象和编译，体现出很大的灵活性（特别是在J2EE的开发中它的灵活性就表现的十分明显）。通过反射机制可以获得类的各种内容，进行反编译。对于JAVA这种先编译再运行的语言来说，反射机制可以使代码更加灵活，更加容易实现面向对象。
 
   反射机制的缺点：对性能有影响。使用反射基本上是一种解释操作，可以告诉JVM，希望做什么并且让它满足要求，这类操作总是慢于直接执行相同的操作。
 
@@ -4175,7 +4223,7 @@ Java.lang.Class是一个比较特殊的类，它用于封装被装入到JVM中�
        }
   }
   //构造工厂类
-  //也就是说以后如果我们在添加其他的实例的时候只需要修改工厂类就行了
+  //也就是说以后如果在添加其他的实例的时候只需要修改工厂类就行了
   class Factory{
        public static Fruit getInstance(String fruitName){
            Fruit f=null;
@@ -4196,7 +4244,7 @@ Java.lang.Class是一个比较特殊的类，它用于封装被装入到JVM中�
   }
   ```
 
-  上面写法的缺点是当我们再添加一个子类的时候，就需要修改工厂类了。
+  上面写法的缺点是再添加一个子类的时候，就需要修改工厂类了。
 
   下面用反射机制实现工厂模式：
 
@@ -4634,7 +4682,7 @@ public final class T extends Enum
 
 通过反编译后，public final class T extends Enum，说明了该类是继承了Enum类的，同时final关键字告诉我们，这个类也是不能被继承的。
 
-当使用enum来定义一个枚举类型的时候，编译器会自动帮我们创建一个final类型的类继承Enum类，所以枚举类型不能被继承。
+当使用enum来定义一个枚举类型的时候，编译器会自动创建一个final类型的类继承Enum类，所以枚举类型不能被继承。
 
 #### 枚举与单例
 
@@ -4652,9 +4700,9 @@ public abstract class Enum<E extends Enum<E>> implements Constable, Comparable<E
 }
 ```
 
-这个类我们在日常开发中不会用到，但是其实我们使用enum定义的枚举，其实现方式就是通过继承Enum类实现的。
+这个类在日常开发中不会用到，但是其实使用enum定义的枚举，其实现方式就是通过继承Enum类实现的。
 
-当我们使用enum来定义一个枚举类型的时候，编译器会自动帮我们创建一个final类型的类继承Enum类，所以枚举类型不能被继承。
+当使用enum来定义一个枚举类型的时候，编译器会自动帮创建一个final类型的类继承Enum类，所以枚举类型不能被继承。
 
 #### Java枚举如何比较
 
@@ -5239,7 +5287,11 @@ CGLIB（Code Generation Library），是一个代码生成的类库，可以在�
 
 - **Serializable 接口**
 
-  类通过实现 `java.io.Serializable` 接口以启用其序列化功能。未实现此接口的类将无法使其任何状态序列化或反序列化。可序列化类的所有子类型本身都是可序列化的。**序列化接口没有方法或字段，仅用于标识可序列化的语义。**
+  类通过实现`java.io.Serializable`接口以启用其序列化功能。未实现此接口的类将无法使其任何状态序列化或反序列化。可序列化类的所有子类型本身都是可序列化的。**序列化接口没有方法或字段，仅用于标识可序列化的语义。**
+
+  当试图对一个对象进行序列化的时候，如果遇到不支持`Serializable`接口的对象。在此情况下，将抛出`NotSerializableException`。
+
+  如果要序列化的类有父类，要想同时将在父类中定义过的变量持久化下来，那么父类也应该集成`java.io.Serializable`接口。
 
   一个实现了`java.io.Serializable`接口的类：
 
@@ -5313,6 +5365,140 @@ CGLIB（Code Generation Library），是一个代码生成的类库，可以在�
 
 - **Externalizable接口**
 
+除了`Serializable`之外，java中还提供了另一个序列化接口`Externalizable`。
+
+为了了解Externalizable接口和Serializable接口的区别，先来看代码，把上面的代码改成使用`Externalizable`的形式。
+
+```java
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+public class User1 implements Externalizable {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void writeExternal(ObjectOutput out) throws IOException {
+    }
+
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+        "name='" + name + '\'' +
+        ", age=" + age +
+        '}';
+        }
+    }
+}
+```
+
+```java
+import java.io.*;
+
+public class ExternalizableDemo1 {
+    //为了便于理解和节省篇幅， 忽略关闭流操作及删除文件操作。 真正编码时千万不要忘记
+    //IOException 直接抛出
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    //Write Obj to file序列化
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
+        User1 user = new User1();
+        user.setName("william");
+        user.setAge(23);
+        oos.writeObject(user);
+        //Read Obj from file
+        File file = new File("tempFile");
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        User1 newInstance = (User1) ois.readObject();
+        //output
+        System.out.println(newInstance);
+    }
+}
+//OutPut:
+//User{name='null', age=0}
+```
+
+通过上面的实例可以发现，对User1类进行序列化及反序列化之后得到的对象的所有属性的值都变成了默认值。也就是说，之前的那个对象的状态并没有被持久化下来。这就是`Externalizable`接口和`Serializable`接口的区别：
+
+Externalizable继承了Serializable，该接口中定义了两个抽象方法：`writeExternal()`与`readExternal()`。当使用Externalizable接口来进行序列化与反序列化的时候需要开发人员重写`writeExternal()`与`readExternal()`方法。由于上面的代码中，并没有在这两个方法中定义序列化实现细节，所以输出的内容为空。还有一点值得注意：在使用Externalizable进行序列化的时候，在读取对象时，会调用被序列化类的无参构造器去创建一个新的对象，然后再将被保存对象的字段的值分别填充到新对象中。所以，实现Externalizable接口的类必须要提供一个public的无参的构造器。
+
+按照要求修改之后代码如下：
+
+```java
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+public class User2 implements Externalizable {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(name);
+        out.writeInt(age);
+    }
+
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        name = (String) in.readObject();
+        age = in.readInt();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+        "name='" + name + '\'' +
+        ", age=" + age +
+        '}';
+    }
+}
+```
+
+这样就可以把之前的对象状态持久化下来了。
+
+如果`User`类中没有无参数的构造函数，在运行时会抛出异常：`java.io.InvalidClassException`
+
+- **参考资料**
+
+  [维基百科](https://zh.wikipedia.org/wiki/%E5%BA%8F%E5%88%97%E5%8C%96)
+
+  [理解Java对象序列化](https://www.ibm.com/developerworks/cn/java/j-lo-serial/)
+
 #### Serializable 和 Externalizable 有何不同
 
 #### serialVersionUID
@@ -5361,19 +5547,19 @@ JUnit 促进了“先测试后编码”的理念，强调建立测试数据的�
 
 每一项需求至少需要两个单元测试用例：一个正检验，一个负检验。如果一个需求有子需求，每一个子需求必须至少有正检验和负检验两个测试用例。
 
-#### Mock
-
-#### JMockit
-
-#### 内存数据库（h2）
-
-### 正则表达式
-
-### 常用的Java工具库
-
 ### API&SPI
 
 ### 时间处理
+
+#### 时区
+
+时区是地球上的区域使用同一个时间定义。以前，人们通过观察太阳的位置（时角）决定时间，这就使得不同经度的地方的时间有所不同（地方时） 。1863年，首次使用时区的概念。时区通过设立一个区域的标准时间部分地解决了这个问题。
+
+世界各个国家位于地球不同位置上，因此不同国家，特别是东西跨度大的国家日出、日落时间必定有所偏差。这些偏差就是所谓的时差。
+
+为了照顾到各地区的使用方便，又使其他地方的人容易将本地的时间换算到别的地方时间上去。有关国际会议决定将地球表面按经线从东到西，划成一个个区域，并且规定相邻区域的时间相差1小时。在同一区域内的东端和西端的人看到太阳升起的时间最多相差不过1小时。当人们跨过一个区域，就将自己的时钟校正1小时（向西减1小时，向东加1小时），跨过几个区域就加或减几小时。这样使用起来就很方便。现今全球共分为24个时区。由于实用上常常1个国家，或1个省份同时跨着2个或更多时区，为了照顾到行政上的方便，常将1个国家或1个省份划在一起。所以时区并不严格按南北直线来划分，而是按自然条件来划分。例如，中国幅员宽广，差不多跨5个时区，但为了使用方便简单，实际上在只用东八时区的标准时即北京时间为准。
+
+北京时间比洛杉矶时间早15或者16个小时。具体和时令有关。北京时间比纽约时间早12或者13个小时。具体和时令有关。
 
 #### 冬令时和夏令时
 
@@ -5381,15 +5567,15 @@ JUnit 促进了“先测试后编码”的理念，强调建立测试数据的�
 
 - **冬令时**
 
-  > 北京和洛杉矶时差：16
-  >
-  > 北京和纽约时差：13
+  北京和洛杉矶时差：16
+  
+  北京和纽约时差：13
 
 - **夏令时**
 
-  > 北京和洛杉矶时差：15
-  >
-  > 北京和纽约时差：12
+  北京和洛杉矶时差：15
+  
+  北京和纽约时差：12
 
 #### 时间戳
 
@@ -5431,7 +5617,7 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
 
 #### SimpleDateFormat的线程安全性问题
 
-在日常开发中，我们经常会用到时间，我们有很多办法在Java代码中获取时间。但是不同的方法获取到的时间的格式都不尽相同，这时候就需要一种格式化工具，把时间显示成我们需要的格式，最常用的方法就是使用SimpleDateFormat类。
+在日常开发中，经常会用到时间，有很多办法在Java代码中获取时间。但是不同的方法获取到的时间的格式都不尽相同，这时候就需要一种格式化工具，把时间显示成需要的格式，最常用的方法就是使用SimpleDateFormat类。
 
 - **SimpleDateFormat用法**
 
@@ -5466,11 +5652,11 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
 
   在使用SimpleDateFormat的时候，需要通过字母来描述时间元素，并组装成想要的日期和时间模式。常用的时间元素和字母的对应表如下：
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/15431240092595.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/15431240092595.jpg" />
 
   模式字母通常是重复的，其数量确定其精确表示。如下表是常用的输出格式的表示方法。
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/15431240361504.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/15431240361504.jpg" />
 
 - **输出不同时区的时间**
 
@@ -5482,7 +5668,7 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
 
   由于不同的时区的时间是不一样的，甚至同一个国家的不同城市时间都可能不一样，所以，在Java中想要获取时间的时候，要重点关注一下时区问题。
 
-  默认情况下，如果不指明，在创建日期的时候，会使用当前计算机所在的时区作为默认时区，这也是为什么我们通过只要使用`new Date()`就可以获取中国的当前时间的原因。
+  默认情况下，如果不指明，在创建日期的时候，会使用当前计算机所在的时区作为默认时区，这也是为什么通过只要使用`new Date()`就可以获取中国的当前时间的原因。
 
   那么，如何在Java代码中获取不同时区的时间呢？SimpleDateFormat可以实现这个功能。
 
@@ -5526,7 +5712,7 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
 
 - **问题重现**
 
-  我们来看一段代码，以下代码使用线程池来执行时间输出。
+  来看一段代码，以下代码使用线程池来执行时间输出。
 
   ```java
   public class Main {
@@ -5578,7 +5764,7 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
   
   在阿里巴巴Java开发手册有明确说明：
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/guiyue2.png" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/guiyue2.png" />
 
 - **线程不安全原因**
 
@@ -5590,13 +5776,13 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
 
   那么接下来分析下为什么会出现这种问题，SimpleDateFormat底层到底是怎么实现的？
 
-  我们跟一下SimpleDateFormat类中format方法的实现其实就能发现端倪。
+  跟一下SimpleDateFormat类中format方法的实现其实就能发现端倪。
 
-  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/15431313894397.jpg" align="left" />
+  <img src="https://www.hollischuang.com/wp-content/uploads/2018/11/15431313894397.jpg" />
 
   SimpleDateFormat中的format方法在执行过程中，会使用一个成员变量calendar来保存时间。这其实就是问题的关键。
 
-  由于我们在声明SimpleDateFormat的时候，使用的是static定义的。那么这个SimpleDateFormat就是一个共享变量，随之，SimpleDateFormat中的calendar也就可以被多个线程访问到。
+  由于在声明SimpleDateFormat的时候，使用的是static定义的。那么这个SimpleDateFormat就是一个共享变量，随之，SimpleDateFormat中的calendar也就可以被多个线程访问到。
 
   假设线程1刚刚执行完`calendar.setTime`把时间设置成2018-11-11，还没等执行完，线程2又执行了`calendar.setTime`把时间改成了2018-12-12。这时候线程1继续往下执行，拿到的`calendar.getTime`得到的时间就是线程2改过之后的。
 
@@ -5709,7 +5895,6 @@ CET=UTC/GMT + 1小时 CST=UTC/GMT +8 小时 CST=CET+9
 
   主要的几个手段有改为局部变量、使用synchronized加锁、使用Threadlocal为每一个线程单独创建一个等。
 
-
 #### Java 8中的时间处理
 
 Java 8通过发布新的Date-Time API (JSR 310)来进一步加强对日期与时间的处理。
@@ -5802,15 +5987,13 @@ System.out.println("字符串转日期：" + LocalDateTime.parse(strNow, formatt
 
 **什么是Week Year**
 
-我们知道，不同的国家对于一周的开始和结束的定义是不同的。如在中国，我们把星期一作为一周的第一天，而在美国，他们把星期日作为一周的第一天。
+不同的国家对于一周的开始和结束的定义是不同的。如在中国，把星期一作为一周的第一天，而在美国，他们把星期日作为一周的第一天。
 
 同样，如何定义哪一周是一年当中的第一周？这也是一个问题，有很多种方式。
 
 比如下图是2019年12月-2020年1月的一份日历。
 
 ![](http://www.hollischuang.com/wp-content/uploads/2020/01/15781286552869.jpg)
-
-
 
 到底哪一周才算2020年的第一周呢？不同的地区和国家，甚至不同的人，都有不同的理解。
 
@@ -5825,12 +6008,13 @@ System.out.println("字符串转日期：" + LocalDateTime.parse(strNow, formatt
 国际标准化组织的国际标准ISO 8601是日期和时间的表示方法，全称为《数据存储和交换形式·信息交换·日期和时间的表示方法》。
 
 在 ISO 8601中。对于一年的第一个日历星期有以下四种等效说法： 
+
 * 本年度第一个星期四所在的星期； 
 * 1月4日所在的星期； 
 * 本年度第一个至少有4天在同一星期内的星期； 
 * 星期一在去年12月29日至今年1月4日以内的星期；
 
-根据这个标准，我们可以推算出：
+根据这个标准，可以推算出：
 
 2020年第一周：2019.12.29-2020.1.4
 
@@ -5840,20 +6024,20 @@ System.out.println("字符串转日期：" + LocalDateTime.parse(strNow, formatt
 
 根据ISO 8601中关于日历星期和日表示法的定义，2019.12.29-2020.1.4是2020年的第一周。
 
-我们希望输入一个日期，然后程序告诉我们，根据ISO 8601中关于日历日期的定义，这个日期到底属于哪一年。
+希望输入一个日期，然后程序告诉我们，根据ISO 8601中关于日历日期的定义，这个日期到底属于哪一年。
 
 比如我输入2019-12-20，他告诉我是2019；而我输入2019-12-30的时候，他告诉我是2020。
 
 为了提供这样的数据，Java 7引入了「YYYY」作为一个新的日期模式来作为标识。使用「YYYY」作为标识，。再通过SimpleDateFormat就可以得到一个日期所属的周属于哪一年了
 
 
-所以，当我们要表示日期的时候，一定要使用 yyyy-MM-dd 而不是 YYYY-MM-dd ，这两者的返回结果大多数情况下都一样，但是极端情况就会有问题了。
+所以，要表示日期的时候，一定要使用 yyyy-MM-dd 而不是 YYYY-MM-dd ，这两者的返回结果大多数情况下都一样，但是极端情况就会有问题了。
 
 ### 编码方式
 
 #### 什么是ASCII？
 
-#### Unicode
+#### 什么是Unicode？
 
 #### 有了Unicode为啥还需要UTF-8
 
@@ -5863,19 +6047,11 @@ System.out.println("字符串转日期：" + LocalDateTime.parse(strNow, formatt
 
 #### URL编解码
 
-### 语法糖
-
 #### Big Endian和Little Endian
 
-### JMS
+### 语法糖
 
-### JMX
-
-### Java 8
-
-#### lambda表达式
-
-### 阅读源代码
+### lambda表达式
 
 ## Java 并发编程
 
@@ -5908,3 +6084,5 @@ System.out.println("字符串转日期：" + LocalDateTime.parse(strNow, formatt
 ### 写代码来解决生产者消费者问题
 
 ### 并发包
+
+<RightMenu />
