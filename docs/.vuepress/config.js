@@ -94,9 +94,7 @@ module.exports = {
           children: [
             "/notes/server/",
             "server/java",
-            "server/java-practice",
             "server/python",
-            "server/python-practice",
             "server/c-sharp",
           ],
         },
