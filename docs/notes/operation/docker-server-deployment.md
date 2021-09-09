@@ -6,7 +6,7 @@ title: Docker环境部署
 
 ## Java
 
-### 安装镜像
+### 拉取镜像
 
 ```bash
 docker pull docker.io/java
@@ -20,7 +20,7 @@ docker run -it --name myjava --restart=always docker.io/java bash
 
 ## MySql
 
-### 安装镜像
+### 拉取镜像
 
 ```bash
 docker pull mysql:8.0.19
@@ -29,23 +29,23 @@ docker pull mysql:8.0.19
 ### 创建映射文件夹
 
 ```bash
-mkdir -p /usr/local/src/mysql-8.0.19/log /usr/local/src/mysql-8.0.19/data /usr/local/src/mysql-8.0.19/conf /usr/local/src/mysql-8.0.19/mysql-files
+mkdir -p /home/mysql-8.0.19/log /home/mysql-8.0.19/data /home/mysql-8.0.19/conf /home/mysql-8.0.19/mysql-files
 ```
 
 ### 文件夹赋权
 
 ```bash
-chmod -R 777 /usr/local/src/mysql-8.0.19/
+chmod -R 777 /home/mysql-8.0.19/
 ```
 
 ### 运行
 
 ```bash
 docker run -p 3306:3306 --name mysql \
--v /usr/local/src/mysql-8.0.19/log:/var/log/mysql \
--v /usr/local/src/mysql-8.0.19/data:/var/lib/mysql \
--v /usr/local/src/mysql-8.0.19/conf:/etc/mysql \
--v /usr/local/src/mysql-8.0.19/mysql-files:/var/lib/mysql-files \
+-v /home/mysql-8.0.19/log:/var/log/mysql \
+-v /home/mysql-8.0.19/data:/var/lib/mysql \
+-v /home/mysql-8.0.19/conf:/etc/mysql \
+-v /home/mysql-8.0.19/mysql-files:/var/lib/mysql-files \
 -e MYSQL_ROOT_PASSWORD=password \
 -d mysql:8.0.19
 ```
@@ -133,7 +133,7 @@ docker run --name redis -p 6379:6379 -v /home/redis/data:/data -v /home/redis/co
 
 ## ElasticSearch
 
-### 安装镜像
+### 拉取镜像
 
 ```bash
 docker pull elasticsearch:7.8.0
@@ -142,18 +142,18 @@ docker pull elasticsearch:7.8.0
 ### 创建映射文件夹
 
 ```bash
-mkdir -p /usr/local/src/elasticsearch-7.8.0/config
-mkdir -p /usr/local/src/elasticsearch-7.8.0/data
-mkdir -p /usr/local/src/elasticsearch-7.8.0/logs/
-mkdir -p /usr/local/src/elasticsearch-7.8.0/plugins
+mkdir -p /home/elasticsearch-7.8.0/config
+mkdir -p /home/elasticsearch-7.8.0/data
+mkdir -p /home/elasticsearch-7.8.0/logs
+mkdir -p /home/elasticsearch-7.8.0/plugins
 
-echo "http.host: 0.0.0.0">>/usr/local/src/elasticsearch-7.8.0/config/elasticsearch.yml
+echo "http.host: 0.0.0.0">>/home/elasticsearch-7.8.0/config/elasticsearch.yml
 ```
 
 ### 文件夹赋权
 
 ```bash
-chmod -R 777 /usr/local/src/elasticsearch-7.8.0/
+chmod -R 777 /home/elasticsearch-7.8.0/
 ```
 
 ### 配置ik分词器插件
@@ -161,7 +161,7 @@ chmod -R 777 /usr/local/src/elasticsearch-7.8.0/
 * **创建ik文件夹**
 
   ```bash
-  cd /usr/local/src/elasticsearch-7.8.0/plugins
+  cd /home/elasticsearch-7.8.0/plugins
   
   mkdir ik
   ```
@@ -182,21 +182,19 @@ docker run -d --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" 
 ### 拷贝容器config文件夹到宿主机目录
 
 ```bash
-docker cp elasticsearch:/usr/share/elasticsearch/config /usr/local/src/elasticsearch-7.8.0/config
+docker cp elasticsearch:/usr/share/elasticsearch/config /home/elasticsearch-7.8.0/config
 
-mv /usr/local/src/elasticsearch-7.8.0/config/config/* /usr/local/src/elasticsearch-7.8.0/config/
+mv /home/elasticsearch-7.8.0/config/config/* /home/elasticsearch-7.8.0/config/
 
-rm -rf usr/local/src/elasticsearch-7.8.0/config/config
+rm -rf /home/elasticsearch-7.8.0/config/config/
 ```
 
 ### 停止删除并重新运行容器
 
 ```bash
-docker stop 容器ID
+docker stop elasticsearch && docker rm elasticsearch
 
-docker rm 容器ID
-
-docker run --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx128m" -v /usr/local/src/elasticsearch-7.8.0/config:/usr/share/elasticsearch/config -v /usr/local/src/elasticsearch-7.8.0/data:/usr/share/elasticsearch/data -v /usr/local/src/elasticsearch-7.8.0/plugins:/usr/share/elasticsearch/plugins -v /usr/local/src/elasticsearch-7.8.0/logs:/usr/share/elasticsearch/logs -d elasticsearch:7.8.0
+docker run --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx128m" -v /home/elasticsearch-7.8.0/config:/usr/share/elasticsearch/config -v /home/elasticsearch-7.8.0/data:/usr/share/elasticsearch/data -v /home/elasticsearch-7.8.0/plugins:/usr/share/elasticsearch/plugins -v /home/elasticsearch-7.8.0/logs:/usr/share/elasticsearch/logs -d elasticsearch:7.8.0
 ```
 
 ### 启动容器自启
@@ -210,7 +208,7 @@ docker update elasticsearch --restart=always
 #### 进入容器
 
 ```bash
-docker exec -it 容器ID /bin/bash
+docker exec -it elasticsearch /bin/bash
 ```
 
 #### 生成节点证书
@@ -237,28 +235,30 @@ exit
 #### 更改证书权限
 
 ```bash
-chmod 644 /usr/local/src/elasticsearch-7.8.0/config/elastic-certificates.p12 
+chmod 644 /home/elasticsearch-7.8.0/config/elastic-certificates.p12
 ```
 
 #### 设置集群密码
 
 ```bash
-docker restart 容器ID
+docker restart elasticsearch
 
-docker exec -it 容器ID /bin/bash
+docker exec -it elasticsearch /bin/bash
 
 ./bin/elasticsearch-setup-passwords interactive
+
+exit
 ```
 
 #### 重启容器
 
 ```bash
-docker restart 容器ID
+docker restart elasticsearch
 ```
 
 ## Logstash
 
-### 安装镜像
+### 拉取镜像
 
 ```bash
 docker pull logstash:7.8.0
@@ -267,13 +267,13 @@ docker pull logstash:7.8.0
 ### 创建映射文件夹
 
 ```bash
-mkdir /usr/local/src/logstash-7.8.0
+mkdir /home/logstash-7.8.0
 ```
 
 ### 文件夹赋权
 
 ```bash
-chmod -R 777 /usr/local/src/logstash-7.8.0/
+chmod -R 777 /home/logstash-7.8.0/
 ```
 
 ### 运行容器
@@ -285,13 +285,13 @@ docker run --name logstash -d logstash:7.8.0
 ### 拷贝容器文件
 
 ```bash
-docker cp logstash:/usr/share/logstash/config /usr/local/src/logstash-7.8.0/config
+docker cp logstash:/usr/share/logstash/config /home/logstash-7.8.0/config
 ```
 
 ### 配置logstash配置文件 
 
 ```bash
-echo "http.host: 0.0.0.0">>/usr/local/src/logstash-7.8.0/config/logstash.yml
+echo "http.host: 0.0.0.0">>/home/logstash-7.8.0/config/logstash.yml
 ```
 
 ### 配置同步文件和添加mysql驱动jar包
@@ -306,7 +306,7 @@ input {
     }
     jdbc {
     # 数据库连接信息
-    jdbc_connection_string => "jdbc:mysql://localhost:3306/wallpaper?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8&allowMulQueries=true"
+    jdbc_connection_string => "jdbc:mysql://localhost:3306/数据库?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2B8&allowMulQueries=true"
     # 用户名
     jdbc_user => "root"
     # 密码
@@ -346,12 +346,18 @@ docker stop 容器ID
 
 docker rm 容器ID
 
-docker run --name logstash -v /usr/local/src/logstash-7.8.0/config/:/usr/share/logstash/config/ -d logstash:7.8.0 -f /usr/share/logstash/config/mysql.conf
+docker run --name logstash -v /home/logstash-7.8.0/config/:/usr/share/logstash/config/ -d logstash:7.8.0 -f /usr/share/logstash/config/mysql.conf
 ```
 
 ## Canal
 
-### 修改MySql配置
+#### 修改MySQL配置
+
+:::tip
+需要先开启MySQL的`binlog`写入功能，配置`binlog-format`为`ROW`模式
+
+注意：`MySQL8`和阿里云`RDS for MySQL`无需修改配置
+:::
 
 ```bash
 vi /etc/my.cnf
@@ -376,16 +382,45 @@ expire_logs_days=7
 slave_skip_errors=1062
 ```
 
-*注意：MySql8无需修改配置*
+```bash
+docker restart mysql
+```
 
-### 创建一个拥有从库权限的账号
+#### 检查binlog是否正确启动
 
 ```bash
-CREATE USER 'canal'@'%' IDENTIFIED BY 'canal';
+mysql> show variables like 'log_bin%';
++---------------------------------+----------------------------------+
+| Variable_name                   | Value                            |
++---------------------------------+----------------------------------+
+| log_bin                         | ON                               |
+| log_bin_basename                | /data/mysql/data/mysql-bin       |
+| log_bin_index                   | /data/mysql/data/mysql-bin.index |
+| log_bin_trust_function_creators | OFF                              |
+| log_bin_use_v1_row_events       | OFF                              |
++---------------------------------+----------------------------------+
+5 rows in set (0.00 sec)
+mysql> show variables like 'binlog_format%';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| binlog_format | ROW   |
++---------------+-------+
+1 row in set (0.00 sec)
+```
+
+#### 创建一个拥有从库权限的账号
+
+```bash
+docker exec -it mysql /bin/bash
+
+mysql -uroot -p
+
+CREATE USER canal IDENTIFIED BY 'canal';
  
 GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
  
-//mysql8需要执行这句，将加密规则还原成mysql_native_password
+// mysql8需要执行这句，将加密规则还原成mysql_native_password
 ALTER USER 'canal'@'%' IDENTIFIED WITH mysql_native_password BY 'canal';
  
 FLUSH PRIVILEGES;
@@ -395,7 +430,7 @@ show grants for 'canal'@'%';
 
 ### canal-admin
 
-#### 安装镜像
+#### 拉取镜像
 
 ```bash
 docker pull canal/canal-admin
@@ -404,51 +439,345 @@ docker pull canal/canal-admin
 #### 下载脚本
 
 ```bash
-mkdir /usr/local/src/canal && cd /usr/local/src/canal
+mkdir /home/canal-admin && cd /home/canal-admin 
 
 wget https://raw.githubusercontent.com/alibaba/canal/master/docker/run_admin.sh
 ```
 
 #### 运行canal-admin
 
-```bash
-cd /usr/local/src/canal/
-# 以8089端口启动canal-admin
-sh run_admin.sh -e server.port=8089 -e canal.adminUser=admin -e canal.adminPasswd=admin
+```sql
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `canal_manager` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+
+USE `canal_manager`;
+
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for canal_adapter_config
+-- ----------------------------
+DROP TABLE IF EXISTS `canal_adapter_config`;
+CREATE TABLE `canal_adapter_config` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `category` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `content` text NOT NULL,
+  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for canal_cluster
+-- ----------------------------
+DROP TABLE IF EXISTS `canal_cluster`;
+CREATE TABLE `canal_cluster` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(63) NOT NULL,
+  `zk_hosts` varchar(255) NOT NULL,
+  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for canal_config
+-- ----------------------------
+DROP TABLE IF EXISTS `canal_config`;
+CREATE TABLE `canal_config` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cluster_id` bigint(20) DEFAULT NULL,
+  `server_id` bigint(20) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `content` text NOT NULL,
+  `content_md5` varchar(128) NOT NULL,
+  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sid_UNIQUE` (`server_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for canal_instance_config
+-- ----------------------------
+DROP TABLE IF EXISTS `canal_instance_config`;
+CREATE TABLE `canal_instance_config` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cluster_id` bigint(20) DEFAULT NULL,
+  `server_id` bigint(20) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `content` text NOT NULL,
+  `content_md5` varchar(128) DEFAULT NULL,
+  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for canal_node_server
+-- ----------------------------
+DROP TABLE IF EXISTS `canal_node_server`;
+CREATE TABLE `canal_node_server` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cluster_id` bigint(20) DEFAULT NULL,
+  `name` varchar(63) NOT NULL,
+  `ip` varchar(63) NOT NULL,
+  `admin_port` int(11) DEFAULT NULL,
+  `tcp_port` int(11) DEFAULT NULL,
+  `metric_port` int(11) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for canal_user
+-- ----------------------------
+DROP TABLE IF EXISTS `canal_user`;
+CREATE TABLE `canal_user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(31) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `name` varchar(31) NOT NULL,
+  `roles` varchar(31) NOT NULL,
+  `introduction` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Records of canal_user
+-- ----------------------------
+BEGIN;
+INSERT INTO `canal_user` VALUES (1, 'admin', '6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', 'Canal Manager', 'admin', NULL, NULL, '2019-07-14 00:05:28');
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;
 ```
+
+```bash
+cd /home/canal-admin 
+
+# 指定外部的mysql作为admin的库
+
+sh run_admin.sh -e server.port=8089 -e canal.adminUser=admin -e canal.adminPasswd=admin -e spring.datasource.address=127.0.0.1 -e spring.datasource.database=canal_manager -e spring.datasource.username=root -e spring.datasource.password=123456
+```
+
+:::tip
+默认账号密码: admin/123456
+:::
 
 ### canal-server
 
-#### 安装镜像
+#### 拉取镜像
 
 ```bash
 docker pull canal/canal-server
 ```
 
+#### 创建映射文件夹
+
+```bash
+mkdir -p /home/canal-server
+```
+
+#### 文件夹赋权
+
+```bash
+chmod -R 777 /home/canal-server
+```
+
 #### 下载脚本
 
 ```bash
-cd /usr/local/src/canal/
+cd /home/canal-server
 
 wget https://raw.githubusercontent.com/alibaba/canal/master/docker/run.sh
 ```
 
-#### 运行
+#### 以单机模式启动
+
+```
+sh run.sh -e canal.admin.manager=127.0.0.1:8089 \
+-e canal.admin.port=11110 \
+-e canal.admin.user=admin \
+-e canal.admin.passwd=4ACFE3202A5FF5CF467898FC58AAB1D615029441
+```
+
+### canal-adapter
+
+#### 拉取镜像
 
 ```bash
-sh run.sh -e canal.auto.scan=false \
--e canal.destinations=wallpaper \
--e canal.instance.master.address=127.0.0.1:3306  \
--e canal.instance.dbUsername=canal  \
--e canal.instance.dbPassword=canal  \
--e canal.instance.connectionCharset=UTF-8 \
--e canal.instance.tsdb.enable=false \
--e canal.instance.gtidon=false
+docker pull slpcat/canal-adapter:v1.1.5
+```
+
+#### 创建映射文件夹
+
+```bash
+mkdir -p /home/canal-adapter
+```
+
+#### 文件夹赋权
+
+```bash
+chmod -R 777 /home/canal-adapter
+```
+
+#### 运行容器
+
+```bash
+docker run --name canal-adapter -p 8081:8081 -d slpcat/canal-adapter:v1.1.5
+```
+
+#### 拷贝配置文件
+
+```
+docker cp canal-adapter:/opt/canal-adapter/conf/ /home/canal-adapter/config/
+
+docker cp canal-adapter:/opt/canal-adapter/lib/ /home/canal-adapter/lib/
+```
+
+#### 添加MySQL8.0.20驱动器
+
+```bash
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20.jar
+
+mv mysql-connector-java-8.0.20.jar /home/canal-adapter/lib/
+
+chmod 777 /home/canal-adapter/lib/mysql-connector-java-8.0.20.jar #权限修改与其它lib库一致
+
+chmod +st /home/canal-adapter/lib/mysql-connector-java-8.0.20.jar
+```
+
+#### 修改配置文件
+
+```yml
+server:
+  port: 8081
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+canal.conf:
+  mode: tcp
+  flatMessage: true
+  zookeeperHosts:
+  syncBatchSize: 1000
+  retries: 0
+  timeout:
+  accessKey:
+  secretKey:
+  consumerProperties:
+    # canal tcp consumer
+    canal.tcp.server.host: 127.0.0.1:11111
+    canal.tcp.batch.size: 500
+    canal.tcp.username:
+    canal.tcp.password:
+  srcDataSources:
+    defaultDS:
+      url: jdbc:mysql://127.0.0.1:3306/数据库名?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true
+      username: db_username
+      password: db_password
+  canalAdapters:
+  - instance: example # canal instance Name or mq topic name
+    groups:
+    - groupId: g1
+      outerAdapters:
+      - name: logger
+      - name: es7 # 该版本发现只能是es7/es6
+        hosts: 127.0.0.1:9200 # 127.0.0.1:9200 for rest mode
+        properties:
+          mode: rest # transport # or rest
+```
+
+#### 创建修改适配器表映射文件
+
+```bash
+cd /home/canal-adapter/config/es7
+
+touch 映射文件名.yml
+
+vi 映射文件名.yml
+```
+
+```yml
+dataSourceKey: defaultDS        # 源数据源的key, 对应上面配置的srcDataSources中的值
+destination: example            # cannal的instance或者MQ的topic
+groupId:                        # 对应MQ模式下的groupId, 只会同步对应groupId的数据
+esMapping:
+  _index: mytest_user           # es 的索引名称
+  _type: _doc                   # es 的type名称, es7下无需配置此项
+  _id: _id                      # es 的_id, 如果不配置该项必须配置下面的pk项_id则会由es自动分配
+#  pk: id                       # 如果不需要_id, 则需要指定一个属性为主键属性
+  # sql映射
+  sql: ""
+#  objFields:
+#    _labels: array:;           # 数组或者对象属性, array:; 代表以;字段里面是以;分隔的
+#    _obj: object               # json对象
+  etlCondition: ""     # etl 的条件参数
+  commitBatch: 3000                         # 提交批大小
+```
+
+#### 停止删除并重新运行容器
+
+```bash
+docker stop canal-adapter && docker rm canal-adapter
+
+docker run --name canal-adapter -p 8081:8081 -v /home/canal-adapter/lib:/opt/canal-adapter/lib -v /home/canal-adapter/config:/opt/canal-adapter/conf -d slpcat/canal-adapter:v1.1.5
+```
+
+#### API操作
+
+- 查看同步任务instance列表
+
+```bash
+curl http://127.0.0.1:8081/destinations
+>>
+[{"destination":"example","status":"on"}]
+```
+
+- 同步开关
+
+```bash
+curl http://127.0.0.1:8081/syncSwitch/canal-test/off -X PUT
+>>
+{"code":20000,"message":"实例: example 关闭同步成功"}
+```
+
+- 查看开关状态
+
+```bash
+curl http://127.0.0.1:8081/syncSwitch/example
+>>
+{"stauts":"off"}
+```
+
+- 手动同步数据
+
+```bash
+curl http://127.0.0.1:8081/etl/es7/canal_test.yml -X POST
+>>
+{"succeeded":true,"resultMessage":"导入ES 数据：20 条"}
+```
+
+- 查询同步库中总数
+
+```bash
+curl http://127.0.0.1:8081/count/es7/canal_test.yml
+>>
+{"esIndex":"test","count":1}
 ```
 
 ## Nginx
 
-### 安装镜像
+### 拉取镜像
 
 ```bash
 docker pull nginx:latest
@@ -456,7 +785,7 @@ docker pull nginx:latest
 
 ## Jenkins
 
-### 安装镜像
+### 拉取镜像
 
 ```bash
 docker pull jenkins/jenkins:lts
