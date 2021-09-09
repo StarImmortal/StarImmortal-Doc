@@ -1,8 +1,8 @@
 ---
-title: Maven入门
+title: Maven
 ---
 
-# Maven入门
+# Maven
 
 ## 下载并解压
 
