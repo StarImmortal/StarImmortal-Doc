@@ -339,9 +339,7 @@ sku属性：
 
 例如：
 
-![](https://bkimg.cdn.bcebos.com/formula/6c6b7f86b250315ba19548bbfe5ce893.svg)
-
-![](https://bkimg.cdn.bcebos.com/formula/58d0075913aadaee43c5249944a1e4e3.svg)
+![](https://z3.ax1x.com/2021/09/13/4POSIg.png)
 
 如果n阶方阵和它的转置相等，即A^T = A，则称A矩阵为对称矩阵。
 
@@ -349,15 +347,7 @@ sku属性：
 
 #### 运算性质
 
-![](https://bkimg.cdn.bcebos.com/formula/2b47af3a09458072742c00ccf5c3d67a.svg)
-
-![](https://bkimg.cdn.bcebos.com/formula/3ff3ad092c74c7d4ff965d5a511c2688.svg)
-
-![](https://bkimg.cdn.bcebos.com/formula/bc14a53639e596b2cfc2f8a758ae343b.svg)
-
-![](https://bkimg.cdn.bcebos.com/formula/4812d82cfea3de08a2a64433333f87e5.svg)
-
-![](https://bkimg.cdn.bcebos.com/formula/e8396f39c0b0f4df246e6e979418f9cc.svg)
+![](https://z3.ax1x.com/2021/09/13/4POui4.png)
 
 ## 微信小程序
 
