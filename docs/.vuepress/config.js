@@ -122,8 +122,8 @@ module.exports = {
           children: [
             "/notes/basic/",
             "basic/development-tools",
-            "basic/maven",
             "basic/idea",
+            "basic/maven",
             "basic/data-structure",
             "basic/algorithm",
           ],
