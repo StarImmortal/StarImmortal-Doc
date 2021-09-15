@@ -3,7 +3,7 @@ title: IDEA快捷键
 ---
 
 1. 设置：Ctrl + Alt + S
-2. 复制一行：光标放任意位置，Ctrl + C
+2. 复制一行：光标放任意位置，Ctrl + D
 3. 删除一行：Ctrl + Y
 4. 复制历史：Ctrl + Shift + V
 5. 纵向选择多行文本：Alt + 鼠标左键并拖动
