@@ -376,82 +376,87 @@ docker run -p 80:80 --name nginx \
 
 ## 基于TLS的安全访问
 
-- 创建一个目录用于存储生成的证书和秘钥
+- 新建tls.sh文件
 
-  ```bash
-  mkdir /usr/local/src/docker-ca && cd /usr/local/src/docker-ca
-  ```
+```bash
+cd /home
 
-- 创建CA证书私钥
+touch tls.sh
+```
 
-  ```bash
-  openssl genrsa -aes256 -out ca-key.pem 4096
-  ```
+- 添加以下内容
 
-- 根据私钥创建CA证书
+```bash
+vi /home/tls.sh
+```
 
-  ```bash
-  openssl req -new -x509 -days 365 -key ca-key.pem -sha256 -subj "/CN=*" -out ca.pem
-  ```
+```bash
+#!/bin/bash
+FILE_ADDRESS=/home/docker-ca
+mkdir -p $FILE_ADDRESS
+DOMAIN_HOST=
+INTERNET_IP=
+HOST=$DOMAIN_HOST
+# 自定义信息
+PASSWORD=""
+COUNTRY=CN
+PROVINCE=gd
+CITY=gz
+ORGANIZATION=
+GROUP=dg
+NAME=
+SUBJ="/C=$COUNTRY/ST=$PROVINCE/L=$CITY/O=$ORGANIZATION/OU=$GROUP/CN=$HOST"
+# 自定义信息
+# 此形式是自己给自己签发证书，自己就是CA机构，也可以交给第三方机构去签发
+# 1.生成根证书RSA私钥，password作为私钥密码（身份证）
+openssl genrsa -passout pass:$PASSWORD -aes256 -out $FILE_ADDRESS/ca-key.pem 4096
+# 2.用根证书RSA私钥生成自签名的根证书（营业执照）
+openssl req -new -x509 -days 365 -passin pass:$PASSWORD -key $FILE_ADDRESS/ca-key.pem -sha256 -subj $SUBJ -out $FILE_ADDRESS/ca.pem
+#============================================================================================
+# 给服务器签发证书
+# 1.服务端生成自己的私钥
+openssl genrsa -out $FILE_ADDRESS/server-key.pem 4096
+# 2.服务端生成证书（里面包含公钥与服务端信息）
+openssl req -new -sha256 -key $FILE_ADDRESS/server-key.pem -out $FILE_ADDRESS/server.csr -subj "/CN=$DOMAIN_HOST"
+# 3.通过什么形式与我进行连接,可设置多个IP地扯用逗号分隔
+echo subjectAltName=IP:$INTERNET_IP,IP:0.0.0.0 > $FILE_ADDRESS/extfile.cnf
+# 4.权威机构对证书进行进行盖章生效
+openssl x509 -passin pass:$PASSWORD -req -days 365 -sha256 -in $FILE_ADDRESS/server.csr -CA $FILE_ADDRESS/ca.pem -CAkey $FILE_ADDRESS/ca-key.pem -CAcreateserial -out $FILE_ADDRESS/server-cert.pem -extfile $FILE_ADDRESS/extfile.cnf
+#============================================================================================
+# 给客户端签发证书
+openssl genrsa -out $FILE_ADDRESS/key.pem 4096
+openssl req -subj '/CN=client' -new -key $FILE_ADDRESS/key.pem -out $FILE_ADDRESS/client.csr
+echo extendedKeyUsage = clientAuth > $FILE_ADDRESS/extfile.cnf
+openssl x509 -passin pass:$PASSWORD -req -days 365 -sha256 -in $FILE_ADDRESS/client.csr -CA $FILE_ADDRESS/ca.pem -CAkey $FILE_ADDRESS/ca-key.pem -CAcreateserial -out $FILE_ADDRESS/cert.pem -extfile $FILE_ADDRESS/extfile.cnf
+#============================================================================================
+# 清理文件
+rm -rf $FILE_ADDRESS/ca-key.pem
+rm -rf $FILE_ADDRESS/{server,client}.csr
+rm -rf $FILE_ADDRESS/ca.srl
+rm -rf $FILE_ADDRESS/extfile.cnf
+# 最终文件
+# ca.pem  ==  CA机构证书
+# cert.pem  ==  客户端证书
+# key.pem  ==  客户私钥
+# server-cert.pem  == 服务端证书
+# server-key.pem  ==  服务端私钥
+```
 
-- 创建服务端私钥
+:::tip
+注意：`DOMAIN_HOST`、`INTERNET_IP`、`PASSWORD`值必填，自定义信息随便填写即可
+:::
 
-  ```bash
-  openssl genrsa -out server-key.pem 4096
-  ```
+- 赋予运行权限
 
-- 创建服务端证书签名请求文件（用于CA证书给服务端证书签名）
+```bash
+chmod +x /home/tls.sh
+```
 
-  ```bash
-  openssl req -subj "/CN=*" -sha256 -new -key server-key.pem -out server.csr
-  ```
+- 执行脚本
 
-- 创建CA证书签名好的服务端证书
-
-  ```bash
-  openssl x509 -req -days 365 -sha256 -in server.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem
-  ```
-
-- 创建客户端私钥
-
-  ```bash
-  openssl genrsa -out key.pem 4096
-  ```
-
-- 创建客户端证书签名请求文件（用于CA证书给客户证书签名）
-
-  ```bash
-  openssl req -subj "/CN=client" -new -key key.pem -out client.csr
-  ```
-
-- 为了让秘钥适合客户端认证，创建一个扩展配置文件`extfile-client.cnf`
-
-  ```bash
-  echo extendedKeyUsage = clientAuth > extfile-client.cnf
-  ```
-
-- 创建CA证书签名好的客户端证书
-
-  ```bash
-  openssl x509 -req -days 365 -sha256 -in client.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out cert.pem -extfile extfile-client.cnf
-  ```
-
-- 删除创建过程中多余的文件
-
-  ```bash
-  rm -rf ca.srl server.csr client.csr extfile-client.cnf
-  ```
-
-- 最终生成文件如下
-
-  ```
-  ca.pem CA	证书
-  ca-key.pem CA	证书私钥
-  server-cert.pem	服务端证书
-  server-key.pem	服务端证书私钥
-  cert.pem	客户端证书
-  key.pem	客户端证书私钥
-  ```
+```bash
+bash /home/tls.sh
+```
 
 ## 配置Docker支持TLS
 
