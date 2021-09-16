@@ -67,6 +67,38 @@ Auto Refresh: 最好选 `1 hour`
 - http://www.network-science.de/ascii
 - https://www.degraeve.com/img2txt.php
 
+## SpringBoot 热部署
+
+:::tip
+平时使用SpringBoot开发应用时，修改代码后需要重新启动才能生效。如果你的应用足够大的话，启动可能需要好几分钟。有没有什么办法可以加速启动过程，让我们开发应用代码更高效呢？今天给大家推荐一款SpringBoot官方的热部署工具`spring-boot-devtools`，修改完代码后可快速自动重启应用！
+:::
+
+### 集成 spring-boot-devtools
+
+首先需要在项目的`pom.xml`文件中，添加`spring-boot-devtools`的依赖：
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+
+由于在项目构建时，devtools才会自动重启项目，而IDEA默认并没有使用自动构建，此时可以修改应用启动配置，设置当IDEA失去焦点时自动构建项目
+
+![](https://z3.ax1x.com/2021/09/13/4im0Ug.png)
+
+由于devtools检测时间和IDEA的编译所需时间存在差异，当IDEA还没编译完成，devtools就已经重启应用了，修改`application.yml`配置文件，添加如下配置即可解决：
+
+```yml
+spring:
+  devtools:
+    restart:
+    	 poll-interval: 2s
+    	 quiet-period: 1s
+```
+
 ## MySQL重新设置自增id
 
 设置主键id自增的数据库表删除数据后，自增id不会自动重新计算 
