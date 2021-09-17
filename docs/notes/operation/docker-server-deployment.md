@@ -957,14 +957,14 @@ cp -rf ./cool-wallpaper/* /home/cool-wallpaper/
 # 该镜像需要依赖的基础镜像
 FROM java:8
 # 将当前目录下的jar包复制到docker容器的/目录下
-ADD burning-sun-1.0.0-SNAPSHOT.jar /burning-sun.jar
+ADD 当前目录下的jar包 /*.jar
 # 声明服务运行在8080端口
 EXPOSE 8080
-# 运行过程中创建一个burning-sun.jar文件
-RUN bash -c 'touch /burning-sun.jar'
+# 运行过程中创建一个*.jar文件
+RUN bash -c 'touch /*.jar'
 # 声明服务运行在8080端口EXPOSE 8080
 # 指定docker容器启动时运行jar包
-ENTRYPOINT ["java", "-jar","/burning-sun.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/*.jar"]
 # 指定维护者的名字
 MAINTAINER william
 ```
@@ -982,25 +982,13 @@ MAINTAINER william
 ```bash
 # -t 表示指定镜像仓库名称/镜像名称:镜像标签 .表示使用当前目录下的Dockerfile
 
-docker build -t burning-sun:1.0.0-SNAPSHOT .
-```
-
-### 创建映射文件夹
-
-```bash
-mkdir -p /usr/local/src/burning-sun/logs
-```
-
-### 文件夹赋权
-
-```bash
-chmod -R 777 /usr/local/src/burning-sun/
+docker build -t 指定镜像仓库名称/镜像名称:镜像标签 .
 ```
 
 ### 运行
 
 ```bash
-docker run -d -p 8081:8081 --name burning-sun-cms -v /usr/local/src/burning-sun/logs:/logs -d 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT
+docker run -d -p 8080:8080 --name 容器名 -d 镜像名:版本号
 ```
 
 <RightMenu />
