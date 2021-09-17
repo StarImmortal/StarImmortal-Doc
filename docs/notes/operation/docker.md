@@ -548,6 +548,29 @@ bash /home/tls.sh
   exit
   ```
 
+## 私有仓库可视化
+
+:::tip
+由于私有镜像仓库管理比较麻烦，而`docker-registry-ui`有专门的页面可以方便地管理镜像，所以安装它来管理私有镜像仓库。
+:::
+
+- 拉取镜像
+
+```bash
+docker pull joxit/docker-registry-ui
+```
+
+- 运行
+
+```bash
+docker run -p 8280:80 --name registry-ui \
+--link registry2:registry2 \
+-e REGISTRY_URL="http://registry2:5000" \
+-e DELETE_IMAGES="true" \
+-e REGISTRY_TITLE="Registry2" \
+-d joxit/docker-registry-ui
+```
+
 ## Dockerfile常用指令
 
 ### ADD
