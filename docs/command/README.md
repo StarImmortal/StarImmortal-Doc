@@ -144,7 +144,7 @@ java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 
 - 创建SSH KEY
 
   ```bash
-  ssh-keygen -t rsa -C "991658923@qq.com"
+  ssh-keygen -t rsa -C "email"
   ```
 
 - 测试是否连接成功
@@ -152,7 +152,7 @@ java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 
   ```bash
   ssh -T git@github.com
    
-  ssh -T git@www.52mee.com
+  ssh -T git@gitee.com
   ```
 
 ### 初始化用户名和邮箱
