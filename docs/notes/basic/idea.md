@@ -32,11 +32,12 @@ title: IDEA快捷键
 28. 查找文件、菜单、操作等，但不能查找文件内容：连按两次Shift
 29. 万能快捷键（智能辅助提示）：Alt + Enter
 30. 选中一大段代码：鼠标点击开始位置，找到尾行位置，按住Shift + 鼠标点击结尾位置
-31. 类或方法的跳转：按住Ctrl + 鼠标左键
-32. 代码生成：Alt + Insert
-33. 查看方法调用情况：Ctrl + Alt + H
-34. 执行到当前方法的下一句：Step Over（F8）
-35. 进入当前行调用的方法体里：Step Into（F7）
-36. 执行完当前的方法：Step Out（Shift + F8）
-37. 进入到 Jar包方法里或 JDK 自带的方法里：Force Step Into（Alt + Shift + F7）
-38. 运行到光标所在处：Run to Cursor（Alt + F9）
+31. 代码折叠和展开：Ctrl + Shift + +/-
+32. 类或方法的跳转：按住Ctrl + 鼠标左键
+33. 代码生成：Alt + Insert
+34. 查看方法调用情况：Ctrl + Alt + H
+35. 执行到当前方法的下一句：Step Over（F8）
+36. 进入当前行调用的方法体里：Step Into（F7）
+37. 执行完当前的方法：Step Out（Shift + F8）
+38. 进入到 Jar包方法里或 JDK 自带的方法里：Force Step Into（Alt + Shift + F7）
+39. 运行到光标所在处：Run to Cursor（Alt + F9）
