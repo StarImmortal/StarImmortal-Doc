@@ -32,15 +32,21 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - Free Mybatis plugin：Mybatis工具
 - Key Promoter X：快捷键
 - Lombok：代码注解插件
-- leetcode editor：LeetCode刷题插件
+- Leetcode Editor：LeetCode刷题插件
 - Rainbow Brackets：彩虹括号插件
 - RESTfultoolkit：专为RESTful服务开发而设计的插件
 - Statistic：项目信息统计
 - Translation：翻译插件
 - Material Theme UI：主题美化插件
+- Solarized Themes：主题美化插件
+- One Dark Theme
 - Atom Material Icons：图标插件
 - Git Commit Template：Git提交模版插件
 - GitToolBox：Git提交记录插件
+- Maven Helper：Maven辅助工具
+- GsonFormatPlus：JSON转领域对象工具
+- POJO TO Json：领域对象转JSON工具
+- GenerateAllSetter：生成对象set方法
 
 ## PyCharm
 
