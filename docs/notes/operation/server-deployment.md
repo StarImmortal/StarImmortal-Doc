@@ -19,6 +19,8 @@ tar -zxvf  jdk-8u221-linux-x64.tar.gz
 **将【jdk1.8.0_221】里的数据拷贝至新建java目录下**
 
 ```bash
+mkdir /home/java/
+
 mv jdk1.8.0_221 /home/java/
 ```
 
@@ -160,6 +162,71 @@ flush privileges;
     
     ALTER USER "root"@"%" IDENTIFIED BY "要修改的密码"; 
     ```
+
+## Redis
+
+### 安装Redis
+
+>[下载地址](https://redis.io/download)
+
+```bash
+wget https://download.redis.io/releases/redis-6.2.6.tar.gz
+```
+
+### 解压Redis压缩包
+
+```bash
+tar -zxvf redis-6.2.6.tar.gz
+```
+
+### 编译安装
+
+```bash
+cd /root/redis-6.2.6
+
+make
+
+make PREFIX=/home/redis install
+```
+
+### 拷贝配置文件
+
+```bash
+cd /root/redis-6.2.6
+
+cp redis.conf /home/redis/
+```
+
+### 修改配置文件
+
+```bash
+vi /home/redis/redis.conf
+```
+
+```bash
+#注释掉下面这行代码表示开启外部访问
+#bind 127.0.0.1
+
+#保护模式，限制为本地访问，修改后解除保护模式
+protected-mode no
+
+#使用守护线程的方式启动
+daemonize no
+
+#设置Redis密码
+requirepass 123456
+
+#开启持久化
+appendonly yes
+```
+
+### 开机自启
+
+```bash
+vi /etc/rc.local
+
+/home/redis/bin/redis-server /home/redis/redis.conf
+```
 
 ## Tomcat
 
