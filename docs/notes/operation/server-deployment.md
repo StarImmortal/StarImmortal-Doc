@@ -11,6 +11,7 @@ title: 服务器环境部署
 >[下载地址](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 ### 解压JDK
+
 ```bash
 tar -zxvf  jdk-8u221-linux-x64.tar.gz
 ```
@@ -18,19 +19,22 @@ tar -zxvf  jdk-8u221-linux-x64.tar.gz
 **将【jdk1.8.0_221】里的数据拷贝至新建java目录下**
 
 ```bash
-mv jdk1.8.0_221 /usr/local/src/java
+mv jdk1.8.0_221 /home/java/
 ```
 
 ### 配置环境变量
 ```bash
 vi /etc/profile
-export JAVA_HOME=/usr/local/src/java/jdk1.8.0_221
+
+export JAVA_HOME=/home/java/jdk1.8.0_221
 export PATH=$JAVA_HOME/bin:$PATH 
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
 source /etc/profile
 ```
 
 ### 检查是否安装成功
+
 ```bash
 cd
 
@@ -43,32 +47,44 @@ java -version
 
 [在MySQL官网中下载YUM源rpm安装包](http://dev.mysql.com/downloads/repo/yum/)
 
-### 安装MySql源
+### 安装MySQL源
 
 ```bash
-yum -y install mysql80-community-release-el7-3.noarch.rpm（下载的版本）
+yum -y install mysql80-community-release-el7-3.noarch.rpm
 ```
 
-### 检查MySql源是否安装成功
+### 检查MySQL源是否安装成功
+
 ```bash
 yum repolist enabled | grep "mysql.*-community.*"
 ```
 
 ### 安装MySQL
+
 ```bash
 yum -y install mysql-community-server
 ```
 
 ### 启动MySQL服务
+
 ```bash
 systemctl start mysqld
 ```
 
+### 设置开机自启
+
+```bash
+systemctl enable mysqld
+```
+
 ### 修改root本地登录密码
+
 ```bash
 cat /var/log/mysqld.log | grep password
 
 mysql -uroot -p
+
+alter user user() identified by '26SE>Z%UddNN';
 
 set global validate_password.policy=0;
 
@@ -78,6 +94,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '要修改的密码';
 ```
 
 ### 添加远程登录用户
+
 ```bash
 use mysql
 
@@ -85,19 +102,23 @@ update user set host= '%' where user = 'root';
 
 update user set plugin='mysql_native_password' where user ='root';
 ```
+
 ### 生效配置
+
 ```bash
 flush privileges;
 ```
 
 ### 重置密码
+
 + **开启免密码登陆**
 
     ```bash
     vi /etc/my.cnf
 
-    在【mysqld】模块下面添加：skip-grant-tables
-    :wq
+    在【mysqld】模块下面添加：
+    
+    skip-grant-tables
     ```
 
 + **重启服务：使配置生效**
@@ -137,7 +158,7 @@ flush privileges;
 
     set global validate_password.length=1;
     
-    ALTER USER "root"@"%" IDENTIFIED  BY "要修改的密码"; 
+    ALTER USER "root"@"%" IDENTIFIED BY "要修改的密码"; 
     ```
 
 ## Tomcat
@@ -147,11 +168,13 @@ flush privileges;
 >[下载地址](http://tomcat.apache.org/download-80.cgi#8.0.46)
 
 ### 解压Tomcat压缩包
+
 ```bash
 tar -zxvf apache-tomcat-8.0.46.tar.gz
 ```
 
 ### 启动Tomcat
+
 ```bash
 ./apache-tomcat-8.0.46/bin/startup.sh
 ```
@@ -163,6 +186,7 @@ tar -zxvf apache-tomcat-8.0.46.tar.gz
 >[下载地址](https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.gz)
 
 ### 解压JDK
+
 ```bash
 tar -zxvf  node-v10.16.0-linux-x64.tar.gz
 ```
@@ -178,6 +202,7 @@ mv node-v10.16.0-linux-x64 node-v10.16.0
 ```
 
 ### 配置全局node
+
 ```bash
 ln -s /usr/local/src/node-v10.16.0/bin/node /usr/local/bin/
 
@@ -199,6 +224,7 @@ sudo yum install yarn -y
 ## Nginx
 
 ### 安装
+
 ```bash
 yum -y install make zlib zlib-devel gcc-c++ libtool openssl openssl-devel pcre pcre-devel
 
@@ -206,6 +232,7 @@ yum install nginx -y
 ```
 
 ### 开机自启动
+
 ```bash
 vi /etc/rc.local
 
@@ -259,11 +286,13 @@ ssh git@github.com
 >[下载地址](https://www.elastic.co/cn/downloads/elasticsearch)
 
 ### 解压到/usr/local
+
 ```bash
 tar -zxvf elasticsearch-7.8.0-linux-x86_64.tar.gz -C /usr/local
 ```
 
 ### 进入解压后的elasticsearch-7.8.0目录
+
 - **创建data目录**
 - **修改配置文件**
 
@@ -286,6 +315,7 @@ tar -zxvf elasticsearch-7.8.0-linux-x86_64.tar.gz -C /usr/local
     ```
 
 ### 用户权限问题（root无法启动elasticsearch）
+
 - **创建新用户**
   
     ```bash
@@ -299,6 +329,7 @@ tar -zxvf elasticsearch-7.8.0-linux-x86_64.tar.gz -C /usr/local
     ```
 
 ### 解决会出现的问题
+
 ```bash
 vim /etc/sysctl.conf 
 
@@ -323,6 +354,7 @@ cd /usr/local/elasticsearch/elasticsearch-7.8.0/bin/
 ```
 
 ### 安装ik分词器
+
 - [下载地址](https://github.com/medcl/elasticsearch-analysis-ik/releases)
 
 - **创建ik文件夹**
