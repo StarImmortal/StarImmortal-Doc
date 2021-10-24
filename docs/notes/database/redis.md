@@ -20,40 +20,36 @@ tar -zxvf redis-5.0.7.tar.gz
 
 ![QPtrRA.md.png](https://s2.ax1x.com/2019/11/28/QPtrRA.md.png)
 
-## 建立软连接
-
-```bash
-ln -s redis-5.0.7 redis
-```
-
 ## 编译安装
 
 ```bash
-cd redis-5.0.7
+cd /root/redis-5.0.7
 
-make MALLOC=libc
+make
 
-make && make install 
+make PREFIX=/home/redis install
 ```
 
 ## 配置
 
-### 移动配置文件到安装目录下 
+### 拷贝配置文件
 
 ```bash
-cd redis-5.0.7/
+cd /root/redis-6.2.6
 
-cp redis.conf /usr/local/redis/
+cp redis.conf /home/redis/
 ```
+
 ![QPNq1A.md.png](https://s2.ax1x.com/2019/11/28/QPNq1A.md.png)
 
 ### 修改启动方式（后台启动）
 
 ```bash
-vi /usr/local/redis/redis.conf
+vi /home/redis/redis.conf
 
 daemonize no->daemonize yes
 ```
+
 ![QPDlge.md.png](https://s2.ax1x.com/2019/11/28/QPDlge.md.png)
 
 ## 设置开机启动
@@ -61,13 +57,13 @@ daemonize no->daemonize yes
 ```bash
 vi /etc/rc.local
 
-/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf（添加）
+/home/redis/bin/redis-server /home/redis/redis.conf
 ```
 
 ## 配置远程连接访问
 
 ```bash
-vi /usr/local/redis/redis.conf
+vi /home/redis/redis.conf
 
 protected-mode yes->protected-mode no（修改）
 
@@ -79,7 +75,7 @@ bind 127.0.0.1（注释）
 - 启动命令
   
 ```bash
-cd /usr/local/redis/
+cd /home/redis/
 
 ./bin/redis-server ./redis.conf
 ```
@@ -96,6 +92,7 @@ cd /usr/local/redis/
 ```bash
 ps -ef | grep -i redi
 ```
+
 ![QPrwIx.md.png](https://s2.ax1x.com/2019/11/28/QPrwIx.md.png)
 
 ## 常用命令
@@ -111,6 +108,7 @@ ps -ef | grep -i redi
 ```bash
 set name william
 ```
+
 ![](https://s2.ax1x.com/2019/11/28/QPr4FP.png)
     
 - 查看value
@@ -118,6 +116,7 @@ set name william
 ```bash
 get name
 ```
+
 ![](https://s2.ax1x.com/2019/11/28/QPrIW8.png)
     
 - 查看所有的Key
@@ -125,6 +124,7 @@ get name
 ```bash
 keys *
 ```
+
 ![](https://s2.ax1x.com/2019/11/28/QPrszD.png)
     
 - 计算Key的总数
@@ -144,6 +144,7 @@ exist key
 ```bash
 del name
 ```
+
 ![](https://s2.ax1x.com/2019/11/28/QPr7Qg.png)
     
 - Key在seconds秒后过期
