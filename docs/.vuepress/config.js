@@ -134,6 +134,7 @@ module.exports = {
             "/notes/database/",
             "database/mysql",
             "database/redis",
+            "database/mongodb",
             "database/mysql-specification",
           ],
         },
