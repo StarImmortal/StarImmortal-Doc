@@ -69,6 +69,14 @@ set-ExecutionPolicy RemoteSigned
 [文档地址](https://mysqlconnector.net/connection-options/)
 :::
 
+### You must reset your password using ALTER USER statement before executing this statement.
+
+解决方法：
+
+```bash
+alter user user() identified by '26SE>Z%UddNN';
+```
+
 ### Unknown collation: 'utf8mb4_0900_ai_ci'
 
 错误原因：高版本数据库（8.0）转存sql文件，并导入低版本数据库（5.7）
@@ -158,6 +166,43 @@ allowPublicKeyRetrieval=true
 ```
 jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8&allowPublicKeyRetrieval=true
 ```
+
+### 查询存储的时间和存储的时间相差13个小时
+
+解决方法：
+
+1. 明确指定MySQL数据库的时区，不使用引发误解的`CST`
+
+```bash
+mysql> set global time_zone = '+08:00';
+Query OK, 0 rows affected (0.00 sec)
+ 
+mysql> set time_zone = '+08:00';
+Query OK, 0 rows affected (0.00 sec)
+```
+
+2. 修改数据库配置文件
+
+```bash
+vi /etc/my.cnf
+
+# 添加一行
+default-time-zone='+08:00'
+```
+
+## Spring
+
+### spring注解之@Scope
+
+`@Scope`注解是`Spring IOC`容器中的一个作用域，在`Spring IOC`容器中具有以下几种作用域：
+
+基本作用域singleton（单例）、prototype（多例），Web作用域（reqeust、session、globalsession），自定义作用域
+
+- singleton（单例模式）：全局有且仅有一个实例
+- prototype（原型模式）：每次获取bean的时候会有一个新的实例
+- request：针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效
+- session：针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP session内有效
+- globalsession：类似于标准的HTTP Session作用域，不过它仅仅在基于portlet的web应用中才有意义
 
 ## SpringBoot
 
@@ -253,6 +298,75 @@ public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
   objectMapper.registerModule(simpleModule);
   ```
 
+### Cannot determine value type from string ''
+
+错误原因：当使用了`@Builder`注解之后会默认把无参构造方法忽略掉，创建一个全参的构造方法
+
+解决方法：使用`@Builder`注解，最简单的方法就是直接写上以下4个注解：
+
+```java
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+```
+
+### 无法反序列化LocalDateTime
+
+解决方法：在实体类字段中添加注解
+
+```java
+// 需要哪个用哪个 
+@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+@JsonSerialize(using = LocalDateTimeSerializer.class)
+@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+```
+
+### @Mapper和@Repository区别
+
+@Repository需要在Spring中配置扫描地址，然后生成Dao层的Bean才能被注入到Service层中。
+
+@Mapper不需要配置扫描地址，通过xml里面的namespace里面的接口地址，生成了Bean后注入到Service层中。
+
+### @Validated和@Valid区别
+
+1. 基本概念
+
+Spring Validation 验证框架对参数的验证机制提供了@Validated（Spring's JSR-303规范，是标准JSR-303的一个变种）。
+
+javax提供了@Valid（标准JSR-303规范），配合`BindingResult`可以直接提供参数验证结果。
+
+2. 主要区别
+
+|                | **@Validated**                                               | **@Valid**                                                   |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **分组**       | 提供分组功能，可在入参验证时，根据不同的分组采用不同的验证机制。 | 无分组功能                                                   |
+| **可注解位置** | 可以用在类型、方法和方法参数上。但是不能用在成员属性上       | 可以用在方法、构造函数、方法参数和成员属性上（两者是否能用于成员属性上直接影响能否提供嵌套验证的功能） |
+| **嵌套验证**   | 用在方法入参上无法单独提供嵌套验证功能。不能用在成员属性上。也无法提供框架进行嵌套验证。能配合嵌套验证注解@Valid进行嵌套验证。 | 用在方法入参上无法单独提供嵌套验证功能。能够用在成员属性上，提示验证框架进行嵌套验证。能配合嵌套验证注解@Valid进行嵌套验证。 |
+
+### StringRedisTemplate和RedisTemplate区别
+
+两者的关系是StringRedisTemplate继承RedisTemplate。
+
+两者的数据是不共通的；也就是说StringRedisTemplate只能管理StringRedisTemplate里面的数据，RedisTemplate只能管理RedisTemplate中的数据。
+
+两者之间的区别主要在于他们使用的序列化类：
+
+StringRedisTemplate默认采用的是String序列化策略（`StringRedisSerializer`）。
+
+RedisTemplate默认采用的是JDK序列化策略（`JdkSerializationRedisSerializer`），存入数据会将数据先序列化成字节数组然后在存入Redis数据库。
+
+使用时注意事项：
+
+当你的Redis数据库里面本来存的是字符串数据或者你要存取的数据就是字符串类型数据的时候，那么使用StringRedisTemplate即可。
+
+但是如果你的数据是复杂的对象类型，而取出的时候又不想做任何的数据转换，直接从Redis里面取出一个对象，那么使用RedisTemplate是更好的选择。
+
+RedisTemplate使用时常见问题：
+
+RedisTemplate中存取数据都是字节数组。当Redis中存入的数据是可读形式而非字节数组时，使用RedisTemplate取值的时候会无法获取导出数据，获得的值为`null`。可以使用`StringRedisTemplate`试试。
+
 ## Element UI
 
 日期控件在表单验证中遇到了冲突如下：
@@ -322,6 +436,20 @@ sku属性：
 
 例如：iPhone X 64G 银色则是一个SKU。
 ```
+
+### SKU核心算法
+
+核心问题：规格的状态（可选、选中、禁用）
+
+去字典（存放`已存在的SKU路径`）里查找`待确认的SKU路径`是否存在
+
+每当用户选择规格后，所有规格都需要去重新确认状态
+
+正选与反选规律：
+
+1. 当前的Cell，不需要判断潜在路径
+2. 对于某个Cell，它的潜在路径是它自己加上其他行的已选Cell
+3. 对于某个Cell，不需要考虑当前行其他Cell是否已选
 
 ### 转置矩阵
 
@@ -428,5 +556,25 @@ methods: {
   }
 }
 ```
+
+### new Date()转换时间时间格式时IOS机型显示NaN异常问题
+
+错误原因：
+
+原因是ios不支持时间为2020-05-29这种格式的日期，必须转换为2020/05/29这种格式才能使用`new Date()`进行转换
+
+解决方法：使用`replace`函数，将全部的“-”替换为”/“
+
+```
+const data= '2020-05-29 12:00:00'
+const datatime= data.replace(/\-/g, "/")
+const newdata = new Date(datatime).getTime()
+```
+
+### @tap与@click的区别
+
+- @click是组件被点击时触发，会有约300ms的延迟（内置处理优化了）
+- @tap是手指触摸离开时触发，没有300ms的延迟，但是会有事件穿透
+- 编译到小程序端，@click会被转换成@tap
 
 <RightMenu />
