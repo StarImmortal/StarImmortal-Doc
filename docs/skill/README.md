@@ -195,6 +195,12 @@ WHERE (
 1 row in set (0.00 sec)
 ```
 
+## MySQL查询JSON类型字段中某个属性值
+
+:::tip
+只支持MySQL5.7以上的版本
+:::
+
 ## Jackson序列化与反序列化
 
 ### 序列化
