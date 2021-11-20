@@ -169,8 +169,6 @@ jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC&characterEncodi
 
 ### 查询存储的时间和存储的时间相差13个小时
 
-解决方法：
-
 1. 明确指定MySQL数据库的时区，不使用引发误解的`CST`
 
 ```bash
@@ -190,7 +188,23 @@ vi /etc/my.cnf
 default-time-zone='+08:00'
 ```
 
-## Spring
+### Parameter index out of range (1 > number of parameters, which is 0)
+
+当分页查询中带有`SQL子查询`和`LEFT JOIN`时，参数"`#{}`"无法被解析
+
+[Issue](https://github.com/baomidou/mybatis-plus/issues/3630)
+
+错误原因：SQL语句可能无法优化
+
+- 当将`#{}`换成`${}`不会报错，但会引发SQL注入问题，该方案不可取
+
+- 不分页时，无此问题
+
+- `RIGHT JOIN`和`INNER JOIN`不会触发此问题
+
+解决方案：通过`Page`对象设置关闭优化可以解决此问题
+
+## Web
 
 ### spring注解之@Scope
 
@@ -203,8 +217,6 @@ default-time-zone='+08:00'
 - request：针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效
 - session：针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP session内有效
 - globalsession：类似于标准的HTTP Session作用域，不过它仅仅在基于portlet的web应用中才有意义
-
-## SpringBoot
 
 ### Cause: java.lang.IllegalArgumentException: argument type mismatch
 
@@ -244,8 +256,6 @@ default-time-zone='+08:00'
 
 - 添加注解：@JsonIgnoreProperties(ignoreUnknown = true)
 
-或
-
 - 配置策略
 
 ```java
@@ -259,8 +269,6 @@ objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 问题描述：`JavaScript`无法处理`Java`的长整型`Long`导致精度丢失，具体表现为主键最后两位永远为`0`
 
 解决思路：`Long`转为`String`返回
-
-解决方案：
 
 - FastJson 处理方式
 
@@ -367,11 +375,115 @@ RedisTemplate使用时常见问题：
 
 RedisTemplate中存取数据都是字节数组。当Redis中存入的数据是可读形式而非字节数组时，使用RedisTemplate取值的时候会无法获取导出数据，获得的值为`null`。可以使用`StringRedisTemplate`试试。
 
-## Element UI
+### classpath和classpath*区别
 
-日期控件在表单验证中遇到了冲突如下：
+- classpath：默认只会在你项目的class路径中查找文件
+- classpath*：默认不仅包含class路径，还包括jar文件中（class路径）进行查找
 
+:::tip
+使用classpath*：Spring需要遍历所有的classpath，所以加载速度是很慢的；故在设计中，应该尽可能划分好资源文件所在的路径，尽量避免使用classpath*。
+:::
+
+### 401与403的区别
+
+| 状态码 | 状态码英文名称 |                           中文描述                           |
+| ------ | :------------: | :----------------------------------------------------------: |
+| 401    |  Unauthorized  | 该HTTP状态码表示认证错误，它是为了认证设计的，而不是为了授权设计的。收到401响应，表示请求没有被认证—压根`没有认证`或者`认证不正确`—但是请重新认证和重试。（一般在响应头部包含一个WWW-Authenticate来描述如何认证）。通常由web服务器返回，而不是web应用。从性质上来说是`临时的东西`。（服务器要求客户端重试） |
+| 403    |   Forbidden    | 该HTTP状态码是关于授权方面的。从性质上来说是`永久的东西`，和应用的业务逻辑相关联。它比401更具体，更实际。收到403响应表示服务器完成认证过程，但是`客户端请求没有权限去访问要求的资源`。 |
+
+- 401：Unauthorized响应，应该用来表示缺失或错误的认证。
+- 403：Forbidden响应，应该在这之后用，当用户被认证后，但用户没有被授权在特定资源上执行操作。
+
+## Lombok
+
+### @SneakyThrows
+
+`@SneakyThrows`注解的用途得从Java的异常设计体系说起
+
+Java中常见的两类异常：
+
+1. Exception类，也就是常说的受检异常或者Checked Exception，即编译时异常。
+2. RuntimeException类，既运行时异常。
+
+前者会强制要求抛出它的方法声明`throws`，调用者必须显示的去处理这个异常。常见的运行时异常`NullPointerException`。
+
+设计的目的是为了提醒开发者处理一些场景中必然可能存在的异常情况。比如网络异常造成`IOException`。
+
+但是现实，往往事与愿违。大部分情况下的异常，我们都是一路往外抛了事。所以渐渐的Java程序员处理Exception的常见手段就是外面包一层RuntimeException，接着往上丢。
+
+```java
+try {
+
+} catch(Exception e) {
+  throw new RuntimeException(e);
+}
+```
+
+Lombok的@SneakyThrows就是为了消除这样的模板代码，使用注解后不需要担心`Exception`的处理
+
+```java
+
+import lombok.SneakyThrows;
+
+public class SneakyThrowsExample implements Runnable {
+  @SneakyThrows(UnsupportedEncodingException.class)
+  public String utf8ToString(byte[] bytes) {
+    return new String(bytes, "UTF-8");
+  }
+  
+  @SneakyThrows
+  public void run() {
+    throw new Throwable();
+  }
+}
+```
+
+真正生成的代码：
+
+```java
+import lombok.Lombok;
+
+public class SneakyThrowsExample implements Runnable {
+  public String utf8ToString(byte[] bytes) {
+    try {
+      return new String(bytes, "UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      throw Lombok.sneakyThrow(e);
+    }
+  }
+  
+  public void run() {
+    try {
+      throw new Throwable();
+    } catch (Throwable t) {
+      throw Lombok.sneakyThrow(t);
+    }
+  }
+}
+```
+
+显然魔法藏在`Lombok.sneakyThrow(t);`中，可能大家都会以为这个方法就是`new RuntimeException()`之类的，然而事实并非如此。阅读代码可以看出整个方法其实最核心的逻辑是`throw (T)t;`，利用泛型将我们传入的`Throwable`强转为`RuntimeException`。虽然事实上我们不是`RuntimeException`。但是没关系，因为JVM并不关心这个。泛型最后存储为字节码时并没有泛型的信息。这样写只是为了骗过`javac`编译器。
+
+```java
+public static RuntimeException sneakyThrow(Throwable t) {
+    if (t == null) throw new NullPointerException("t");
+    return Lombok.<RuntimeException>sneakyThrow0(t);
+}
+
+private static <T extends Throwable> T sneakyThrow0(Throwable t) throws T {
+    throw (T)t;
+}
+```
+
+## Vue
+
+### 日期控件在表单验证中报错
+
+遇到了冲突如下：
+
+:::danger
 Error in event handler for "el.form.change": "TypeError: value.getTime is not a function"
+:::
 
 Element UI的日期选择器`el-date-picker`在加上格式`value-format="yyyy-MM-dd"`和`format="yyyy-MM-dd"`
 
@@ -559,9 +671,7 @@ methods: {
 
 ### new Date()转换时间时间格式时IOS机型显示NaN异常问题
 
-错误原因：
-
-原因是ios不支持时间为2020-05-29这种格式的日期，必须转换为2020/05/29这种格式才能使用`new Date()`进行转换
+错误原因：ios不支持时间为2020-05-29这种格式的日期，必须转换为2020/05/29这种格式才能使用`new Date()`进行转换
 
 解决方法：使用`replace`函数，将全部的“-”替换为”/“
 
