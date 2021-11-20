@@ -60,7 +60,7 @@ Auto Refresh: 最好选 `1 hour`
 ![](https://z3.ax1x.com/2021/05/14/gszwGt.jpg)
 ![](https://z3.ax1x.com/2021/05/14/gszdPI.jpg)
 
-1. 在线制作banner网站
+2. 在线制作banner网站
 
 - http://patorjk.com/software/taag
 - https://www.bootschool.net/ascii
@@ -110,6 +110,87 @@ alter table table_name AUTO_INCREMENT=1;
 ```
 
 *注意：table_name是表名，1表示自增开始的位置*
+
+## SpringBoot 解决跨域问题
+
+### 什么是跨域？
+
+定义：浏览器从一个域名的网页取请求另一个域名下的东西。通俗点说，浏览器直接从A域访问B域中的资源是不被允许的，如果想要访问，就需要进行一步操作，这操作就叫“跨域”。例如，你从百度的页面，点击一个按钮，请求了新浪的一个接口，这就进行了跨域。不单单只有域名不同就是跨域，域名、端口、协议其一不同就是不同的域，请求资源需要跨域。
+
+### 为什么要跨域？
+为什么需要跨域，而不直接访问其他域下的资源呢？这是浏览器的限制，专业点说叫浏览器同源策略限制。主要是为了安全考虑。现在的安全框架，一般请求的时候header中不是都存个token嘛，你要是用这个token去正常访问A域下的东西是没问题的，然后又去访问了B域，结果阴差阳错的还带着这个token，那么B域，或者说B网站是不是就可以拿着你的token去A域下做点什么呢，这就相当危险了。所以浏览器加上了所谓的浏览器同源策略限制。但是为了我们真的需要从A域下访问B的资源（正常访问），就需要用到跨域，跨越这个限制了。
+
+### 解决方案
+
+第一种方案：重写`WebMvcConfigure`，实现全局配置
+
+```java
+/**
+ * Spring MVC 配置
+ *
+ * @author william@StarImmortal
+ * @date 2021/02/08
+ */
+@Configuration(proxyBeanMethods = false)
+@Slf4j
+public class WebConfiguration implements WebMvcConfigurer {
+
+    /**
+     * 跨域
+     * 注意： 跨域问题涉及安全性问题，这里提供的是最方便简单的配置，任何host和任何方法都可跨域
+     * 但在实际场景中，这样做，无疑很危险，所以谨慎选择开启或者关闭
+     * 如果切实需要，请咨询相关安全人员或者专家进行配置
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*")
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowCredentials(true)
+                .maxAge(3600)
+                .allowedHeaders("*");
+    }
+}
+```
+
+第二种方案：重写过滤器，实现全局配置
+
+```java
+import org.springframework.context.annotation.Configuration;
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebFilter(filterName = "CorsFilter ")
+@Configuration
+public class CorsFilter implements Filter {
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, PATCH, DELETE, PUT");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        chain.doFilter(req, res);
+    }
+}
+```
+
+第三种方案：使用`@CrossOrigin`注解，实现局部跨域
+
+@CrossOrigin中的两个重要参数：
+
+- origins：允许可访问的域列表
+- maxAge：准备响应前的缓存持续的最大时间（以秒为单位）
+
+:::tip
+SpringMVC的版本要在4.2或以上版本才支持@CrossOrigin
+
+注解可以放在method、class等上面，类似RequestMapping
+:::
 
 ## MySQL判断一个时间段是否在另一个时间段内
 
@@ -200,6 +281,35 @@ WHERE (
 :::tip
 只支持MySQL5.7以上的版本
 :::
+
+user表中有如下数据：
+
+|  id  |            profile             |
+| :--: | :-----------------------------:|
+|  1   | {"age": 20, "name": "吴彦祖"} |
+|  2   | {"age": 21, "name": "陈伟霆"} |
+
+如果需要查询`id`为`1`的记录中`profile`字段中`age`属性的值：
+
+```mysql
+SELECT id, `profile` -> '$.age' AS age FROM user;
+```
+
+|  id  | age  |
+| :--: | :--: |
+|  1   |  20  |
+
+如果需要查询`profile`字段中`age`属性值为`20`的记录：
+
+```mysql
+SELECT * FROM user WHERE JSON_EXTRACT(`profile`, "$.age") = 20;
+```
+
+:::tip
+JSON_EXTRACT(列名,"$.json某个属性")
+:::
+
+![查询结果](https://z3.ax1x.com/2021/11/18/IoeHxO.png)
 
 ## Jackson序列化与反序列化
 
