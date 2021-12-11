@@ -108,6 +108,9 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 - Vetur
 - Visual Studio IntelliCode
 - vscode-styled-components
+- Iconify IntelliSense
+- I18n-ally
+- DotENV
 
 ## Navicat Premium
 
