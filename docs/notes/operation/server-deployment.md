@@ -250,30 +250,30 @@ tar -zxvf apache-tomcat-8.0.46.tar.gz
 
 ### 安装Node
 
->[下载地址](https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.gz)
+>[下载地址](https://nodejs.org/dist/v14.18.2/node-v14.18.2-linux-x64.tar.gz)
 
 ### 解压JDK
 
 ```bash
-tar -zxvf  node-v10.16.0-linux-x64.tar.gz
+tar -zxvf node-v14.18.2-linux-x64.tar.gz
 ```
 
-**将【node-v10.16.0-linux-x64】里的数据拷贝至新建node目录下**
+**将【node-v14.18.2-linux-x64】里的数据拷贝至新建node目录下**
 
 ```bash
-mv node-v10.16.0-linux-x64 /usr/local/src/
+mv node-v14.18.2-linux-x64 /usr/local/src/
 
 cd /usr/local/src/
 
-mv node-v10.16.0-linux-x64 node-v10.16.0
+mv node-v14.18.2-linux-x64 node-v14.18.2
 ```
 
 ### 配置全局node
 
 ```bash
-ln -s /usr/local/src/node-v10.16.0/bin/node /usr/local/bin/
+ln -sf /usr/local/src/node-v14.18.2/bin/node /usr/local/bin/
 
-ln -s /usr/local/src/node-v10.16.0/bin/npm /usr/local/bin/
+ln -sf /usr/local/src/node-v14.18.2/bin/npm /usr/local/bin/
 ```
 
 ## Yarn
