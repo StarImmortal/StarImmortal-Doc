@@ -2803,7 +2803,7 @@ String str = new String("Hollis")；
   String s = "hollis";
   ```
 
-  上面的代码事例中，123和hollis都是字面量。
+  上面的代码示例中，123和hollis都是字面量。
 
 - 符号引用
 
