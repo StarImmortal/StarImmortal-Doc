@@ -1243,7 +1243,7 @@ methods: {
 
 ## 组件基础
 
-### 基本事例
+### 基本示例
 
 ```html
 <!DOCTYPE html>
