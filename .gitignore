@@ -13,3 +13,4 @@ yarn-error.log
 .vscode
 # yarn临时文件
 yarn.lock
+start.sh
