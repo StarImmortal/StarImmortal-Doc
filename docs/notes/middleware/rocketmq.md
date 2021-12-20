@@ -28,17 +28,17 @@ title: RocketMQ
 
 ```
 # 存储路径
-storePathRootDir=E:/local/rocketMQ/logs/store
-# commitLog存储路径
-storePathCommitLog=E:/local/rocketMQ/logs/store/commitlog
+storePathRootDir=E:/local/rocketMQ/store
+# commitLog 存储路径
+storePathCommitLog=E:/local/rocketMQ/store/commitlog
 # 消费队列存储路径
-storePathConsumeQueue=E:/local/rocketMQ/logs/store/consumequeue
+storePathConsumeQueue=E:/local/rocketMQ/store/consumequeue
 # 消息索引存储路径
-storePathIndex=E:/local/rocketMQ/logs/store/index
+storePathIndex=E:/local/rocketMQ/store/index
 # checkpoint 文件存储路径
-storeCheckpoint=E:/local/rocketMQ/logs/store/checkpoint
+storeCheckpoint=E:/local/rocketMQ/store/checkpoint
 # abort 文件存储路径
-abortFile=E:/local/rocketMQ/logs/store/abort
+abortFile=E:/local/rocketMQ/store/abort
 ```
 
 ## 启动
@@ -114,7 +114,7 @@ RocketMq默认内存较大，启动Borker如果因为内存不足启动失败，
 
 ```bash
 # 1.启动Broker
-nohup sh bin/mqbroker -n localhost:9876 &
+nohup sh bin/mqbroker -n localhost:9876 -c conf/broker.conf autoCreateTopicEnable=true &
 # 2.查看启动日志
 tail -f ~/logs/rocketmqlogs/broker.log 
 ```
