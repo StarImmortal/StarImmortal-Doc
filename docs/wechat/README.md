@@ -4,38 +4,43 @@ title: 微信小程序
 
 <template>
     <div class="container">
-        <swiper :options="swiperOptions">
-            <swiper-slide>
-                <div class="picture">
-                    <img src="/assets/img/cool-wallpaper.png" alt="">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="swiper-info">
+                        <div class="picture">
+                            <img src="/assets/img/cool-wallpaper.png" alt="">
+                        </div>
+                        <div class="detail">
+                            <h3>库壁啦</h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="detail">
-                    <h3>库壁啦</h3>
+                <div class="swiper-slide">
+                    <div class="swiper-info">
+                        <div class="picture">
+                            <img src="/assets/img/leave-manager.png" alt="">
+                        </div>
+                        <div class="detail">
+                            <h3>人员工时管理</h3>
+                        </div>
+                    </div>
                 </div>
-            </swiper-slide>
-            <swiper-slide>
-                <div class="picture">
-                    <img src="/assets/img/leave-manager.png" alt="">
-                </div>
-                <div class="detail">
-                    <h3>人员工时管理</h3>
-                </div>
-            </swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-        </swiper>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </div>
 </template>
 
 <script>
-    import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-    import 'swiper/css/swiper.css'
+    import Swiper from "swiper/swiper-bundle.min.js"
+    import "swiper/swiper-bundle.min.css"
+    
     export default {
-        components: {
-            Swiper,
-            SwiperSlide,
-        },
         data() {
             return {
                 swiperOptions: {
@@ -64,6 +69,27 @@ title: 微信小程序
         created(){
 
         },
+        mounted(){
+            new Swiper ('.swiper', {
+                loop: true, // 循环模式选项
+                effect: "coverflow",
+                slidesPerView: 3,
+                centeredSlides: true,
+                // 如果需要分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                // 如果需要前进后退按钮
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                // 如果需要滚动条
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                },
+            })
+        },
         methods:{
             
         }
@@ -71,10 +97,7 @@ title: 微信小程序
 </script>
 
 <style>
-.container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
   background: #fff;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -90,6 +113,12 @@ title: 微信小程序
 }
 
 .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-info {
   background-position: center;
   background-size: cover;
   width: 320px;
