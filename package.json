@@ -21,7 +21,6 @@
     "node-sass": "^5.0.0",
     "sass-loader": "10.1.0",
     "swiper": "^7.3.3",
-    "vue-awesome-swiper": "^4.1.1",
     "vuepress": "^1.8.3",
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-sakura": "^1.1.0"
