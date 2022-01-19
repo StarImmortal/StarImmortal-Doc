@@ -43,6 +43,49 @@ cd
 java -version
 ```
 
+## Maven
+
+### 安装Maven
+
+>[下载地址](https://maven.apache.org/download.cgi)
+
+```bash
+wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+```
+
+### 解压Maven
+
+```bash
+tar -zxvf apache-maven-3.8.4-bin.tar.gz
+
+mkdir /home/maven/
+
+mv apache-maven-3.8.4 /home/maven/
+```
+
+### 配置环境变量
+
+```bash
+vi /etc/profile
+```
+
+```bash
+export MAVEN_HOME=/home/maven/apache-maven-3.8.4
+export PATH=$MAVEN_HOME/bin:$PATH
+```
+
+```bash
+source /etc/profile
+```
+
+### 检查版本
+
+```bash
+mvn -v
+```
+
+![安装成功](https://s4.ax1x.com/2022/01/19/7r42TK.png)
+
 ## MySQL8
 
 ### 配置YUM源
