@@ -381,13 +381,13 @@ docker run -p 80:80 --name nginx \
 ```bash
 cd /home
 
-touch tls.sh
+touch auto-tls-certs.sh
 ```
 
 - 添加以下内容
 
 ```bash
-vi /home/tls.sh
+vi /home/auto-tls-certs.sh
 ```
 
 ```bash
@@ -399,12 +399,11 @@ INTERNET_IP=
 HOST=$DOMAIN_HOST
 # 自定义信息
 PASSWORD=""
-COUNTRY=CN
-PROVINCE=gd
-CITY=gz
-ORGANIZATION=
-GROUP=dg
-NAME=
+COUNTRY="CN"
+PROVINCE=""
+CITY=""
+ORGANIZATION=""
+GROUP="星野团队"
 SUBJ="/C=$COUNTRY/ST=$PROVINCE/L=$CITY/O=$ORGANIZATION/OU=$GROUP/CN=$HOST"
 # 自定义信息
 # 此形式是自己给自己签发证书，自己就是CA机构，也可以交给第三方机构去签发
@@ -449,13 +448,13 @@ rm -rf $FILE_ADDRESS/extfile.cnf
 - 赋予运行权限
 
 ```bash
-chmod +x /home/tls.sh
+chmod +x /home/auto-tls-certs.sh
 ```
 
 - 执行脚本
 
 ```bash
-bash /home/tls.sh
+bash /home/auto-tls-certs.sh
 ```
 
 ## 配置Docker支持TLS
@@ -469,7 +468,7 @@ bash /home/tls.sh
 - 修改以`ExecStart`开头的配置，开启TLS认证，并配置好CA证书、服务端证书和服务端私钥，修改内容如下：
 
   ```bash
-  ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock --tlsverify --tlscacert=/usr/local/src/docker-ca/ca.pem --tlscert=/usr/local/src/docker-ca/server-cert.pem --tlskey=/usr/local/src/docker-ca/server-key.pem
+  ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock --tlsverify --tlscacert=/home/docker-ca/ca.pem --tlscert=/home/docker-ca/server-cert.pem --tlskey=/home/docker-ca/server-key.pem
   ```
 
 - 重启Docker服务
