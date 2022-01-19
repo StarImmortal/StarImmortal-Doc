@@ -163,6 +163,26 @@ git config --global user.name "username"
 git config --global user.email "email"
 ```
 
+### 查看所有配置
+
+```bash
+git config --list
+```
+
+### 删除全局配置项
+
+- 终端执行命令
+
+```bash
+git config --global --unset user.name
+```
+
+- 编辑配置文件
+
+```bash
+git config --global --edit
+```
+
 ### 创建版本库
 
 - 克隆远程版仓库
