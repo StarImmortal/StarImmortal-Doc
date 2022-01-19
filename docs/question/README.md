@@ -2,9 +2,31 @@
 title: 常见问题
 ---
 
-## 环境配置
+## Npm
 
-### Yarn
+### Failed at the node-sass@5.0.0 postinstall script. npm ERR! This is probably not a problem with npm. 
+
+解决方案：在当前目录下进行`node-sass`的数据源设置
+
+```bash
+npm config set sass_binary_site=https://npm.taobao.org/mirrors/node-sass
+```
+
+再次执行：
+
+```bash
+npm i
+```
+
+### gyp ERR! stack Error: EACCES: permission denied, mkdir
+
+解决方案：
+
+```bash
+npm i --unsafe-perm
+```
+
+## Yarn
 
 错误信息：无法加载文件 D:\NodeJS\node_global\yarn.ps1，因为在此系统上禁止运行脚本。
 
@@ -21,7 +43,7 @@ set-ExecutionPolicy RemoteSigned
 
 ![更改执行策略](https://z3.ax1x.com/2021/08/30/htLy2n.png)
 
-### IDEA
+## IDEA
 
 问题描述：Maven项目总是将Language Level重置到5的问题
 
@@ -394,6 +416,127 @@ RedisTemplate中存取数据都是字节数组。当Redis中存入的数据是�
 - 401：Unauthorized响应，应该用来表示缺失或错误的认证。
 - 403：Forbidden响应，应该在这之后用，当用户被认证后，但用户没有被授权在特定资源上执行操作。
 
+### EasyExcel读取的数据全为null
+
+原因：项目使用了`Lombok`并且还加了`@Accessors(chain = true)`链式注解，与EasyExcel冲突
+
+解决方案：删除`@Accessors(chain = true)`链式注解
+
+### 解决 SpringBoot 在 JDK8 中 LocalDateTime (反)序列化问题
+
+#### 问题复现
+
+```java
+Java 8 date/time type `java.time.LocalDateTime` not supported by default:
+ add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling....
+```
+
+在默认情况下Java 8不支持`LocalDateTime`需要添加`com.fasterxml.jackson.datatype:jackson-datatype-jsr310`依赖
+
+原因：没有添加序列化和反序列化器
+
+#### 解决方案
+
+##### 添加依赖
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jsr310</artifactId>
+    <version>2.13.0</version>
+</dependency>
+```
+
+##### 指定LocalDateTime的序列化以及反序列化器
+
+```java
+@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+@JsonSerialize(using = LocalDateTimeSerializer.class)
+```
+
+例如：
+
+![示例代码](https://img-blog.csdnimg.cn/52bc52bac63e47f98c08c311f78c074d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lq65Lq66YO95Zyo5Y-R5aWL,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+### @JsonFormat与@DateTimeFormat的使用以及其区别
+
+#### 简介
+
+1. JsonFormat来源于jackson，Jackson是一个简单基于Java应用库，Jackson可以轻松的将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象。Jackson所依赖的jar包较少，简单易用并且性能也要相对高些，并且Jackson社区相对比较活跃，更新速度也比较快。
+
+2. DateTimeFormat是spring自带的处理框架，主要用于将时间格式化。
+
+#### @DateTimeFormat
+
+使用@DateTimeFormat注解可以将一个字符串转成一个Date对象，主要用于入参日期格式转换。
+
+该注解可以用在实体类中Date类型的字段上也可以使用在方法中。
+
+原因：前端传日期数据是以字符串的形式传入后台。后端用Date类型接受就会出错，加上此注解，后台可解析字符串的日期时间格式。
+
+#### 示例代码
+
+```java
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class QueryOrderDTO {
+    /**
+     * 开始日期
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date start;
+
+    /**
+     * 结束日期
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date end;
+}
+```
+
+```java
+@GetMapping("/test")
+public R test(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date start) {
+    return new R();
+}
+```
+
+#### @JsonFormat
+
+当后台返回Date类型的日期格式数据给前端时，前台没办法解析。
+
+需要做如下操作：在实体类字段打上如下注解
+
+```java
+@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+```
+
+注意：`timezone`是为了解决时区问题，因为我们是东八区， 会相差8个小时。
+
+#### 示例代码
+
+```java
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class QueryOrderDTO {
+    /**
+     * 开始日期
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date start;
+
+    /**
+     * 结束日期
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date end;
+}
+```
+
+:::tip
+注意：@JsonFormat与@DateTimeFormat两个注解可以同时使用
+:::
+
 ## Lombok
 
 ### @SneakyThrows
@@ -475,6 +618,213 @@ private static <T extends Throwable> T sneakyThrow0(Throwable t) throws T {
 }
 ```
 
+## CSS
+
+### padding-right不生效
+
+代码片段：
+
+```css
+.top-info {
+	width: 100%;
+	position: absolute;
+	bottom: -30rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20rpx;
+}
+```
+
+:::tip
+此时的padding-right并不生效，加大padding-right的值也不会有效果
+:::
+
+![问题复现](https://z3.ax1x.com/2021/11/26/oEcTr4.png)
+
+解决方法：
+
+给元素添加`box-sizing: border-box;`属性，让元素变成一个盒模型。
+
+| 值          | 描述                                                         |
+| :---------- | :----------------------------------------------------------- |
+| content-box | 这是由 CSS2.1 规定的宽度高度行为。宽度和高度分别应用到元素的内容框。在宽度和高度之外绘制元素的内边距和边框。 |
+| border-box  | 为元素设定的宽度和高度决定了元素的边框盒。就是说，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。 |
+| inherit     | 规定应从父元素继承 box-sizing 属性的值。  |
+
+```css
+.top-info {
+	width: 100%;
+	position: absolute;
+	bottom: -30rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	padding: 0 20rpx;
+}
+```
+![成功解决](https://z3.ax1x.com/2021/11/26/oEcXPx.png)
+
+### 弹性布局flex属性详解
+
+:::tip
+注意：如果元素不是弹性盒模型对象的子元素，则 flex 属性不起作用。
+:::
+
+flex 属性用于设置或检索弹性盒模型对象的子元素如何分配空间。
+
+flex 属性是 **flex-grow**、**flex-shrink** 和 **flex-basis** 属性的简写属性。
+
+```
+flex: auto | initial | none | inherit |  [ flex-grow ] || [ flex-shrink ] || [ flex-basis ]
+```
+
+- auto: 计算值为 **1 1 auto**
+- initial: 计算值为 **0 1 auto**
+- none：计算值为 **0 0 auto**
+- inherit：从父元素继承
+- [ flex-grow ]：定义弹性盒子元素的扩展比率。
+- [ flex-shrink ]：定义弹性盒子元素的收缩比率。
+- [ flex-basis ]：定义弹性盒子元素的默认基准值。
+
+### flex-grow：用于设置或检索弹性盒子的扩展比率
+
+让第二个元素的宽度为其他元素的三倍：
+
+```html
+<div id="main">
+  <div style="background-color:coral;"></div>
+  <div style="background-color:lightblue;"></div>
+  <div style="background-color:khaki;"></div>
+  <div style="background-color:pink;"></div>
+  <div style="background-color:lightgrey;"></div>
+</div>
+```
+
+```css
+#main {
+  width: 350px;
+  height: 100px;
+  border: 1px solid #c3c3c3;
+  display: flex;
+}
+
+#main div:nth-of-type(1) {flex-grow: 1;}
+#main div:nth-of-type(2) {flex-grow: 3;}
+#main div:nth-of-type(3) {flex-grow: 1;}
+#main div:nth-of-type(4) {flex-grow: 1;}
+#main div:nth-of-type(5) {flex-grow: 1;}
+```
+
+![flex-grow](https://z3.ax1x.com/2021/12/02/oNaUKJ.png)
+
+### flex-shrink：指定了 flex 元素的收缩规则
+
+flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据`flex-shrink`的值。
+
+```html
+<div id="content">
+  <div class="box" style="background-color:red;">A</div>
+  <div class="box" style="background-color:lightblue;">B</div>
+  <div class="box" style="background-color:yellow;">C</div>
+  <div class="box1" style="background-color:brown;">D</div>
+  <div class="box1" style="background-color:lightgreen;">E</div>
+</div>
+```
+
+```css
+#content {
+  display: flex;
+  width: 500px;
+}
+
+#content div {
+  flex-basis: 120px;
+  border: 3px solid rgba(0, 0, 0, .2);
+}
+
+.box { 
+  flex-shrink: 1;
+}
+
+.box1 { 
+  flex-shrink: 2; 
+}
+```
+
+A、B、C 显式定义了`flex-shrink`为`1`
+
+D、E 定义了`flex-shrink`为`2`
+
+所以计算出来总共将剩余空间分成了`7`份，其中A、B、C占`1`份，D、E占`2`份，即`1:1:1:2:2`
+
+父容器定义为500px，子项被定义为 20px，子项相加之后即为600px，超出父容器100px
+
+那么超出的100px需要被A、B、C、D、E 消化通过收缩因子
+
+所以加权综合可得：`100*1+100*1+100*1+100*2+100*2=700px`
+
+于是我们可以计算 A、B、C、D、E 将被移除的溢出量是多少：
+
+```
+A 被移除溢出量：(100*1/700)*100，即约等于14px
+B 被移除溢出量：(100*1/700)*100，即约等于14px
+C 被移除溢出量：(100*1/700)*100，即约等于14px
+D 被移除溢出量：(100*2/700)*100，即约等于28px
+E 被移除溢出量：(100*2/700)*100，即约等于28px
+```
+
+最后A、B、C、D、E的实际宽度分别为：
+
+120-14=106px, 120-14=106px, 120-14=106px, 120-28=92px,120-28=92px
+
+此外，这个宽度是包含边框的。
+
+![flex-shrink](https://z3.ax1x.com/2021/12/02/oNacxe.png)
+
+### flex-basis：用于设置或检索弹性盒伸缩基准值
+
+设置第二个弹性盒元素的初始长度为 80 像素：
+
+```html
+<div id="main">
+  <div style="background-color:coral;"></div>
+  <div style="background-color:lightblue;"></div>
+  <div style="background-color:khaki;"></div>
+  <div style="background-color:pink;"></div>
+  <div style="background-color:lightgrey;"></div>
+</div>
+```
+
+```css
+#main {
+    width: 350px;
+    height: 100px;
+    border: 1px solid #c3c3c3;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+#main div {
+    -webkit-flex-grow: 0; /* Safari 6.1+ */
+    -webkit-flex-shrink: 0; /* Safari 6.1+ */
+    -webkit-flex-basis: 40px; /* Safari 6.1+ */
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 40px;
+}
+
+#main div:nth-of-type(2) {
+    -webkit-flex-basis: 80px; /* Safari 6.1+ */
+    flex-basis: 80px;
+}
+```
+
+![flex-basis](https://z3.ax1x.com/2021/12/02/oNaWqA.png)
+
 ## Vue
 
 ### 日期控件在表单验证中报错
@@ -501,7 +851,7 @@ Element UI的日期选择器`el-date-picker`在加上格式`value-format="yyyy-M
 
 错误可能原因：Element UI自带的格式转换后会将绑定值转为字符串，而校验规则中的`type: 'date'`已经不匹配，至于它的报错是因为转换为字符串，不是`date`对象所以没有`getTime`这个方法。
 
-## 电商专题
+## E-Commerce
 
 ### Spu和Sku的概念及区别
 
@@ -589,7 +939,7 @@ sku属性：
 
 ![](https://z3.ax1x.com/2021/09/13/4POui4.png)
 
-## 微信小程序
+## WeChat Miniprogram
 
 ### wx:if与hidden区别
 
@@ -669,7 +1019,7 @@ methods: {
 }
 ```
 
-### new Date()转换时间时间格式时IOS机型显示NaN异常问题
+### new Date()转换时间时，IOS机型时间格式显示NaN异常问题
 
 错误原因：ios不支持时间为2020-05-29这种格式的日期，必须转换为2020/05/29这种格式才能使用`new Date()`进行转换
 
@@ -686,5 +1036,44 @@ const newdata = new Date(datatime).getTime()
 - @click是组件被点击时触发，会有约300ms的延迟（内置处理优化了）
 - @tap是手指触摸离开时触发，没有300ms的延迟，但是会有事件穿透
 - 编译到小程序端，@click会被转换成@tap
+
+### uni-app改变页面背景色
+
+全局背景颜色设置方式：
+
+在`App.vue`的`style`样式表中设置
+
+```css
+<style lang="scss">	
+page {
+	background-color: #F0AD4E;
+}
+</style>
+```
+
+单页面背景色设置方式：
+
+对应页面中的`style`样式表中设置，且不能有`scoped`属性，如果需要使用带`scoped`属性的样式表，则重新创建一个样式表单独写背景色样式
+
+```css
+<style lang="scss" scoped>
+@import './home.scss';
+</style>
+
+<style>
+page {
+	background-color: #f7f7f7;
+	font-family: PingFangSC-Regular;
+}
+</style>
+```
+
+### 数据绑定多次触发问题
+
+对于某组件来说，如果绑定了某一个属性时，组件初始化时，不管属性是否有值或者默认值，都会进行一次数据绑定
+
+当页面调用该组件，并且绑定组件某个属性时，当改变了该属性的值，会再次触发数据监听
+
+当组件属性有默认值时，如果我们调用组件时，不设置某一个属性，就会去取这个属性的默认值，但是，一旦设置了某一个属性，就不会再取该属性的默认值
 
 <RightMenu />
