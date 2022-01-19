@@ -18,7 +18,7 @@ docker pull docker.io/java
 docker run -it --name myjava --restart=always docker.io/java bash
 ```
 
-## MySql
+## MySQL
 
 ### 拉取镜像
 
@@ -783,6 +783,53 @@ curl http://127.0.0.1:8081/count/es7/canal_test.yml
 docker pull nginx:latest
 ```
 
+### 先运行一次容器（为了拷贝配置文件）
+
+```bash
+docker run -p 80:80 --name nginx \
+-v /home/nginx/html:/usr/share/nginx/html \
+-v /home/nginx/logs:/var/log/nginx  \
+-d nginx:latest
+```
+
+### 将容器内的配置文件拷贝到指定目录
+
+```bash
+docker container cp nginx:/etc/nginx /home/nginx/
+```
+
+### 修改文件名称
+
+```bash
+cd /home/nginx
+
+mv nginx conf
+```
+
+### 终止并删除容器
+
+```bash
+docker stop nginx
+
+docker rm nginx
+```
+
+### 启动Nginx服务
+
+```bash
+docker run -p 80:80 -p 443:443 --name nginx \
+-v /home/nginx/html:/usr/share/nginx/html \
+-v /home/nginx/logs:/var/log/nginx  \
+-v /home/nginx/conf:/etc/nginx \
+-d nginx:latest
+```
+
+### 相关命令
+
+1. docker exec nginx nginx -t
+
+2. docker exec nginx nginx -s reload
+
 ## Jenkins
 
 ### 拉取镜像
@@ -794,9 +841,9 @@ docker pull jenkins/jenkins:lts
 ### 目录映射
 
 ```bash
-mkdir -p /usr/local/src/jenkins/jenkins_home
+mkdir -p /home/jenkins/jenkins_home
 
-chown -R 1000 /usr/local/src/jenkins/jenkins_home
+chown -R 1000 /home/jenkins/jenkins_home
 
 chmod 666 /var/run/docker.sock
 ```
@@ -804,19 +851,29 @@ chmod 666 /var/run/docker.sock
 ### 启动
 
 ```bash
-docker run -di -u root --name jenkins -p 8080:8080 -p 50000:50000 -e TZ=Asia/Shanghai -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -v /usr/local/src/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+docker run -di -u root --name jenkins -p 8080:8080 -p 50000:50000 -e TZ=Asia/Shanghai \ 
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /usr/bin/docker:/usr/bin/docker \
+-v /home/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+```
+
+### 设置自启动
+```bash
+docker update jenkins --restart=always
 ```
 
 ### 安装插件提速
 
 ```bash
-cd /usr/local/src/jenkins/jenkins_home/
+cd /home/jenkins/jenkins_home/
 
 vi hudson.model.UpdateCenter.xml
 
 修改url为https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 
 docker exec -it jenkins /bin/bash
+
+cd /var/jenkins_home/updates
 
 sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json && sed -i 's/http:\/\/www.google.com/https:\/\/www.baidu.com/g' default.json
 
@@ -843,9 +900,12 @@ docker logs jenkins
 
 ### 安装插件
 
-- 根据角色管理权限的插件：Role-based Authorization Strategy
-- 远程使用ssh的插件：SSH plugin
-- NodeJs
+- Role-based Authorization Strategy
+- SSH plugin
+- NodeJS
+- Localization: Chinese (Simplified)
+- GitHub plugin
+- Git
 
 ### 系统配置
 
@@ -863,7 +923,9 @@ github --> 头像 --> Settings --> Developer settings --> Personal access tokens
 
 ### 全局配置
 
-![安装Maven](https://z3.ax1x.com/2021/05/16/gguoSP.png)
+![Maven配置](https://s4.ax1x.com/2022/01/19/7rqRRf.png)
+
+![安装Maven](https://s4.ax1x.com/2022/01/19/7rqTds.png)
 
 ![安装NodeJs](https://z3.ax1x.com/2021/06/05/2NKpZR.png)
 
@@ -887,28 +949,56 @@ github --> 头像 --> Settings --> Developer settings --> Personal access tokens
 
 ```bash
 #!/bin/bash
-result=$(docker ps -a | grep "burning-sun-cms")
-if [[ "$result" != "" ]]
-then
-echo "正在停止 burning-sun-cms 容器..."
-docker stop burning-sun-cms
-fi
-result1=$(docker ps -a | grep "burning-sun-cms")
-if [[ "$result1" != "" ]]
-then
-echo "正在删除 burning-sun-cms 容器..."
-docker rm burning-sun-cms
-fi
-result2=$(docker images | grep "106.12.85.201:5000/burning-sun")
-if [[ "$result2" != "" ]]
-then
-echo "正在删除 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT 镜像..."
-docker rmi 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT
-fi
-```
 
-```
-docker run -d -p 8081:8081 --name burning-sun-cms -v /usr/local/src/burning-sun/logs:/logs -d 106.12.85.201:5000/burning-sun:1.0.0-SNAPSHOT
+#服务名
+
+SERVER_NAME=latticy-cms-server
+
+#镜像仓库地址
+
+REPOSITORY=registry.cn-hangzhou.aliyuncs.com/starimmortal/latticy
+
+#容器ID
+
+CONTAINER_ID=$(docker ps -a | grep "$SERVER_NAME" | awk '{print $1}')
+
+#清除旧容器
+
+if [ -n "$CONTAINER_ID" ]; then
+
+echo "存在$SERVER_NAME容器，容器ID=$CONTAINER_ID"
+
+echo "停止旧容器"
+
+docker stop $SERVER_NAME
+
+echo "删除旧容器"
+
+docker rm $SERVER_NAME
+
+fi
+
+# 运行docker容器
+
+cd ${WORKSPACE}/target/
+
+# 提取jar包名
+
+JAR_NAME=`ls |grep latticy-|grep -v original`
+
+# 删除变量：name从右边开始的第一个.和.后面的全部字符
+
+MAVEN_VERSION=${JAR_NAME#*-}
+
+cd
+
+echo "版本号：${MAVEN_VERSION%.*}"
+
+echo "创建并启动$SERVER_NAME容器..."
+
+docker run -d -p 8081:8081 --name $SERVER_NAME -v /home/$SERVER_NAME/assets/:/assets -v /home/$SERVER_NAME/logs:/logs -d $REPOSITORY:${MAVEN_VERSION%.*}
+
+echo "$SERVER_NAME容器启动完成"
 ```
 
 ####  创建构建前端任务
@@ -928,19 +1018,55 @@ docker run -d -p 8081:8081 --name burning-sun-cms -v /usr/local/src/burning-sun/
 - 编写Shell命令
 
 ```bash
+#!/bin/bash
+
 # 查看版本信息
+
 npm -v
+
 # 解决存放在Github上的sass无法下载的问题
+
 SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+
 # 将镜像源替换为淘宝的加速访问
+
 npm config set registry https://registry.npm.taobao.org
+
 # 安装项目依赖
+
 npm install
-rm -rf ./cool-wallpaper/*
+
 # 项目打包
+
 npm run build
-rm -rf /home/cool-wallpaper/*
-cp -rf ./cool-wallpaper/* /home/cool-wallpaper/
+```
+
+- 远程服务器
+
+```bash
+# 停止Nginx容器
+
+echo "停止Nginx容器"
+
+docker stop nginx
+
+# 删除并拷贝新数据
+
+rm -rf /home/nginx/html
+
+echo '----删除html文件成功----'
+
+cp -r /home/jenkins/jenkins_home/workspace/latticy-cms-vue/dist /home/nginx/html
+
+echo '----拷贝数据成功----'
+
+# 运行Nginx容器
+
+echo "启动Nginx容器..."
+
+docker start nginx
+
+echo "Nginx容器启动完成"
 ```
 
 #### 构建触发器
@@ -969,9 +1095,9 @@ ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/*.jar"]
 MAINTAINER william
 ```
 
-### 使用maven打包应用
+### 使用Maven打包应用
 
-在IDEA中双击package命令进行打包
+在IDEA中双击`package`命令进行打包
 
 将jar包及Dockerfile文件上传到服务器
 
