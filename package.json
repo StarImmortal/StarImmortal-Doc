@@ -1,6 +1,6 @@
 {
   "name": "StarImmortal-Doc",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "StarImmortal团队官方文档",
   "main": "index.js",
   "scripts": {
