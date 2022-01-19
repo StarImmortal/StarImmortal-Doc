@@ -47,6 +47,10 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - GsonFormatPlus：JSON转领域对象工具
 - POJO TO Json：领域对象转JSON工具
 - GenerateAllSetter：生成对象set方法
+- File Expander：文件查看工具
+- arthas idea：Java在线诊断工具
+- Search In Repository：Maven查询工具
+- VisualGC：可视化 Hotspot JVM 垃圾回收监控工具
 
 ## PyCharm
 
