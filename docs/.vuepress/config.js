@@ -33,19 +33,6 @@ module.exports = {
       },
     ],
     [
-      "@vuepress/pwa",
-      {
-        serviceWorker: true,
-        updatePopup: {
-          message: "有新内容啦~",
-          buttonText: "刷新",
-        },
-        generateSWConfig: {
-          importWorkboxFrom: "local",
-        },
-      },
-    ],
-    [
       "sakura",
       {
         num: 20,
