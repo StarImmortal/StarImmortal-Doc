@@ -2,7 +2,6 @@
 /node_modules
 /dist
 .DS_Store
-nohup.out
 # 临时文件夹
 .temp
 # npm debug日志
@@ -13,4 +12,3 @@ yarn-error.log
 .vscode
 # yarn临时文件
 yarn.lock
-start.sh
