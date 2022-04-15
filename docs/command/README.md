@@ -37,9 +37,9 @@ npm root -g（查看包的安装路径）
 
 npm config get registry
 
-npm config set registry https://registry.npm.taobao.org/
+npm config set registry https://registry.npmmirror.com/
 
-npm install -g cnpm --registry=https://registry.npm.taobao.org（使用淘宝NPM镜像）
+npm install -g cnpm --registry=https://registry.npmmirror.com/（使用淘宝NPM镜像）
 ```
 
 ## YARN
@@ -82,7 +82,6 @@ npm uninstall -g create-react-app（先卸载）
 npx create-react-app 项目名称
 ```
 
-
 ## Vue
 
 ```bash
@@ -113,25 +112,25 @@ scp jar包路径 root@服务器ip地址:存放路径
 
 ## Java
 
+1. 查看当前Java版本
+
+```bash
+java -version
+```
+
+2. 查看全部Java版本
+
+```bash
+/usr/libexec/java_home -V
+```
+
+3. 后台运行Jar包
+
 ```bash
 nohup java -jar -Dspring.profiles.active=prod -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC jar包 >springboot.log 2>&1 &
 ```
 
-```bash
-vi /etc/systemd/system/服务名.service
-
-Description=mall
-After=syslog.target
-
-[Service]
-User=root
-ExecStart=/usr/local/jdk1.8.0_231/bin/java -jar -Dspring.profiles.active=prod /root/mall.jar
-
-[Install]
-WantedBy=multi-user.target
-
-systemctl start 服务名
-```
+4. 远程调试
 
 ```bash
 java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar jar包
