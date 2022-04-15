@@ -15,7 +15,7 @@ docker pull docker.io/java
 ### 运行
 
 ```bash
-docker run -it --name myjava --restart=always docker.io/java bash
+docker run -it --name java --restart=always docker.io/java bash
 ```
 
 ## MySQL
@@ -851,7 +851,7 @@ chmod 666 /var/run/docker.sock
 ### 启动
 
 ```bash
-docker run -di -u root --name jenkins -p 8080:8080 -p 50000:50000 -e TZ=Asia/Shanghai \ 
+docker run -di -u root --name jenkins -p 8080:8080 -e TZ=Asia/Shanghai \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v /usr/bin/docker:/usr/bin/docker \
 -v /home/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
@@ -1026,11 +1026,11 @@ npm -v
 
 # 解决存放在Github上的sass无法下载的问题
 
-SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+SASS_BINARY_SITE=https://registry.npmmirror.com/binary.html?path=node-sass/ npm install node-sass
 
 # 将镜像源替换为淘宝的加速访问
 
-npm config set registry https://registry.npm.taobao.org
+npm config set registry https://registry.npmmirror.com/
 
 # 安装项目依赖
 

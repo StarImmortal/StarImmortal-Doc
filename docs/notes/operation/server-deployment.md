@@ -50,17 +50,17 @@ java -version
 >[下载地址](https://maven.apache.org/download.cgi)
 
 ```bash
-wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+wget https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
 ```
 
 ### 解压Maven
 
 ```bash
-tar -zxvf apache-maven-3.8.4-bin.tar.gz
+tar -zxvf apache-maven-3.8.5-bin.tar.gz
 
 mkdir /home/maven/
 
-mv apache-maven-3.8.4 /home/maven/
+mv apache-maven-3.8.5 /home/maven/
 ```
 
 ### 配置环境变量
@@ -70,7 +70,7 @@ vi /etc/profile
 ```
 
 ```bash
-export MAVEN_HOME=/home/maven/apache-maven-3.8.4
+export MAVEN_HOME=/home/maven/apache-maven-3.8.5
 export PATH=$MAVEN_HOME/bin:$PATH
 ```
 
@@ -141,7 +141,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '要修改的密码';
 ### 添加远程登录用户
 
 ```bash
-use mysql
+use mysql;
 
 update user set host= '%' where user = 'root';
 
@@ -181,16 +181,14 @@ flush privileges;
 + **选择数据库并把密码置空**
 
     ```bash
-    use mysql
+    use mysql;
 
     update user set authentication_string = '' where user = 'root';
     ```
 
-+ **退出**
++ **删除免密**
 
     ```bash
-    quit
-
     vi /etc/my.cnf（删除免密）
 
     service mysqld restart
@@ -199,6 +197,8 @@ flush privileges;
 + **登陆（直接敲回车键）**
 
     ```bash
+    mysql -uroot -p
+    
     set global validate_password.policy=0;
 
     set global validate_password.length=1;
@@ -304,9 +304,9 @@ tar -zxvf node-v14.18.2-linux-x64.tar.gz
 **将【node-v14.18.2-linux-x64】里的数据拷贝至新建node目录下**
 
 ```bash
-mv node-v14.18.2-linux-x64 /usr/local/src/
+mv node-v14.18.2-linux-x64 /home/
 
-cd /usr/local/src/
+cd /home/
 
 mv node-v14.18.2-linux-x64 node-v14.18.2
 ```
@@ -314,9 +314,9 @@ mv node-v14.18.2-linux-x64 node-v14.18.2
 ### 配置全局node
 
 ```bash
-ln -sf /usr/local/src/node-v14.18.2/bin/node /usr/local/bin/
+ln -sf /home/node-v14.18.2/bin/node /usr/local/bin/
 
-ln -sf /usr/local/src/node-v14.18.2/bin/npm /usr/local/bin/
+ln -sf /home/node-v14.18.2/bin/npm /usr/local/bin/
 ```
 
 ## Yarn
