@@ -1,8 +1,10 @@
 ---
-title: IDEA快捷键
+title: 快捷键
 ---
 
-## Windows
+## JetBrains
+
+### Windows
 
 1. 设置：<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>
 2. 复制一行：光标放任意位置，<kbd>Ctrl</kbd> + <kbd>D</kbd>
@@ -44,7 +46,7 @@ title: IDEA快捷键
 38. 进入到 Jar包方法里或 JDK 自带的方法里：Force Step Into（<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>F7</kbd>）
 39. 运行到光标所在处：Run to Cursor（<kbd>Alt</kbd> + <kbd>F9</kbd>）
 
-## Mac
+### Mac
 
 1. 优化import：<kbd>⌃</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd>
 2. 格式化代码：<kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>L</kbd>
@@ -53,5 +55,8 @@ title: IDEA快捷键
 5. 查看浏览过的文件：<kbd>⌘</kbd> + <kbd>E</kbd>
 6. 选中下一个相同的内容：<kbd>⌃</kbd> + <kbd>G</kbd>
 7. 选中文件中所有相同个的内容：<kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>G</kbd>
+8. 大小写转换：<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd>
+9. 跳过一个词：<kbd>⌥</kbd> + <kbd>左/右</kbd>
+10. 选中一个词：<kbd>⌥</kbd> + <kbd>Shift</kbd> + <kbd>左/右</kbd>
 
 <right-menu />
