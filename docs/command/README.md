@@ -39,6 +39,8 @@ npm config get registry
 
 npm config set registry https://registry.npmmirror.com/
 
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+
 npm install -g cnpm --registry=https://registry.npmmirror.com/（使用淘宝NPM镜像）
 ```
 
