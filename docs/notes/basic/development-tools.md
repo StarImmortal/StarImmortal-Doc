@@ -50,6 +50,7 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - File Expander：文件查看工具
 - arthas idea：Java在线诊断工具
 - Search In Repository：Maven查询工具
+- maven-search：Maven查询工具
 - VisualGC：可视化 Hotspot JVM 垃圾回收监控工具
 
 ## PyCharm
@@ -115,6 +116,7 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 - Iconify IntelliSense
 - I18n-ally
 - DotENV
+- Power Mode
 
 ## Navicat Premium
 
