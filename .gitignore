@@ -12,3 +12,5 @@ yarn-error.log
 .vscode
 # yarn临时文件
 yarn.lock
+# npm临时文件
+package-lock.json

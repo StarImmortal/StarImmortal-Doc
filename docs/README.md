@@ -29,17 +29,15 @@ tagline: 凡心所向，素履以往，生如逆旅，一苇以航
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 @import '/assets/font/font.css';
 
-.container {
-  .footer {
-    position: absolute;
-    bottom: 0;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    clear:both;
-    border-top: none;
-  }
+.footer {
+  position: absolute;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  clear:both;
+  border-top: none !important;
 }
 </style>
