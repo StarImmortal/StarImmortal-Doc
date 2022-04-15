@@ -1,3 +1,5 @@
+const highlight = require('./public/js/highlight')
+
 module.exports = {
   title: "StarImmortal",
   evergreen: false,
@@ -45,6 +47,12 @@ module.exports = {
       },
     ],
   ],
+  chainMarkdown (config) {
+    config
+      .options
+      .highlight(highlight)
+      .end()
+  },
   themeConfig: {
     docsDir: "docs",
     // 导航栏Logo
@@ -101,7 +109,7 @@ module.exports = {
             "operation/server-deployment",
             "operation/docker-server-deployment",
             "operation/docker",
-            "operation/gitlab"
+            "operation/gitlab",
           ],
         },
         {
@@ -109,7 +117,7 @@ module.exports = {
           children: [
             "/notes/basic/",
             "basic/development-tools",
-            "basic/idea",
+            "basic/shortcut-key",
             "basic/maven",
             "basic/data-structure",
             "basic/algorithm",
