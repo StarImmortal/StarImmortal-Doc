@@ -13,10 +13,6 @@
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.9.7",
     "@vuepress/plugin-medium-zoom": "^1.9.7",
-    "async-validator": "1.11.5",
-    "core-js": "^3.19.3",
-    "element-ui": "^2.15.6",
-    "jinrishici": "^1.0.6",
     "node-sass": "^5.0.0",
     "sass-loader": "10.1.0",
     "swiper": "^7.3.3",
