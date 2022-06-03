@@ -490,4 +490,14 @@ git push origin <标签名>
 git push --tags
 ```
 
+## DOS
+
+- 解决端口占用
+
+```bash
+netstat -ano | findstr 8081
+
+taskkill /F /PID 27520
+```
+
 <RightMenu />
