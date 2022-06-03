@@ -25,6 +25,7 @@ mv jdk1.8.0_221 /home/java/
 ```
 
 ### 配置环境变量
+
 ```bash
 vi /etc/profile
 
