@@ -1,8 +1,8 @@
 ---
-title: Nginx服务器
+title: Nginx
 ---
 
-# Nginx服务器
+# Nginx
 
 ## 常用命令
 
