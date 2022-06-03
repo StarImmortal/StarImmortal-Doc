@@ -7,7 +7,7 @@ tagline: 凡心所向，素履以往，生如逆旅，一苇以航
 <template>
     <div class="container">
         <div class="footer">
-          MIT Licensed | Copyright © 2021&nbsp;&nbsp;
+          MIT Licensed | Copyright © 2022&nbsp;&nbsp;
           <a
             href="http://www.beian.miit.gov.cn"
             target="_blank"
