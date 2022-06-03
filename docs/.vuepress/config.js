@@ -8,14 +8,22 @@ module.exports = {
   base: "/",
   dest: "./dist",
   head: [
+    [
+      'script', {}, `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?e99638603a0e17494686de24484ab5b3";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      `
+    ],
     ["link", { rel: "icon", href: "/favicon.ico" }],
     ["link", { rel: "manifest", href: "/manifest.json" }],
     ["meta", { name: "theme-color", content: "#3683d6" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
-    [
-      "meta",
-      { name: "apple-mobile-web-app-status-bar-style", content: "black" },
-    ],
+    ["meta", { name: "apple-mobile-web-app-status-bar-style", content: "black" }],
     ["link", { rel: "apple-touch-icon", href: "/favicon.ico" }],
     ["meta", { name: "msapplication-TileImage", content: "/favicon.ico" }],
     ["meta", { name: "msapplication-TileColor", content: "#3683d6" }],
@@ -46,6 +54,38 @@ module.exports = {
         },
       },
     ],
+    [
+      'copyright',
+      {
+        // 作者名称
+        authorName: 'StarImmortal团队',
+        // 触发剪贴板组件或 noCopy 效果的最小文本长度
+        minLength: 30
+      },
+    ],
+    [
+      'dynamic-title',
+      {
+        showIcon: '/favicon.ico',
+        showText: '客官欢迎回来~',
+        hideIcon: '/failure.ico',
+        hideText: '客官不要走嘛~',
+        recoverTime: 2000,
+      }
+    ],
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: {
+          message: '有新内容啦~',
+          buttonText: '刷新'
+        },
+        generateSWConfig: {
+          importWorkboxFrom: 'local'
+        }
+      }
+    ]
   ],
   chainMarkdown (config) {
     config
@@ -56,7 +96,7 @@ module.exports = {
   themeConfig: {
     docsDir: "docs",
     // 导航栏Logo
-    logo: "/assets/img/left-logo.png",
+    logo: "/assets/image/left-logo.png",
     // 页面滚动
     smoothScroll: true,
     // 导航栏
@@ -65,8 +105,6 @@ module.exports = {
       { text: "微信小程序", link: "/wechat/" },
       { text: "学习笔记", link: "/notes/" },
       { text: "常用命令", link: "/command/" },
-      { text: "奇技淫巧", link: "/skill/" },
-      { text: "常见问题", link: "/question/" },
       { text: "GitHub", link: "https://github.com/StarImmortal" },
     ],
     docsRepo: "StarImmortal/StarImmortal-Dos",
@@ -113,14 +151,42 @@ module.exports = {
           ],
         },
         {
+          title: "奇技淫巧",
+          children: [
+            "/notes/skill/",
+            "skill/github",
+            "skill/css",
+            "skill/javascript",
+            "skill/mysql",
+            "skill/spring-boot",
+            "skill/vue",
+            "skill/wechat-mini-program"
+          ],
+        },
+        {
+          title: "常见问题",
+          children: [
+            "/notes/question/",
+            "question/npm",
+            "question/yarn",
+            "question/maven",
+            "question/css",
+            "question/javascript",
+            "question/mysql",
+            "question/mybatis",
+            "question/spring-boot",
+            "question/wechat-mini-program"
+          ],
+        },
+        {
           title: "计算机基础",
           children: [
             "/notes/basic/",
             "basic/development-tools",
             "basic/shortcut-key",
-            "basic/maven",
             "basic/data-structure",
             "basic/algorithm",
+            "basic/regex"
           ],
         },
         {
@@ -137,6 +203,7 @@ module.exports = {
           title: "中间件",
           children: [
             "/notes/middleware/",
+            "middleware/maven",
             "middleware/nginx",
             "middleware/elasticsearch",
             "middleware/rocketmq"
