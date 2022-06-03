@@ -1,5 +1,5 @@
 ---
-title: 常用开发工具
+title: 开发工具
 ---
 
 # 常用开发工具
@@ -29,7 +29,7 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - Codota：代码提示工具
 - CamelCase：多种命名格式之间切换
 - Easy Code：代码生成插件
-- Free Mybatis plugin：Mybatis工具
+- MybatisX：Mybatis工具
 - Key Promoter X：快捷键
 - Lombok：代码注解插件
 - Leetcode Editor：LeetCode刷题插件
@@ -52,6 +52,7 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - Search In Repository：Maven查询工具
 - maven-search：Maven查询工具
 - VisualGC：可视化 Hotspot JVM 垃圾回收监控工具
+- Spring Boot Assistant：对Spring Boot配置文件的自动完成支持
 
 ## PyCharm
 
@@ -86,6 +87,7 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 ### 好用的插件~
 
 - Auto Rename Tag
+- Auto Close Tag
 - Bracket Pair Colorizer
 - Commit Tagger
 - CSS Peek
@@ -111,12 +113,18 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 - vscode-icons
 - Material Icon Theme
 - Vetur
-- Visual Studio IntelliCode
+- IntelliCode
 - vscode-styled-components
 - Iconify IntelliSense
 - I18n-ally
 - DotENV
 - Power Mode
+- LeetCode with labuladong
+- Stylelint
+- TODO Highlight
+- Highlight Matching Tag
+- Code Spell Checker
+- Version Lens
 
 ## Navicat Premium
 
