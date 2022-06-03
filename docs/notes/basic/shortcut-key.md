@@ -40,23 +40,56 @@ title: 快捷键
 32. 类或方法的跳转：按住<kbd>Ctrl</kbd> + 鼠标左键
 33. 代码生成：<kbd>Alt</kbd> + <kbd>Insert</kbd>
 34. 查看方法调用情况：<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>H</kbd>
-35. 执行到当前方法的下一句：Step Over（<kbd>F8</kbd>）
-36. 进入当前行调用的方法体里：Step Into（<kbd>F7</kbd>）
-37. 执行完当前的方法：Step Out（<kbd>Shift</kbd> + <kbd>F8</kbd>）
-38. 进入到 Jar包方法里或 JDK 自带的方法里：Force Step Into（<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>F7</kbd>）
-39. 运行到光标所在处：Run to Cursor（<kbd>Alt</kbd> + <kbd>F9</kbd>）
+35. 执行到当前方法的下一句：Step Over（ <kbd>F8</kbd> ）
+36. 进入当前行调用的方法体里：Step Into（ <kbd>F7</kbd> ）
+37. 执行完当前的方法：Step Out（ <kbd>Shift</kbd> + <kbd>F8</kbd> ）
+38. 进入到 Jar包方法里或 JDK 自带的方法里：Force Step Into（ <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>F7</kbd> ）
+39. 运行到光标所在处：Run to Cursor（ <kbd>Alt</kbd> + <kbd>F9</kbd> ）
 
-### Mac
+### MacOS
 
 1. 优化import：<kbd>⌃</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd>
 2. 格式化代码：<kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>L</kbd>
 3. 删除当前行：<kbd>⌘</kbd> + <kbd>delete</kbd>
 4. 复制当前行：<kbd>⌘</kbd> + <kbd>D</kbd>
-5. 查看浏览过的文件：<kbd>⌘</kbd> + <kbd>E</kbd>
-6. 选中下一个相同的内容：<kbd>⌃</kbd> + <kbd>G</kbd>
-7. 选中文件中所有相同个的内容：<kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>G</kbd>
-8. 大小写转换：<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd>
-9. 跳过一个词：<kbd>⌥</kbd> + <kbd>左/右</kbd>
-10. 选中一个词：<kbd>⌥</kbd> + <kbd>Shift</kbd> + <kbd>左/右</kbd>
+5. 选中整行：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>左/右</kbd>
+6. 查看浏览过的文件：<kbd>⌘</kbd> + <kbd>E</kbd>
+7. 选中下一个相同的内容：<kbd>⌃</kbd> + <kbd>G</kbd>
+8. 选中文件中所有相同个的内容：<kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>G</kbd>
+9. 大小写转换：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>U</kbd>
+10. 跳过一个词：<kbd>⌥</kbd> + <kbd>左/右</kbd>
+11. 选中一个词：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>左/右</kbd>
+12. 跳转行头/行尾：<kbd>⌘</kbd> + <kbd>左/右</kbd>
+13. 向前删除：<kbd>fn</kbd> + <kbd>delete</kbd>
+14. 删除单词：<kbd>⌥</kbd> + <kbd>deletes</kbd>
+
+## Visual Studio Code
+
+### MacOS
+
+1. 代码格式化：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>F</kbd>
+2. 选中下一个相同的内容：<kbd>⌘</kbd> + <kbd>D</kbd>
+3. 删除整行：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>K</kbd>
+4. 向上移动行：<kbd>⌥</kbd> + <kbd>↑</kbd>
+5. 向下移动行：<kbd>⌥</kbd> + <kbd>↓</kbd>
+6. 向上复制行：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>↑</kbd>
+7. 向下复制行：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>↓</kbd>
+8. 下一行插入：<kbd>⌘</kbd> + <kbd>enter</kbd>
+9.  上一行插入：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>enter</kbd>
+10. 折叠代码块：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>[</kbd>
+11. 展开代码块：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>]</kbd>
+12. 显示命令版：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>P</kbd>
+
+## MacOS Monterey
+
+1. 复制：<kbd>⌘</kbd> + <kbd>D</kbd>
+2. 拷贝：<kbd>⌘</kbd> + <kbd>C</kbd>
+3. 粘贴：<kbd>⌘</kbd> + <kbd>V</kbd>
+4. 剪切（针对文本）：<kbd>⌘</kbd> + <kbd>X</kbd>
+5. 剪切（针对文件）：（ <kbd>⌘</kbd> + <kbd>C</kbd> ） + （ <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>V</kbd> ）
+6. 捕获整个屏幕：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>3</kbd>
+7. 捕获所选部分：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>4</kbd>
+8. 捕获所选窗口：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>4</kbd> + <kbd>空格</kbd>
+9. 聚焦搜索：<kbd>⌘</kbd> + <kbd>空格</kbd>
 
 <right-menu />
