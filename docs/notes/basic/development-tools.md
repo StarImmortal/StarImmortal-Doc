@@ -25,7 +25,7 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 
 - Alibaba Java Coding Guidelines：阿里巴巴的编码规约检查插件
 - Background Image Plus：IDEA背景修改插件
-- CodeGlance：代码迷你缩放图插件
+- CodeGlance Pro：代码迷你缩放图插件
 - Codota：代码提示工具
 - CamelCase：多种命名格式之间切换
 - Easy Code：代码生成插件
@@ -39,7 +39,7 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - Translation：翻译插件
 - Material Theme UI：主题美化插件
 - Solarized Themes：主题美化插件
-- One Dark Theme
+- One Dark Theme：主题美化插件
 - Atom Material Icons：图标插件
 - Git Commit Template：Git提交模版插件
 - GitToolBox：Git提交记录插件
@@ -53,6 +53,8 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 - maven-search：Maven查询工具
 - VisualGC：可视化 Hotspot JVM 垃圾回收监控工具
 - Spring Boot Assistant：对Spring Boot配置文件的自动完成支持
+- String Manipulation：操控字符串
+- .ignore：版本管理工具的忽略文件插件
 
 ## PyCharm
 
@@ -73,6 +75,26 @@ WebStorm 是JetBrains公司旗下一款JavaScript 开发工具。已经被广大
 :::
 
 ![软件截图](https://www.jetbrains.com/webstorm/img/screenshots/webstorm-main.png)
+
+### 好用的插件~
+
+- CodeGlance Pro：代码迷你缩放图插件
+- Codota：代码提示工具
+- CamelCase：多种命名格式之间切换
+- Key Promoter X：快捷键
+- Rainbow Brackets：彩虹括号插件
+- Translation：翻译插件
+- Solarized Themes：主题美化插件
+- Atom Material Icons：图标插件
+- Git Commit Template：Git提交模版插件
+- GitToolBox：Git提交记录插件
+- AceJump：光标快速定位
+- .env files support：配置文件支持
+- Import Cost：显示引入的包体积大小
+- IntelliVue：Vue功能增强
+- WeChat weapp Support：微信小程序增强
+- Wechat mini program support：微信小程序增强
+- .ignore：版本管理工具的忽略文件插件
 
 ## Visual Studio Code
 
