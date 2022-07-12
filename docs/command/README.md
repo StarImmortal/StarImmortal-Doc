@@ -140,30 +140,6 @@ java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 
 
 ## Git
 
-### 连接远程仓库
-
-- 创建SSH KEY
-
-  ```bash
-  ssh-keygen -t rsa -C "email"
-  ```
-
-- 测试是否连接成功
-
-  ```bash
-  ssh -T git@github.com
-   
-  ssh -T git@gitee.com
-  ```
-
-### 初始化用户名和邮箱
-
-```bash
-git config --global user.name "username"
-
-git config --global user.email "email"
-```
-
 ### 查看所有配置
 
 ```bash
@@ -292,6 +268,12 @@ git log --oneline --graph
 git blame <file>
 ```
 
+- 显示所有操作记录
+
+```bash
+git reflog
+```
+
 ### 撤销
 
 - 撤销工作目录中所有未提交文件的修改内容
@@ -309,7 +291,7 @@ git reset HEAD <file>
 - 回退指定的版本
 
 ```bash
-git reset --hard <commit版本号
+git reset --hard <commit版本号>
 ```
 
 - 回退上一个版本
@@ -359,7 +341,7 @@ git branch <new-branch>
 - 创建并直接切换分支
 
 ```bash
-git branch -b <new-branch>
+git checkout -b <new-branch>
 ```
 
 - 删除本地分支
@@ -416,7 +398,31 @@ git merge --abort
 
 - 手动删除特殊符号
 
-### 远程操作
+### 配置远程仓库
+
+- 创建SSH KEY
+
+```bash
+ssh-keygen -t rsa -C "email"
+```
+
+- 测试是否连接成功
+
+```bash
+ssh -T git@github.com
+  
+ssh -T git@gitee.com
+```
+
+- 初始化用户名和邮箱
+
+```bash
+git config --global user.name "username"
+
+git config --global user.email "email"
+```
+
+### 远程仓库操作
 
 - 查看远程版本库信息
 
