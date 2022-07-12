@@ -92,4 +92,9 @@ title: 快捷键
 8. 捕获所选窗口：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>4</kbd> + <kbd>空格</kbd>
 9. 聚焦搜索：<kbd>⌘</kbd> + <kbd>空格</kbd>
 
+## Terminal
+
+1. 跳转首行：<kbd>⌃</kbd> + <kbd>A</kbd>
+2. 跳转行尾：<kbd>⌃</kbd> + <kbd>E</kbd>
+
 <right-menu />
