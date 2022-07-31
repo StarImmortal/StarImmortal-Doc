@@ -10,7 +10,7 @@ title: Docker容器
 >
 > 容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。
 
-## Docker环境安装
+## 安装
 
 ```bash
 # step 1: 更新yum
@@ -25,7 +25,7 @@ yum makecache fast
 yum -y install docker-ce
 ```
 
-## 配置Docker加速器
+## 配置加速器
 
 ```bash
 sudo mkdir -p /etc/docker
@@ -38,107 +38,145 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-## Docker常用命令
+## 常用命令
 
-- 启动Docker：
+### 基础命令
 
-  ```bash
-  service docker start
-  ```
-
-- 关闭Docker：
-
-  ```bash
-  service docker stop
-  ```
-
-- 重启Docker：
-
-  ```bash
-  service docker restart
-  ```
-
-## Docker镜像常用命令
-
-### 搜索镜像
+- 启动Docker
 
 ```bash
-docker search java
+service docker start
 ```
 
-### 下载镜像
+- 关闭Docker
 
 ```bash
-docker pull java:8
+service docker stop
 ```
 
-### 列出镜像
+- 重启Docker
+
+```bash
+service docker restart
+```
+
+- 开机自启
+
+```bash
+systemctl enable docker
+```
+
+- 查看运行状态
+
+```bash
+systemctl status docker
+```
+
+- 查看版本信息
+
+```bash
+docker version
+```
+
+```bash
+docker info
+```
+
+- 帮助命令
+
+```bash
+docker <command> --help
+```
+
+### 镜像命令
+
+#### 搜索镜像
+
+```bash
+docker search <image>
+```
+
+#### 拉取镜像
+
+```bash
+# 拉取最新版本
+docker pull <image>
+
+# 指定版本号拉取
+docker pull <image>:<tag>
+```
+
+#### 列出镜像
 
 ```bash
 docker images
 ```
 
-### 删除镜像
+#### 删除镜像
 
-- 指定名称删除镜像：
-
-```bash
-docker rmi java:8
-```
-
-- 指定名称删除镜像（强制）：
+- 指定名称删除镜像
 
 ```bash
-docker rmi -f java:8
+docker rmi <image>:<tag>
 ```
 
-- 删除所有没有引用的镜像：
+- 指定名称删除镜像（强制）
+
+```bash
+docker rmi -f <image>:<tag>
+```
+
+- 删除所有没有引用的镜像
 
 ```bash
 docker rmi `docker images | grep none | awk '{print $3}'`
 ```
 
-- 强制删除所有镜像：
+- 强制删除所有镜像
 
 ```bash
 docker rmi -f $(docker images)
 ```
 
-### 重命名镜像
+#### 镜像标签
 
 ```bash
-docker tag
+docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
 ```
 
-### 导入导出镜像
+#### 导出镜像
 
 ```bash
-docker save docker.io/java > /home/java.tar.gz
-
-docker load < /home/java.tar.gz
+docker save docker.io/java -o /home/java.tar.gz
 ```
 
-### 打包镜像
+#### 导入镜像
+
+```bash
+docker load -i /home/java.tar.gz
+```
+
+#### 打包镜像
 
 ```bash
 # -t 表示指定镜像仓库名称/镜像名称:镜像标签 .表示使用当前目录下的Dockerfile文件
-docker build -t burning-sun:1.0.0-SNAPSHOT .
+docker build -t 镜像仓库名称/镜像名称:镜像标签 .
 ```
 
-### 推送镜像
+#### 推送镜像
 
 ```bash
 # 登录Docker Hub
 docker login
 # 给本地镜像打标签为远程仓库名称
-docker tag burning-sun:1.0.0-SNAPSHOT immortal/burning-sun:1.0.0-SNAPSHOT
+docker tag 镜像仓库名称/镜像名称:镜像标签 远程仓库名称/镜像名称:镜像标签
 # 推送到远程仓库
-docker push immortal/burning-sun:1.0.0-SNAPSHOT
+docker push 远程仓库名称/镜像名称:镜像标签
 ```
 
-## Docker容器常用命令
+### 容器命令
 
-### 新建并启动容器
+#### 新建并启动容器
 
 ```bash
 docker run -p 80:80 --name nginx \
@@ -153,122 +191,117 @@ docker run -p 80:80 --name nginx \
 - -v：将宿主机上的文件挂载到宿主机上，格式为：宿主机文件目录:容器文件目录；
 - -d：表示容器以后台方式运行。
 
-### 列出容器
+#### 列出容器
 
-- 列出运行中的容器：
-
-  ```bash
-  docker ps
-  ```
-
-- 列出所有容器：
-
-  ```bash
-  docker ps -a
-  ```
-
-### 停止容器
-
-注意：`$ContainerName`表示容器名称，`$ContainerId`表示容器ID，可以使用容器名称的命令，基本也支持使用容器ID，比如下面的停止容器命令。
+- 列出运行中的容器
 
 ```bash
-docker stop $ContainerName(or $ContainerId)
+docker ps
 ```
 
-例如：
+- 列出所有容器
 
 ```bash
-docker stop nginx
-#或者
-docker stop c5f5d5125587
+docker ps -a
 ```
 
-### 强制停止容器
+#### 停止容器
+
+```bash
+docker stop $ContainerName/$ContainerId
+```
+
+:::tip
+注意：`$ContainerName`表示容器名称，`$ContainerId`表示容器ID
+:::
+
+#### 强制停止容器
 
 ```bash
 docker kill $ContainerName
 ```
 
-### 启动容器
+#### 启动容器
 
 ```bash
 docker start $ContainerName
 ```
 
-### 进入容器
+#### 进入容器
 
-- 先查询出容器的`pid`：
+- 先查询容器`pid`
 
-  ```bash
-  docker ps -a
-  ```
+```bash
+docker ps -a
+```
 
-- 根据容器的pid进入容器：
+- 根据`pid`进入容器
 
-  ```bash
-  docker exec -it $pid" bash
-  ```
+```bash
+docker exec -it $pid" bash
+```
 
-### 删除容器
+#### 删除容器
 
-- 删除指定容器：
+- 删除指定容器
 
-    ```bash
-    docker rm $ContainerName
-    ```
+```bash
+docker rm $ContainerName
+```
 
-- 按名称通配符删除容器，比如删除以名称`mall-`开头的容器：
+- 按名称通配符删除容器，比如删除以名称`starimmortal-`开头的容器
 
-    ```bash
-    docker rm `docker ps -a | grep mall-* | awk '{print $1}'`
-    ```
+```bash
+docker rm `docker ps -a | grep starimmortal-* | awk '{print $1}'`
+```
 
-- 强制删除所有容器；
+- 强制删除所有容器
 
-    ```bash
-    docker rm -f $(docker ps -a -q)
-    ```
+```bash
+docker rm -f $(docker ps -a -q)
+```
 
-### 查看容器的日志
+#### 查看容器日志
 
-- 查看容器产生的全部日志：
+- 查看全部日志
 
-    ```bash
-    docker logs $ContainerName
-    ```
+```bash
+docker logs $ContainerName
+```
 
-- 动态查看容器产生的日志：
+- 动态查看日志
 
-  ```bash
-  docker logs -f $ContainerName
-  ```
+```bash
+docker logs -f $ContainerName
+```
 
-- 指定时间：
+- 指定时间查看日志
 
-  ```bash
-  docker logs -t --since="2021-01-07T13:23:37" $ContainerName
-  ```
+```bash
+docker logs -t --since="2021-01-07T13:23:37" $ContainerName
+```
 
-### 查看容器的IP地址
+#### 查看容器IP地址
 
 ```bash
 docker inspect --format '{{ .NetworkSettings.IPAddress }}' $ContainerName
 ```
 
-### 修改容器的启动方式
+#### 修改容器启动方式
 
 ```bash
 # 将容器启动方式改为always
+
 docker container update --restart=always $ContainerName
 ```
 
-### 同步宿主机时间到容器
+#### 同步宿主机时间到容器
 
 ```bash
 docker cp /etc/localtime $ContainerName:/etc/
 ```
 
-### 指定容器时区
+#### 指定容器时区
 
 ```bash
 docker run -p 80:80 --name nginx \
@@ -276,46 +309,46 @@ docker run -p 80:80 --name nginx \
 -d nginx:1.17.0
 ```
 
-### 查看容器资源占用状况
+#### 查看容器资源占用状况
 
-- 查看指定容器资源占用状况，比如cpu、内存、网络、io状态：
+- 查看指定容器资源占用状况，比如cpu、内存、网络、io状态
 
-  ```bash
-  docker stats $ContainerName
-  ```
+```bash
+docker stats $ContainerName
+```
 
-- 查看所有容器资源占用情况：
+- 查看所有容器资源占用情况
 
-  ```bash
-  docker stats -a
-  ```
+```bash
+docker stats -a
+```
 
-### 查看容器磁盘使用情况
+#### 查看容器磁盘使用情况
 
 ```bash
 docker system df
 ```
 
-### 指定账号进入容器内部
+#### 指定账号进入容器内部
 
 ```bash
 # 使用root账号进入容器内部
 docker exec -it --user root $ContainerName /bin/bash
 ```
 
-### 查看所有网络
+#### 查看所有网络
 
 ```bash
 docker network ls
 ```
 
-### 创建外部网络
+#### 创建外部网络
 
 ```bash
 docker network create -d bridge my-bridge-network
 ```
 
-### 指定容器网络
+#### 指定容器网络
 
 ```bash
 docker run -p 80:80 --name nginx \
@@ -323,57 +356,57 @@ docker run -p 80:80 --name nginx \
 -d nginx:1.17.0Copy to clipboardErrorCopied
 ```
 
-## 修改镜像的存放位置
+## 修改镜像存放位置
 
-- 查看Docker镜像的存放位置：
+- 查看Docker镜像的存放位置
 
-  ```bash
-  docker info | grep "Docker Root Dir"
-  ```
+```bash
+docker info | grep "Docker Root Dir"
+```
 
-- 关闭Docker服务：
+- 关闭Docker服务
 
-  ```bash
-  systemctl stop docker
-  ```
+```bash
+systemctl stop docker
+```
 
-- 先将原镜像目录移动到目标目录：
+- 先将原镜像目录移动到目标目录
 
-  ```bash
-  mv /var/lib/docker /mydata/docker
-  ```
+```bash
+mv /var/lib/docker /mydata/docker
+```
 
-- 建立软连接：
+- 建立软连接
 
-  ```bash
-  ln -s /mydata/docker /var/lib/docker
-  ```
+```bash
+ln -s /mydata/docker /var/lib/docker
+```
 
-## Docker容器清理
+## 容器清理
 
-- 查看Docker占用的磁盘空间情况：
+- 查看Docker占用的磁盘空间情况
 
-  ```bash
-  docker system df
-  ```
+```bash
+docker system df
+```
 
-- 删除所有关闭的容器：
+- 删除所有关闭的容器
 
-  ```bash
-  docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm
-  ```
+```bash
+docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm
+```
 
-- 删除所有`dangling`镜像(没有Tag的镜像)：
+- 删除所有`dangling`镜像(没有Tag的镜像)
 
-  ```bash
-  docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
-  ```
+```bash
+docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+```
 
-- 删除所有`dangling`数据卷(即无用的 volume)：
+- 删除所有`dangling`数据卷(即无用的volume)
 
-  ```bash
-  docker volume rm $(docker volume ls -qf dangling=true)
-  ```
+```bash
+docker volume rm $(docker volume ls -qf dangling=true)
+```
 
 ## 基于TLS的安全访问
 
@@ -462,91 +495,91 @@ bash /home/auto-tls-certs.sh
 
 - 用vim编辑器修改docker.service文件
 
-  ```bash
-  vi /usr/lib/systemd/system/docker.service
-  ```
+```bash
+vi /usr/lib/systemd/system/docker.service
+```
 
 - 修改以`ExecStart`开头的配置，开启TLS认证，并配置好CA证书、服务端证书和服务端私钥，修改内容如下：
 
-  ```bash
-  ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock --tlsverify --tlscacert=/home/docker-ca/ca.pem --tlscert=/home/docker-ca/server-cert.pem --tlskey=/home/docker-ca/server-key.pem
-  ```
+```bash
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock --tlsverify --tlscacert=/home/docker-ca/ca.pem --tlscert=/home/docker-ca/server-cert.pem --tlskey=/home/docker-ca/server-key.pem
+```
 
 - 重启Docker服务
 
-  ```bash
-  systemctl daemon-reload && systemctl restart docker
-  ```
+```bash
+systemctl daemon-reload && systemctl restart docker
+```
 
 ## 搭建私有仓库
 
 - 安装
 
-  ```bash
-  docker pull registry:2
-  ```
+```bash
+docker pull registry:2
+```
 
 - 让Docker支持http上传镜像
 
-  ```bash
-  vi /etc/docker/daemon.json
-  
-  "insecure-registries":["服务器ip地址:5000"]
-  ```
+```bash
+vi /etc/docker/daemon.json
+
+"insecure-registries":["服务器ip地址:5000"]
+```
 
 - 重启Docker服务
 
-  ```bash
-  systemctl daemon-reload && systemctl restart docker
-  ```
+```bash
+systemctl daemon-reload && systemctl restart docker
+```
 
 - 运行
 
-  ```bash
-  docker run -d -p 5000:5000 --restart=always --name registry2 registry:2
-  ```
+```bash
+docker run -d -p 5000:5000 --restart=always --name registry2 registry:2
+```
 
 - 修改配置文件（使之能删除镜像）
 
-  ```bash
-  docker exec -it 容器ID vi /etc/docker/registry/config.yml
-  ```
+```bash
+docker exec -it 容器ID vi /etc/docker/registry/config.yml
+```
 
-  :::tip
-  增加`delete段`，将`enabled`设置为`true`
-  :::
+:::tip
+增加`delete段`，将`enabled`设置为`true`
+:::
 
-  ![配置文件](https://z3.ax1x.com/2021/08/22/hp4m79.png)
+![配置文件](https://z3.ax1x.com/2021/08/22/hp4m79.png)
 
 - 重启容器
   
-  ```bash
-  docker restart registry2
-  ```
+```bash
+docker restart registry2
+```
 
 - 访问私有仓库
 
-  ```bash
-  http://ip地址:5000/v2/_catalog
-  ```
+```bash
+http://ip地址:5000/v2/_catalog
+```
 
 - 删除镜像
 
-  :::tip
-  通过命令行获取镜像对应sha256值：
+:::tip
+通过命令行获取镜像对应sha256值：
 
-  curl --header "Accept: application/vnd.docker.distribution.manifest.v2+json" -I -X GET http://私有仓库地址/v2/镜像名称/manifests/镜像版本
-  :::
-  
-  ```bash
-  curl -I -X DELETE 私有仓库地址:5000/v2/镜像名称/manifests/sha256:镜像对应sha256值
+curl --header "Accept: application/vnd.docker.distribution.manifest.v2+json" -I -X GET http://私有仓库地址/v2/镜像名称/manifests/镜像版本
+:::
 
-  docker exec -it registry2 sh
+```bash
+curl -I -X DELETE 私有仓库地址:5000/v2/镜像名称/manifests/sha256:镜像对应sha256值
 
-  rm -rf /var/lib/registry/docker/registry/v2/repositories/镜像名称
+docker exec -it registry2 sh
 
-  exit
-  ```
+rm -rf /var/lib/registry/docker/registry/v2/repositories/镜像名称
+
+exit
+```
 
 ## 私有仓库可视化
 
