@@ -71,6 +71,30 @@ display: flex;
 }
 ```
 
+## 文本两端对齐
+
+1. 方法一：利用伪类`after`新增一行，使该⾏⽂本不是最后⼀⾏
+
+```css
+view:after {
+  width: 100%;
+  height: 0;
+  display: inline-block;
+  content: '';
+}
+```
+
+2. 方法二：利用`text-align-last: justify;`属性实现最后⼀⾏的⽂本对齐（⼩程序兼容）
+
+```css
+view {
+  width: 20%;
+  display: inline-block;
+  text-align: justify;
+  text-align-last: justify;
+}
+```
+
 ## uni-app 改变页面背景色
 
 全局背景颜色设置方式：
