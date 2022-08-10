@@ -110,7 +110,6 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 
 - Auto Rename Tag
 - Auto Close Tag
-- Bracket Pair Colorizer
 - Commit Tagger
 - CSS Peek
 - Chinese (Simplified) Language Pack for Visual Studio Code
@@ -124,7 +123,6 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 - language-stylus
 - Markdown PDF
 - Markdown All in One
-- npm
 - Prettier
 - Polacode
 - React Native Tools
@@ -147,6 +145,7 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 - Highlight Matching Tag
 - Code Spell Checker
 - Version Lens
+- Vue Language Features (Volar)
 
 ## Navicat Premium
 
