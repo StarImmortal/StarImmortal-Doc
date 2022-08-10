@@ -179,4 +179,24 @@ TextToCode['北京市']['市辖区']['朝阳区'].code = 110105
 
 ### 在线演示地址](https://plortinus.github.io/element-china-area-data/index.html)
 
+## 获取视屏时长
+
+```js
+getVideoDuration(file){
+  return new Promise((resolve,reject)=>{
+    const url = URL.createObjectURL(file)
+    const audioElement = new Audio(url)
+    audioElement.addEventListener("loadedmetadata",() => {
+      const duration = parseInt(audioElement.duration)
+      if(duration > this.duration){
+        this.$message.warning('仅支持20秒以内的视频哦')
+        this.uploadGoOn=false
+        reject()
+      }
+      resolve()
+    })
+  })
+},
+```
+
 <RightMenu />
