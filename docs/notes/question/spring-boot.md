@@ -182,7 +182,7 @@ public class TestController {
 
 ![多例模式](https://s1.ax1x.com/2022/06/01/XJUlPf.png)
 
-## 解决 SpringBoot 在 JDK8 中 LocalDateTime (反)序列化问题
+## 解决 Spring Boot 在 JDK8 中 LocalDateTime (反)序列化问题
 
 ### 问题复现
 
@@ -217,5 +217,21 @@ Java 8 date/time type `java.time.LocalDateTime` not supported by default:
 例如：
 
 ![示例代码](https://img-blog.csdnimg.cn/52bc52bac63e47f98c08c311f78c074d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lq65Lq66YO95Zyo5Y-R5aWL,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+## 解决 Spring Boot 使用 Actuator 404问题
+
+问题原因：Spring Boot 2.0 中的端点和之前的版本有较大不同，默认只开放了info、health两个端点。
+
+剩余的需要通过配置`management.endpoints.web.exposure.include`属性来开启：
+
+```yml
+# 开启所有端点
+management:
+  endpoints:
+    web:
+      # 自定义端点
+      exposure:
+        include: "*"
+```
 
 <RightMenu />
