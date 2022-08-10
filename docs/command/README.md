@@ -39,7 +39,7 @@ npm config get registry
 
 npm config set registry https://registry.npmmirror.com/
 
-npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+npm config set sass_binary_site https://registry.npmmirror.com/-/binary/node-sass
 
 npm install -g cnpm --registry=https://registry.npmmirror.com/（使用淘宝NPM镜像）
 ```
@@ -61,15 +61,13 @@ yarn list
 
 yarn remove <package...>（移除）
 
-yarn run start（启动项目）
+yarn config set registry https://registry.npmmirror.com --global
 
-yarn config set registry https://registry.npm.taobao.org --global
-
-yarn config set disturl https://npm.taobao.org/dist --global
+yarn config set sass_binary_site https://registry.npmmirror.com/-/binary/node-sass --global
 
 yarn config set prefix（改变 yarn bin位置）
 
-yarn config  set global-folder "你的磁盘路径"（改变 yarn 全局安装位置）
+yarn config set global-folder "你的磁盘路径"（改变 yarn 全局安装位置）
 
 yarn config set cache-folder "你的磁盘路径"（改变 yarn 缓存位置）
 ```
