@@ -8,9 +8,11 @@ title: Spring Boot
 
 ## Cause: java.lang.IllegalArgumentException: argument type mismatch
 
-错误信息：nested exception is org.apache.ibatis.reflection.ReflectionException: Error instantiating class * with invalid types (*) or values (*). Cause: java.lang.IllegalArgumentException: argument type mismatch
+:::danger
+nested exception is org.apache.ibatis.reflection.ReflectionException: Error instantiating class * with invalid types (*) or values (*). Cause: java.lang.IllegalArgumentException: argument type mismatch
+:::
 
-错误原因：
+### 错误原因
 
 1. @Data 和 @Builder 导致无参构造丢失
 
@@ -21,7 +23,11 @@ title: Spring Boot
 @Data和@Builder同时使用：没有了默认的构造方法。如果手动添加无参数构造方法或者用@NoArgsConstructor注解都会报错！
 :::
 
-解决方法：使用`@Builder`注解，最简单的方法就是直接写上以下4个注解：
+2. @Builder 注解导致默认值无效
+
+### 解决方法
+
+1. 使用`@Builder`注解，最简单的方法就是直接写上以下4个注解：
 
 ```java
 @Data
@@ -30,17 +36,19 @@ title: Spring Boot
 @NoArgsConstructor
 ```
 
-2. @Builder 注解导致默认值无效
-
-解决方法：在默认值上，加上`@Builder.Default`注解
+2. 在默认值上，加上`@Builder.Default`注解
 
 ## com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field
 
-错误信息：Exception in thread "main" com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "age" (class com.daling.bpmn.test.User), not marked as ignorable (3 known properties: "id", "name", "flag"])
+:::danger
+Exception in thread "main" com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "age" (class com.daling.bpmn.test.User), not marked as ignorable (3 known properties: "id", "name", "flag"])
+:::
 
-错误原因：反序列化时，遇到未知属性
+### 错误原因
 
-解决方案：
+反序列化时，遇到未知属性
+
+### 解决方案
 
 - 添加注解：@JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -121,7 +129,7 @@ public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
 
 ## EasyExcel读取的数据全为null
 
-原因：项目使用了`Lombok`并且还加了`@Accessors(chain = true)`链式注解，与EasyExcel冲突
+问题原因：项目使用了`Lombok`并且还加了`@Accessors(chain = true)`链式注解，与EasyExcel冲突
 
 解决方案：删除`@Accessors(chain = true)`链式注解
 
@@ -182,18 +190,13 @@ public class TestController {
 
 ![多例模式](https://s1.ax1x.com/2022/06/01/XJUlPf.png)
 
-## 解决 Spring Boot 在 JDK8 中 LocalDateTime (反)序列化问题
+## 解决 Spring Boot 在 JDK8 中 LocalDateTime （反）序列化问题
 
-### 问题复现
-
-```java
-Java 8 date/time type `java.time.LocalDateTime` not supported by default:
- add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling....
-```
+:::danger
+Java 8 date/time type `java.time.LocalDateTime` not supported by default:add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling....
+:::
 
 在默认情况下Java 8不支持`LocalDateTime`需要添加`com.fasterxml.jackson.datatype:jackson-datatype-jsr310`依赖
-
-原因：没有添加序列化和反序列化器
 
 ### 解决方案
 
@@ -203,7 +206,7 @@ Java 8 date/time type `java.time.LocalDateTime` not supported by default:
 <dependency>
     <groupId>com.fasterxml.jackson.datatype</groupId>
     <artifactId>jackson-datatype-jsr310</artifactId>
-    <version>2.13.0</version>
+    <version>2.13.3</version>
 </dependency>
 ```
 
