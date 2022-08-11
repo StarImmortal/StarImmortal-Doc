@@ -504,4 +504,75 @@ netstat -ano | findstr 8081
 taskkill /F /PID 27520
 ```
 
+## BREW
+
+- 搜索
+
+```bash
+brew search <package>
+```
+
+- 查询
+
+```bash
+# 显示安装包数量，文件数量，和总占用空间
+brew info
+
+# 查看具体信息及依赖关系当前版本注意事项等
+brew info <package>
+```
+
+- 列出已安装的包
+
+```bash
+brew list
+```
+
+- 安装
+
+```bash
+brew install <package>
+```
+
+- 卸载
+
+```bash
+brew remove <package>
+```
+
+- 更新 Homebrew
+
+```bash
+brew update
+```
+
+- 查看是否需要更新安装包
+
+```bash
+brew outdated
+```
+
+- 更新安装包
+
+```bash
+# 更新所有安装包
+brew upgrade
+
+# 更新指定安装包
+brew upgrade <package>
+```
+
+- 清理旧版本
+
+```bash
+# 清理所有包的旧版本及其安装缓存
+brew cleanup
+
+# 清理指定包的旧版本
+brew cleanup <package>
+
+# 查看可清理的旧版本包，不执行实际操作
+brew cleanup -n
+```
+
 <RightMenu />
