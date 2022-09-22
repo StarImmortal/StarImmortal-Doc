@@ -2,7 +2,7 @@
 title: 开发工具
 ---
 
-# 常用开发工具
+# 开发工具
 
 ## IntelliJ IDEA
 
@@ -23,38 +23,39 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 [下载地址](https://plugins.jetbrains.com/)
 :::
 
-- Alibaba Java Coding Guidelines：阿里巴巴的编码规约检查插件
-- Background Image Plus：IDEA背景修改插件
-- CodeGlance Pro：代码迷你缩放图插件
-- Codota：代码提示工具
-- CamelCase：多种命名格式之间切换
-- Easy Code：代码生成插件
-- MybatisX：Mybatis工具
-- Key Promoter X：快捷键
-- Lombok：代码注解插件
-- Leetcode Editor：LeetCode刷题插件
-- Rainbow Brackets：彩虹括号插件
-- RESTfultoolkit：专为RESTful服务开发而设计的插件
-- Statistic：项目信息统计
-- Translation：翻译插件
-- Material Theme UI：主题美化插件
-- Solarized Themes：主题美化插件
-- One Dark Theme：主题美化插件
-- Atom Material Icons：图标插件
-- Git Commit Template：Git提交模版插件
-- GitToolBox：Git提交记录插件
-- Maven Helper：Maven辅助工具
-- GsonFormatPlus：JSON转领域对象工具
-- POJO TO Json：领域对象转JSON工具
-- GenerateAllSetter：生成对象set方法
-- File Expander：文件查看工具
-- arthas idea：Java在线诊断工具
-- Search In Repository：Maven查询工具
-- maven-search：Maven查询工具
-- VisualGC：可视化 Hotspot JVM 垃圾回收监控工具
-- Spring Boot Assistant：对Spring Boot配置文件的自动完成支持
-- String Manipulation：操控字符串
-- .ignore：版本管理工具的忽略文件插件
++ Alibaba Java Coding Guidelines：阿里巴巴的编码规约检查插件
++ Background Image Plus：IDEA背景修改插件
++ CodeGlance Pro：代码迷你缩放图插件
++ Codota：代码提示工具
++ CamelCase：多种命名格式之间切换
++ Easy Code：代码生成插件
++ MybatisX：Mybatis工具
++ Key Promoter X：快捷键
++ Lombok：代码注解插件
++ Leetcode Editor：LeetCode刷题插件
++ Rainbow Brackets：彩虹括号插件
++ RESTfultoolkit：专为RESTful服务开发而设计的插件
++ Statistic：项目信息统计
++ Translation：翻译插件
++ Material Theme UI：主题美化插件
++ Solarized Themes：主题美化插件
++ One Dark Theme：主题美化插件
++ Atom Material Icons：图标插件
++ Git Commit Template：Git提交模版插件
++ GitToolBox：Git提交记录插件
++ Maven Helper：Maven辅助工具
++ GsonFormatPlus：JSON转领域对象工具
++ POJO TO Json：领域对象转JSON工具
++ GenerateAllSetter：生成对象set方法
++ File Expander：文件查看工具
++ arthas idea：Java在线诊断工具
++ Search In Repository：Maven查询工具
++ maven-search：Maven查询工具
++ VisualGC：可视化 Hotspot JVM 垃圾回收监控工具
++ Spring Boot Assistant：对Spring Boot配置文件的自动完成支持
++ String Manipulation：操控字符串
++ .ignore：版本管理工具的忽略文件插件
++ Show Comment：显示文档注释
 
 ## PyCharm
 
@@ -78,23 +79,24 @@ WebStorm 是JetBrains公司旗下一款JavaScript 开发工具。已经被广大
 
 ### 好用的插件~
 
-- CodeGlance Pro：代码迷你缩放图插件
-- Codota：代码提示工具
-- CamelCase：多种命名格式之间切换
-- Key Promoter X：快捷键
-- Rainbow Brackets：彩虹括号插件
-- Translation：翻译插件
-- Solarized Themes：主题美化插件
-- Atom Material Icons：图标插件
-- Git Commit Template：Git提交模版插件
-- GitToolBox：Git提交记录插件
-- AceJump：光标快速定位
-- .env files support：配置文件支持
-- Import Cost：显示引入的包体积大小
-- IntelliVue：Vue功能增强
-- WeChat weapp Support：微信小程序增强
-- Wechat mini program support：微信小程序增强
-- .ignore：版本管理工具的忽略文件插件
++ CodeGlance Pro：代码迷你缩放图插件
++ Codota：代码提示工具
++ CamelCase：多种命名格式之间切换
++ Key Promoter X：快捷键
++ Rainbow Brackets：彩虹括号插件
++ Translation：翻译插件
++ Solarized Themes：主题美化插件
++ Atom Material Icons：图标插件
++ Git Commit Template：Git提交模版插件
++ GitToolBox：Git提交记录插件
++ AceJump：光标快速定位
++ .env files support：配置文件支持
++ Import Cost：显示引入的包体积大小
++ IntelliVue：Vue功能增强
++ WeChat weapp Support：微信小程序增强
++ Wechat mini program support：微信小程序增强
++ .ignore：版本管理工具的忽略文件插件
++ Show Comment：显示文档注释
 
 ## Visual Studio Code
 
@@ -108,44 +110,47 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 
 ### 好用的插件~
 
-- Auto Rename Tag
-- Auto Close Tag
-- Commit Tagger
-- CSS Peek
-- Chinese (Simplified) Language Pack for Visual Studio Code
-- Debugger for Chrome
-- ESLint
-- ES7 React/Redux/GraphQL/React-Native snippets
-- HTML CSS Support
-- Image preview
-- JavaScript (ES6) code snippets
-- Live Server
-- language-stylus
-- Markdown PDF
-- Markdown All in One
-- Prettier
-- Polacode
-- React Native Tools
-- Simple React Snippets
-- open in browser
-- One Dark Pro
-- Solarized
-- vscode-icons
-- Material Icon Theme
-- Vetur
-- IntelliCode
-- vscode-styled-components
-- Iconify IntelliSense
-- I18n-ally
-- DotENV
-- Power Mode
-- LeetCode with labuladong
-- Stylelint
-- TODO Highlight
-- Highlight Matching Tag
-- Code Spell Checker
-- Version Lens
-- Vue Language Features (Volar)
++ Auto Rename Tag
++ Auto Close Tag
++ Commit Tagger
++ CSS Peek
++ Chinese (Simplified) Language Pack for Visual Studio Code
++ Debugger for Chrome
++ ESLint
++ ES7 React/Redux/GraphQL/React-Native snippets
++ HTML CSS Support
++ Image preview
++ JavaScript (ES6) code snippets
++ Live Server
++ language-stylus
++ Markdown PDF
++ Markdown All in One
++ Prettier
++ Polacode
++ React Native Tools
++ Simple React Snippets
++ open in browser
++ One Dark Pro
++ Solarized
++ vscode-icons
++ Material Icon Theme
++ Vetur
++ IntelliCode
++ vscode-styled-components
++ Iconify IntelliSense
++ I18n-ally
++ DotENV
++ Power Mode
++ LeetCode with labuladong
++ Stylelint
++ TODO Highlight
++ Highlight Matching Tag
++ Code Spell Checker
++ Version Lens
++ Vue Language Features (Volar)
++ Better Comments
++ markdownlint
++ GitHub Pull Requests and Issues
 
 ## Navicat Premium
 
@@ -210,28 +215,80 @@ Another Redis Desktop Manager是一款更快，更好，更稳定的`redis`桌�
 
 ![软件截图](https://z3.ax1x.com/2021/04/14/c6vWD0.png)
 
-## Chrome插件
+## Chrome Plugins
 
 :::tip
 接下来给大家带来好用的Chrome浏览器插件~~
 :::
 
-- Octotree - GitHub code tree
-- 几枝
-- Vue.js devtools
-- React Developer Tools
-- Redux DevTools
-- Tampermonkey
-- User-Agent Switcher for Chrome
-- JSON-handle
-- GitZip for github
-- FeHelper(前端助手)
-- Enhanced GitHub
-- Eye Dropper
-- ElasticSearch Head
-- Adblock Plus - 免费的广告拦截器
-- CSDN开发助手
-- 网盘万能助手
-- Proxy SwitchyOmega
++ Octotree - GitHub code tree
++ 几枝
++ Vue.js devtools
++ React Developer Tools
++ Redux DevTools
++ Tampermonkey
++ User-Agent Switcher for Chrome
++ JSON-handle
++ GitZip for github
++ FeHelper(前端助手)
++ Enhanced GitHub
++ Eye Dropper
++ ElasticSearch Head
++ Adblock Plus - 免费的广告拦截器
++ CSDN开发助手
++ 网盘万能助手
++ Proxy SwitchyOmega
+
+## Homebrew
+
+### 简介
+
+Homebrew是一款自由及开放源代码的软件包管理系统，用以简化macOS系统上的软件安装过程。它拥有安装、卸载、更新、查看、搜索等很多实用的功能，通过简单的一条指令，就可以实现包管理，十分方便快捷。
+
+下载地址: [https://mirrors.aliyun.com/homebrew/](https://mirrors.aliyun.com/homebrew/)
+
+### 终端配置
+
+```bash
+# 替换brew.git
+cd "$(brew --repo)"
+git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+
+# 替换homebrew-core.git
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+
+# 替换homebrew-cask.git
+cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
+git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
+
+# 应用生效
+brew update
+
+# 替换homebrew-bottles:
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### 恢复默认配置
+
+```bash
+# 重置brew.git
+cd "$(brew --repo)"
+git remote set-url origin https://github.com/Homebrew/brew.git
+
+# 重置homebrew-core.git
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+
+# 替换homebrew-cask.git
+cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
+git remote set-url origin https://github.com/Homebrew/homebrew-cask.git
+
+# 将终端文件中的HOMEBREW_BOTTLE_DOMAIN环境变量删除
+vi ~/.zshrc
+
+source ~/.zshrc
+```
 
 <RightMenu />
