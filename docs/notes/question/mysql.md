@@ -155,4 +155,16 @@ default-time-zone='+08:00'
 sudo yum -y install * --nogpgcheck
 ```
 
+## sum()函数精度丢失问题
+
+解决方案：使用`cast`将其转化成`decimal`再求和即可。
+
+```sql
+# 674.3999999999999
+select sum(amount) from table;
+
+# 674.40
+select sum(cast(amount as decimal(18, 2))) from table;
+```
+
 <RightMenu />
