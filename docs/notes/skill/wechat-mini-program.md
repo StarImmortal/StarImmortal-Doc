@@ -324,4 +324,26 @@ parserOptions: {
 
 5）运行`npm run lint`命令来检测文件
 
+## 获取屏幕高度
+
+```js
+// 获取系统信息
+wx.getSystemInfo({
+  success: function (res) {
+    // 获取可使用窗口宽度
+    const clientWidth = res.windowWidth
+    // 获取可使用窗口高度
+    const clientHeight = res.windowHeight
+    // 算出比例
+    const ratio = 750 / clientWidth
+    // 算出高度(单位rpx)
+    const height = clientHeight * ratio
+    // 设置高度
+    that.setData({
+      height
+    });
+  }
+});
+```
+
 <RightMenu />
