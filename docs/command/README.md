@@ -7,99 +7,182 @@ title: 常用命令
 ## NPM
 
 ```bash
-nvm v
+# 查看Node.js版本
+node -v
 
-node -v 
+# 查看npm版本
+npm -v
 
-npm -v（查看npm版本）
+# 初始化
+npm init
 
-nvm list
+# 帮助命令
+npm --help
 
-nvm use node版本
+# 更新npm
+npm install -g npm
 
-nvm install node版本
+# 安装指定包
+npm install <package>
 
-npm install -g npm（更新npm）
+# 全局安装指定包
+npm install <package> -g
 
-npm list -g（查看安装的全局模块）
+# 更新指定包
+npm update <package>
 
-npm cache clean --force（清除缓存）
+# 卸载指定包
+npm uninstall <package>
 
-npm config get prefix（全局node包）
+# 查看当前目录下已安装依赖
+npm list
 
-npm config set prefix "路径"
+# 查看全局已安装依赖
+npm list -g
 
-npm config get cache（缓存目录）
+# 查看当前包安装路径
+npm root
 
-npm config set cache（设置缓存目录）
+# 查看全局包安装路径
+npm root -g
 
-npm root -g（查看包的安装路径）
+# 清除缓存
+npm cache clean --force
 
+# 查看配置信息
+npm config list
+
+# 获取全局安装目录
+npm config get prefix
+
+# 设置全局安装目录
+npm config set prefix <path>
+
+# 获取缓存目录路径
+npm config get cache
+
+# 设置缓存目录
+npm config set cache <path>
+
+# 获取镜像源
 npm config get registry
 
-npm config set registry https://registry.npmmirror.com/
+# 设置淘宝镜像源
+npm config set registry https://registry.npmmirror.com
 
+# node-sass安装失败解决方法
 npm config set sass_binary_site https://registry.npmmirror.com/-/binary/node-sass
 
-npm install -g cnpm --registry=https://registry.npmmirror.com/（使用淘宝NPM镜像）
+# 全局安装淘宝NPM镜像
+npm install -g cnpm --registry=https://registry.npmmirror.com
+```
+
+## NVM
+
+```bash
+# 查看nvm版本
+nvm v
+
+# 查看列表（已安装）
+nvm list
+
+# 显示当前版本（Node.js）
+nvm current
+
+# 切换指定版本（Node.js）
+nvm use <version>
+
+# 安装指定版本（Node.js）
+nvm install <version>
 ```
 
 ## YARN
 
 ```bash
-yarn global dir（全局安装目录）
+# 查看版本
+yarn -v
 
-yarn global bin（bin目录）
+# 初始化
+yarn init
 
-yarn cache dir（缓存目录）
-
-yarn add <package...>（安装）
-
-yarn cache clean（清除全局缓存）
-
+# 列出当前项目依赖
 yarn list
 
-yarn remove <package...>（移除）
+# 安装
+yarn add <package...>
 
+# 全局安装
+yarn global add <package...>
+
+# 移除
+yarn remove <package...>
+
+# 更新
+yarn upgrade <package...>
+
+# 查看全局安装目录
+yarn global dir
+
+# 查看bin目录
+yarn global bin
+
+# 查看缓存目录
+yarn cache dir
+
+# 清除全局缓存
+yarn cache clean
+
+# 设置全局淘宝镜像源
 yarn config set registry https://registry.npmmirror.com --global
 
+# node-sass安装失败解决方法
 yarn config set sass_binary_site https://registry.npmmirror.com/-/binary/node-sass --global
 
-yarn config set prefix（改变 yarn bin位置）
+# 设置bin位置
+yarn config set prefix
 
-yarn config set global-folder "你的磁盘路径"（改变 yarn 全局安装位置）
+# 设置全局安装位置
+yarn config set global-folder <patch>
 
-yarn config set cache-folder "你的磁盘路径"（改变 yarn 缓存位置）
+# 设置缓存位置
+yarn config set cache-folder <path>
 ```
 
 ## React
 
 ```bash
-npm install create-react-app -g（旧版create-react-app）
-
-npm uninstall -g create-react-app（先卸载）
-
-npx create-react-app 项目名称
+npx create-react-app <project-name>
 ```
 
 ## Vue
 
 ```bash
-vue --version（查看vue的版本）
+# 查看版本
+vue --version
 
-vue ui（可视化）
+# 可视化界面
+vue ui
 
-npm install --global vue-cli（2.x版本）
+# 全局安装（老版本）
+npm install --global vue-cli
 
+# 卸载（老版本）
 npm uninstall --global vue-cli
 
-npm install -g @vue/cli（3.x版本）
+# 全局安装（最新版）
+npm install -g @vue/cli
 
-vue init webpack 项目名称（2.x版本）
+# 全局更新（最新版）
+npm update -g @vue/cli
 
-vue create 项目名称（3.x版本）
+# Vue-Cli脚手架初始化Vue项目（老版本）
+vue init webpack <project-name>
 
-npm init vite-app 项目名称（Vue3）
+# Vue-Cli脚手架初始化Vue项目（最新版）
+vue create <project-name>
+
+# Vite脚手架初始化Vue3项目
+npm init vite-app <project-name>
 ```
 
 ## Maven
