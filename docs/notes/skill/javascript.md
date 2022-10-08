@@ -77,3 +77,25 @@ console.log(array.filter(obj => obj.name === 'apple')) --> [{name: 'apple'}]：�
 
 console.log(array.filter(obj => obj.name === 'strawBally')) --> []：不存在
 ```
+
+## 获取视屏时长
+
+```js
+getVideoDuration(file){
+  return new Promise((resolve,reject)=>{
+    const url = URL.createObjectURL(file)
+    const audioElement = new Audio(url)
+    audioElement.addEventListener("loadedmetadata",() => {
+      const duration = parseInt(audioElement.duration)
+      if(duration > this.duration){
+        this.$message.warning('仅支持20秒以内的视频哦')
+        this.uploadGoOn=false
+        reject()
+      }
+      resolve()
+    })
+  })
+},
+```
+
+<RightMenu />
