@@ -56,6 +56,7 @@ IntelliJ IDEA是`java`编程语言开发的集成环境。IntelliJ在业界被�
 + String Manipulation：操控字符串
 + .ignore：版本管理工具的忽略文件插件
 + Show Comment：显示文档注释
++ Mapstruct Support：MapStruct
 
 ## PyCharm
 
@@ -122,13 +123,13 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 + Image preview
 + JavaScript (ES6) code snippets
 + Live Server
-+ language-stylus
 + Markdown PDF
 + Markdown All in One
 + Prettier
 + Polacode
 + React Native Tools
 + Simple React Snippets
++ ES7+ React/Redux/React-Native snippets
 + open in browser
 + One Dark Pro
 + Solarized
@@ -151,6 +152,7 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 + Better Comments
 + markdownlint
 + GitHub Pull Requests and Issues
++ Vue 3 Snippets
 
 ## Navicat Premium
 
