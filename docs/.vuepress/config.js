@@ -60,7 +60,7 @@ module.exports = {
         // 作者名称
         authorName: 'StarImmortal团队',
         // 触发剪贴板组件或 noCopy 效果的最小文本长度
-        minLength: 30
+        minLength: 100
       },
     ],
     [
@@ -175,6 +175,7 @@ module.exports = {
             "question/mysql",
             "question/mybatis",
             "question/spring-boot",
+            "question/vue",
             "question/wechat-mini-program"
           ],
         },
@@ -195,8 +196,7 @@ module.exports = {
             "/notes/database/",
             "database/mysql",
             "database/redis",
-            "database/mongodb",
-            "database/mysql-specification",
+            "database/mongodb"
           ],
         },
         {
@@ -204,11 +204,11 @@ module.exports = {
           children: [
             "/notes/middleware/",
             "middleware/maven",
+            "middleware/jackson",
             "middleware/nginx",
             "middleware/elasticsearch",
-            "middleware/rocketmq"
           ]
-        }
+        },
       ],
     },
   },
