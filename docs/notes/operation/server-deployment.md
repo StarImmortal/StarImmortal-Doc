@@ -1,14 +1,12 @@
 ---
-title: 服务器环境部署
+title: Linux DevOps
 ---
 
-# Linux环境
+# Linux DevOps
 
-## Java
+## JDK
 
-### 安装JDK
-
->[下载地址](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+### [下载地址](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 ### 解压JDK
 
@@ -46,15 +44,13 @@ java -version
 
 ## Maven
 
-### 安装Maven
-
->[下载地址](https://maven.apache.org/download.cgi)
+### [下载地址](https://maven.apache.org/download.cgi)
 
 ```bash
 wget https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
 ```
 
-### 解压Maven
+### 解压
 
 ```bash
 tar -zxvf apache-maven-3.8.5-bin.tar.gz
@@ -159,65 +155,63 @@ flush privileges;
 
 + **开启免密码登陆**
 
-    ```bash
-    vi /etc/my.cnf
+```bash
+vi /etc/my.cnf
 
-    在【mysqld】模块下面添加：
-    
-    skip-grant-tables
-    ```
+在【mysqld】模块下面添加：
+
+skip-grant-tables
+```
 
 + **重启服务：使配置生效**
 
-    ```bash
-    service mysqld restart
-    ```
+```bash
+service mysqld restart
+```
 
 + **登陆（不输入密码直接敲回车键）**
 
-    ```bash
-    mysql -u root -p
-    ```
+```bash
+mysql -u root -p
+```
 
 + **选择数据库并把密码置空**
 
-    ```bash
-    use mysql;
+```bash
+use mysql;
 
-    update user set authentication_string = '' where user = 'root';
-    ```
+update user set authentication_string = '' where user = 'root';
+```
 
 + **删除免密**
 
-    ```bash
-    vi /etc/my.cnf（删除免密）
+```bash
+vi /etc/my.cnf（删除免密）
 
-    service mysqld restart
-    ```
+service mysqld restart
+```
 
 + **登陆（直接敲回车键）**
 
-    ```bash
-    mysql -uroot -p
-    
-    set global validate_password.policy=0;
+```bash
+mysql -uroot -p
 
-    set global validate_password.length=1;
-    
-    ALTER USER "root"@"%" IDENTIFIED BY "要修改的密码"; 
-    ```
+set global validate_password.policy=0;
+
+set global validate_password.length=1;
+
+ALTER USER "root"@"%" IDENTIFIED BY "要修改的密码"; 
+```
 
 ## Redis
 
-### 安装Redis
-
->[下载地址](https://redis.io/download)
+### [下载地址](https://redis.io/download)
 
 ```bash
 wget https://download.redis.io/releases/redis-6.2.6.tar.gz
 ```
 
-### 解压Redis压缩包
+### 解压
 
 ```bash
 tar -zxvf redis-6.2.6.tar.gz
@@ -274,11 +268,9 @@ vi /etc/rc.local
 
 ## Tomcat
 
-### 安装Tomcat 
+### [下载地址](http://tomcat.apache.org/download-80.cgi#8.0.46)
 
->[下载地址](http://tomcat.apache.org/download-80.cgi#8.0.46)
-
-### 解压Tomcat压缩包
+### 解压
 
 ```bash
 tar -zxvf apache-tomcat-8.0.46.tar.gz
@@ -292,11 +284,9 @@ tar -zxvf apache-tomcat-8.0.46.tar.gz
 
 ## Node
 
-### 安装Node
+### [下载地址](https://nodejs.org/dist/v14.18.2/node-v14.18.2-linux-x64.tar.gz)
 
->[下载地址](https://nodejs.org/dist/v14.18.2/node-v14.18.2-linux-x64.tar.gz)
-
-### 解压JDK
+### 解压
 
 ```bash
 tar -zxvf node-v14.18.2-linux-x64.tar.gz
@@ -322,9 +312,7 @@ ln -sf /home/node-v14.18.2/bin/npm /usr/local/bin/
 
 ## Yarn
 
-### 安装Yarn
-
->[下载地址](https://yarn.bootcss.com/docs/install/#centos-stable)
+### [下载地址](https://yarn.bootcss.com/docs/install/#centos-stable)
 
 ```bash
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
@@ -392,118 +380,173 @@ ssh git@github.com
 
 ## ElasticSearch
 
-### 安装ElasticSearch
+### [下载地址](https://www.elastic.co/cn/downloads/elasticsearch)
 
->[下载地址](https://www.elastic.co/cn/downloads/elasticsearch)
-
-### 解压到/usr/local
+### 解压
 
 ```bash
-tar -zxvf elasticsearch-7.8.0-linux-x86_64.tar.gz -C /usr/local
+tar -zxvf elasticsearch-7.17.6-linux-x86_64.tar.gz -C /home
 ```
 
-### 进入解压后的elasticsearch-7.8.0目录
+### 创建数据目录
 
-- **创建data目录**
-- **修改配置文件**
+```bash
+cd /home/elasticsearch-7.17.6
 
-    ```bash
-    vi config/elasticsearch.yml
+mkdir data
+```
 
-    #集群名称
-    cluster.name: xxx 
-    #节点名称
-    node.name: node-1 
-    #数据和日志的存储目录
-    path.data: /usr/local/elasticsearch/elasticsearch-7.8.0/data
-    path.logs: /usr/local/elasticsearch/elasticsearch-7.8.0/logs
-    #设置绑定的ip，设置为0.0.0.0以后就可以让任何计算机节点访问到了
-    network.host: 0.0.0.0
-    #默认端口
-    http.port: 9200 
-    #设置在集群中的所有节点名称
-    cluster.initial_master_nodes: ["node-1"]
-    ```
+### 修改配置文件
+
+#### elasticsearch.yml
+
+```bash
+cd /home/elasticsearch-7.17.6
+
+vi config/elasticsearch.yml
+
+# 集群名称
+cluster.name: xxx 
+# 节点名称
+node.name: node-1 
+# 数据和日志的存储目录
+path.data: /home/elasticsearch-7.17.6/data
+path.logs: /home/elasticsearch-7.17.6/logs
+# 设置绑定的ip，设置为0.0.0.0以后就可以让任何计算机节点访问到了
+network.host: 0.0.0.0
+# 默认端口
+http.port: 9200 
+# 设置在集群中的所有节点名称
+cluster.initial_master_nodes: ["node-1"]
+```
+
+#### jvm.options（解决内存不足问题）
+
+```bash
+cd /home/elasticsearch-7.17.6
+
+vi config/jvm.options
+
+# 设置堆内存大小
+-Xms256m
+-Xmx256m
+```
 
 ### 用户权限问题（root无法启动elasticsearch）
 
-- **创建新用户**
++ **创建专属用户**
   
-    ```bash
-    useradd shines
-    passwd shines
-    ```
-- **授权**
+```bash
+useradd elastic
+```
+
++ **授权**
   
-    ```bash
-    chown shines /usr/local/elasticsearch/elasticsearch-7.8.0/ -R
-    ```
+```bash
+chown -R elastic /home/elasticsearch-7.17.6/
+```
 
 ### 解决会出现的问题
 
 ```bash
-vim /etc/sysctl.conf 
+vi /etc/sysctl.conf 
 
-//在末尾添加以下配置
+# 在末尾添加以下配置
 vm.max_map_count=655360
 
 保存执行：sysctl -p
 
-vim etc/security/limits.conf
+vi /etc/security/limits.conf
 
-#在末尾加上：
+# 在末尾添加以下配置
 * soft nofile 65536
 * hard nofile 131072
+* soft nproc 2048
+* soft nproc 4096
 ```
 
-### 后台启动es
+### 开放端口
 
 ```bash
-cd /usr/local/elasticsearch/elasticsearch-7.8.0/bin/
+firewall-cmd --zone=public --add-port=9300/tcp --permanent
+
+firewall-cmd --zone=public --add-port=9200/tcp --permanent
+
+firewall-cmd --reload
+```
+
+### 后台启动
+
+```bash
+su elastic
+
+cd /home/elasticsearch-7.17.6/bin/
 
 ./elasticsearch -d
 ```
 
+### 设置登录密码
+
+```bash
+cd /home/elasticsearch-7.17.6
+
+# 修改配置文件
+
+vi conf/config/elasticsearch.yml
+
+# 添加以下配置
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+
+# 切换用户
+
+su elastic
+
+# 启动服务
+./bin/elasticsearch -d
+
+# 设置密码
+./bin/elasticsearch-setup-passwords interactive
+```
+
 ### 安装ik分词器
 
-- [下载地址](https://github.com/medcl/elasticsearch-analysis-ik/releases)
++ [下载地址](https://github.com/medcl/elasticsearch-analysis-ik/releases)
 
-- **创建ik文件夹**
++ **解压**
   
-    ```bash
-    cd /usr/local/elasticsearch/elasticsearch-7.8.0/plugins
-    
-    mkdir ik
-    ```
-- **解压**
+```bash
+unzip /root/elasticsearch-analysis-ik-7.17.6.zip -d /home/elasticsearch-7.17.6/plugins/ik
+```
+
++ **更改默认分词器**
   
-    ```bash
-    unzip /root/elasticsearch-analysis-ik-7.8.0.zip
-    ```
-- **更改es默认使用的分词器**
-  
-    ```bash
-    vi elasticsearch.yml
-    
-    index.analysis.analyzer.default.tokenizer : “ik_max_word” 
-    index.analysis.analyzer.default.type : “ik”
-    ```
+```bash
+vi elasticsearch.yml
+
+index.analysis.analyzer.default.tokenizer : “ik_max_word” 
+index.analysis.analyzer.default.type : “ik”
+```
+
++ **重新启动**
+
 ## logstash
 
-- [下载地址](https://www.elastic.co/cn/downloads/logstash)
++ [下载地址](https://www.elastic.co/cn/downloads/logstash)
 
-- **解压**
-  
-    ```bash
-    tar -zxvf /root/logstash-7.8.0.tar.gz -C /usr/local/elasticsearch/
-    ```
-- **配置jdbc文件**
-- **配置mysql8驱动**
-- **后台运行（ctrl + z 挂起）**
-  
-    ```bash
-    ./logstash -f ../config/mysql.conf
-    ```
++ **解压**
+
+```bash
+tar -zxvf /root/logstash-7.17.6.tar.gz -C /home/
+```
+
++ **配置jdbc文件**
++ **配置mysql8驱动**
++ **后台运行（ctrl + z 挂起）**
+
+```bash
+./logstash -f ../config/mysql.conf
+```
 
 ## vsftpd
 
@@ -521,29 +564,29 @@ rpm -qa|grep vsftpd
 
 ### 创建虚拟用户
 
-- **选择在根或者用户目录下创建ftp文件夹**
++ **选择在根或者用户目录下创建ftp文件夹**
 
-  ```bash
-  mkdir /ftpfile
-  ```
+```bash
+mkdir /ftpfile
+```
 
-- **添加匿名用户**
++ **添加匿名用户**
 
-  ```bash
-  useradd ftpuser -d /ftpfile -s /sbin/nologin
-  ```
+```bash
+useradd ftpuser -d /ftpfile -s /sbin/nologin
+```
 
-- **修改ftpfile权限**
++ **修改ftpfile权限**
 
-  ```bash
-  chown -R ftpuser.ftpuser /ftpfile
-  ```
+```bash
+chown -R ftpuser.ftpuser /ftpfile
+```
 
-- **重设ftpuser密码**
++ **重设ftpuser密码**
 
-  ```bash
-  passwd ftpuser
-  ```
+```bash
+passwd ftpuser
+```
 
 ### 配置
 

@@ -1,10 +1,10 @@
 ---
-title: Docker环境部署
+title: Docker DevOps
 ---
 
-# Docker虚拟机部署环境
+# Docker DevOps
 
-## Java
+## JDK
 
 ### 拉取镜像
 
@@ -23,31 +23,31 @@ docker run -it --name java --restart=always docker.io/java bash
 ### 拉取镜像
 
 ```bash
-docker pull mysql:8.0.19
+docker pull mysql:8.0
 ```
 
 ### 创建映射文件夹
 
 ```bash
-mkdir -p /home/mysql-8.0.19/log /home/mysql-8.0.19/data /home/mysql-8.0.19/conf /home/mysql-8.0.19/mysql-files
+mkdir -p /home/mysql-8.0/log /home/mysql-8.0/data /home/mysql-8.0/conf /home/mysql-8.0/mysql-files
 ```
 
 ### 文件夹赋权
 
 ```bash
-chmod -R 777 /home/mysql-8.0.19/
+chmod -R 777 /home/mysql-8.0/
 ```
 
 ### 运行
 
 ```bash
 docker run -p 3306:3306 --name mysql \
--v /home/mysql-8.0.19/log:/var/log/mysql \
--v /home/mysql-8.0.19/data:/var/lib/mysql \
--v /home/mysql-8.0.19/conf:/etc/mysql \
--v /home/mysql-8.0.19/mysql-files:/var/lib/mysql-files \
+-v /home/mysql-8.0/log:/var/log/mysql \
+-v /home/mysql-8.0/data:/var/lib/mysql \
+-v /home/mysql-8.0/conf:/etc/mysql \
+-v /home/mysql-8.0/mysql-files:/var/lib/mysql-files \
 -e MYSQL_ROOT_PASSWORD=password \
--d mysql:8.0.19
+-d mysql:8.0
 ```
 
 ### 配置文件
@@ -105,20 +105,23 @@ touch /home/redis/conf/redis.conf
 ### Redis配置文件
 
 ```bash
-#注释掉下面这行代码表示开启外部访问
+# 注释掉下面这行代码表示开启外部访问
 #bind 127.0.0.1
 
-#保护模式，限制为本地访问，修改后解除保护模式
+# 保护模式，限制为本地访问，修改后解除保护模式
 protected-mode no
 
-#使用守护线程的方式启动
+# 使用守护线程的方式启动
 daemonize no
 
-#设置Redis密码
+# 设置Redis密码
 requirepass 123456
 
-#开启持久化
+# 开启持久化
 appendonly yes
+
+# 开启键空间通知
+notify-keyspace-events Ex
 ```
 
 :::tip
@@ -131,62 +134,88 @@ docker镜像`redis`默认无配置文件以及无配置文件启动
 docker run --name redis -p 6379:6379 -v /home/redis/data:/data -v /home/redis/conf/redis.conf:/etc/redis/redis.conf -d --restart=always redis:latest redis-server /etc/redis/redis.conf
 ```
 
+### 解决启动警告
+
+![Redis启动警告](https://s1.ax1x.com/2022/07/20/jHnFtP.png)
+
+:::warning
+1. The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+
+2. overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to/etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+
+3. you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+:::
+
+1. 解决第一个警告
+
+>将`net.core.somaxconn = 1024`添加到`/etc/sysctl.conf`中，然后执行`sysctl -p`生效配置。
+
+2. 解决第二个警告
+
+>将`vm.overcommit_memory = 1`添加到`/etc/sysctl.conf中`，然后执行`sysctl -p`生效配置。
+
+3. 解决第三个警告
+
+```bash
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+vi /etc/rc.local
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+  echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+  echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+```
+
 ## ElasticSearch
 
 ### 拉取镜像
 
 ```bash
-docker pull elasticsearch:7.8.0
+docker pull elasticsearch:7.17.6
 ```
 
 ### 创建映射文件夹
 
 ```bash
-mkdir -p /home/elasticsearch-7.8.0/config
-mkdir -p /home/elasticsearch-7.8.0/data
-mkdir -p /home/elasticsearch-7.8.0/logs
-mkdir -p /home/elasticsearch-7.8.0/plugins
+mkdir -p /home/elasticsearch-7.17.6/config
+mkdir -p /home/elasticsearch-7.17.6/data
+mkdir -p /home/elasticsearch-7.17.6/logs
+mkdir -p /home/elasticsearch-7.17.6/plugins
 
-echo "http.host: 0.0.0.0">>/home/elasticsearch-7.8.0/config/elasticsearch.yml
+echo "http.host: 0.0.0.0">>/home/elasticsearch-7.17.6/config/elasticsearch.yml
 ```
 
 ### 文件夹赋权
 
 ```bash
-chmod -R 777 /home/elasticsearch-7.8.0/
+chmod -R 777 /home/elasticsearch-7.17.6/
 ```
 
 ### 配置ik分词器插件
 
-* **创建ik文件夹**
+#### 解压
 
-  ```bash
-  cd /home/elasticsearch-7.8.0/plugins
-  
-  mkdir ik
-  ```
-* **解压**
-
-  ```bash
-  cd ik
-  
-  unzip 下载的ik分词器版本
-  ```
+```bash
+unzip /root/elasticsearch-analysis-ik-7.17.6.zip -d /home/elasticsearch-7.17.6/plugins/ik
+```
 
 ### 测试单节点运行
 
 ```bash
-docker run -d --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" elasticsearch:7.8.0
+docker run -d --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" elasticsearch:7.17.6
 ```
 
 ### 拷贝容器config文件夹到宿主机目录
 
 ```bash
-docker cp elasticsearch:/usr/share/elasticsearch/config /home/elasticsearch-7.8.0/config
+docker cp elasticsearch:/usr/share/elasticsearch/config /home/elasticsearch-7.17.6/config
 
-mv /home/elasticsearch-7.8.0/config/config/* /home/elasticsearch-7.8.0/config/
+mv /home/elasticsearch-7.17.6/config/config/* /home/elasticsearch-7.17.6/config/
 
-rm -rf /home/elasticsearch-7.8.0/config/config/
+rm -rf /home/elasticsearch-7.17.6/config/config/
 ```
 
 ### 停止删除并重新运行容器
@@ -194,7 +223,7 @@ rm -rf /home/elasticsearch-7.8.0/config/config/
 ```bash
 docker stop elasticsearch && docker rm elasticsearch
 
-docker run --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx128m" -v /home/elasticsearch-7.8.0/config:/usr/share/elasticsearch/config -v /home/elasticsearch-7.8.0/data:/usr/share/elasticsearch/data -v /home/elasticsearch-7.8.0/plugins:/usr/share/elasticsearch/plugins -v /home/elasticsearch-7.8.0/logs:/usr/share/elasticsearch/logs -d elasticsearch:7.8.0
+docker run --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx128m" -v /home/elasticsearch-7.17.6/config:/usr/share/elasticsearch/config -v /home/elasticsearch-7.17.6/data:/usr/share/elasticsearch/data -v /home/elasticsearch-7.17.6/plugins:/usr/share/elasticsearch/plugins -v /home/elasticsearch-7.17.6/logs:/usr/share/elasticsearch/logs -d elasticsearch:7.17.6
 ```
 
 ### 启动容器自启
@@ -235,7 +264,7 @@ exit
 #### 更改证书权限
 
 ```bash
-chmod 644 /home/elasticsearch-7.8.0/config/elastic-certificates.p12
+chmod 644 /home/elasticsearch-7.17.6/config/elastic-certificates.p12
 ```
 
 #### 设置集群密码
@@ -261,43 +290,43 @@ docker restart elasticsearch
 ### 拉取镜像
 
 ```bash
-docker pull logstash:7.8.0
+docker pull logstash:7.17.6
 ```
 
 ### 创建映射文件夹
 
 ```bash
-mkdir /home/logstash-7.8.0
+mkdir /home/logstash-7.17.6
 ```
 
 ### 文件夹赋权
 
 ```bash
-chmod -R 777 /home/logstash-7.8.0/
+chmod -R 777 /home/logstash-7.17.6/
 ```
 
 ### 运行容器
 
 ```bash
-docker run --name logstash -d logstash:7.8.0
+docker run --name logstash -d logstash:7.17.6
 ```
 
 ### 拷贝容器文件
 
 ```bash
-docker cp logstash:/usr/share/logstash/config /home/logstash-7.8.0/config
+docker cp logstash:/usr/share/logstash/config /home/logstash-7.17.6/config
 ```
 
 ### 配置logstash配置文件 
 
 ```bash
-echo "http.host: 0.0.0.0">>/home/logstash-7.8.0/config/logstash.yml
+echo "http.host: 0.0.0.0">>/home/logstash-7.17.6/config/logstash.yml
 ```
 
 ### 配置同步文件和添加mysql驱动jar包
 
 ```bash
-cd /usr/local/src/logstash-7.8.0/config/
+cd /usr/local/src/logstash-7.17.6/config/
 
 vi mysql.conf
 
@@ -346,7 +375,7 @@ docker stop 容器ID
 
 docker rm 容器ID
 
-docker run --name logstash -v /home/logstash-7.8.0/config/:/usr/share/logstash/config/ -d logstash:7.8.0 -f /usr/share/logstash/config/mysql.conf
+docker run --name logstash -v /home/logstash-7.17.6/config/:/usr/share/logstash/config/ -d logstash:7.17.6 -f /usr/share/logstash/config/mysql.conf
 ```
 
 ## Canal
@@ -835,7 +864,7 @@ docker run -p 80:80 -p 443:443 --name nginx \
 ### 拉取镜像
 
 ```bash
-docker pull jenkins/jenkins:lts
+docker pull jenkins/jenkins
 ```
 
 ### 目录映射
@@ -843,21 +872,21 @@ docker pull jenkins/jenkins:lts
 ```bash
 mkdir -p /home/jenkins/jenkins_home
 
-chown -R 1000 /home/jenkins/jenkins_home
-
-chmod 666 /var/run/docker.sock
+chown -R 777 /home/jenkins/jenkins_home
 ```
 
 ### 启动
 
 ```bash
-docker run -di -u root --name jenkins -p 8080:8080 -e TZ=Asia/Shanghai \
+docker run -d -u root --name jenkins -p 8080:8080 \
+-e TZ=Asia/Shanghai \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v /usr/bin/docker:/usr/bin/docker \
--v /home/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+-v /home/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins
 ```
 
 ### 设置自启动
+
 ```bash
 docker update jenkins --restart=always
 ```
@@ -868,9 +897,13 @@ docker update jenkins --restart=always
 cd /home/jenkins/jenkins_home/
 
 vi hudson.model.UpdateCenter.xml
+```
 
-修改url为https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+:::tip
+修改`url` -> `https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json`
+:::
 
+```bash
 docker exec -it jenkins /bin/bash
 
 cd /var/jenkins_home/updates
@@ -882,7 +915,7 @@ exit
 docker restart jenkins
 ```
 
-### 解锁Jenkins
+### 解锁 Jenkins
 
 ![解锁Jenkins](https://z3.ax1x.com/2021/05/16/ggl4HS.png)
 
@@ -1075,7 +1108,168 @@ echo "Nginx容器启动完成"
 
 ![开启HookUrl](https://z3.ax1x.com/2021/05/16/ggQBJs.png)
 
-## SpringBoot
+## MinIO
+
+### 拉取镜像
+
+```bash
+docker pull minio/minio
+```
+
+### 创建映射文件夹
+
+```bash
+mkdir -p /home/minio/config /home/minio/data
+```
+
+### 文件夹赋权
+
+```bash
+chmod -R 777 /home/minio/
+```
+
+### 运行
+
+```bash
+docker run -p 9000:9000 -p 9001:9001 --name minio \
+-v /home/minio/config:/root/.minio \
+-v /home/minio/data:/data \
+-e "MINIO_ROOT_USER=minioadmin" \
+-e "MINIO_ROOT_PASSWORD=minioadmin" \
+-d --restart=always minio/minio server /data \
+--address ":9000" --console-address ":9001"
+```
+
+## RocketMQ
+
+### 拉取镜像
+
+```bash
+docker pull foxiswho/rocketmq:4.8.0
+
+docker pull rocketmqinc/rocketmq
+
+docker pull styletang/rocketmq-console-ng
+
+docker pull pangliang/rocketmq-console-ng
+```
+
+### 创建数据映射文件夹
+
+```bash
+mkdir -p /home/rocketmq/namesrv/logs /home/rocketmq/namesrv/store /home/rocketmq/broker/logs /home/rocketmq/broker/store /home/rocketmq/conf
+```
+
+### 文件夹赋权
+
+```bash
+chmod -R 777 /home/rocketmq/
+```
+
+### 创建 Name Server 容器
+
+```bash
+docker run -d \
+--restart=always \
+--name rmqnamesrv \
+-e "JAVA_OPT_EXT=-Xms512M -Xmx512M -Xmn128m" \
+-p 9876:9876 \
+-v /home/rocketmq/namesrv/logs:/home/rocketmq/logs \
+-v /home/rocketmq/namesrv/store:/home/rocketmq/store \
+-e "MAX_POSSIBLE_HEAP=100000000" \
+foxiswho/rocketmq:4.8.0 \
+sh mqnamesrv
+```
+
+### 创建 Broker 配置文件
+
+```bash
+vi /home/rocketmq/conf/broker.conf
+
+# 所属集群名称，如果节点较多可以配置多个
+brokerClusterName = DefaultCluster
+# broker名称，master和slave使用相同的名称，表明他们的主从关系
+brokerName = broker-a
+# 0表示Master，大于0表示不同的slave
+brokerId = 0
+# 表示几点做消息删除动作，默认是凌晨4点
+deleteWhen = 04
+# 在磁盘上保留消息的时长，单位是小时
+fileReservedTime = 48
+# 有三个值：SYNC_MASTER，ASYNC_MASTER，SLAVE；同步和异步表示Master和Slave之间同步数据的机制；
+brokerRole = ASYNC_MASTER
+# 刷盘策略，取值为：ASYNC_FLUSH，SYNC_FLUSH表示同步刷盘和异步刷盘；SYNC_FLUSH消息写入磁盘后才返回成功状态，ASYNC_FLUSH不需要；
+flushDiskType = ASYNC_FLUSH
+# 设置broker节点所在服务器的宿主机的ip地址
+brokerIP1 = 127.0.0.1
+# 注册中心
+namesrvAddr = 127.0.0.1:9876
+# 磁盘使用达到95%之后,生产者再写入消息会报错 CODE: 14 DESC: service not available now, maybe disk full
+diskMaxUsedSpaceRatio=95
+```
+
+### 创建 Broker 容器
+
+```bash
+docker run -d \
+--restart=always \
+--name rmqbroker \
+--link rmqnamesrv:namesrv \
+-p 10911:10911 \
+-v /home/rocketmq/broker/logs:/home/rocketmq/logs \
+-v /home/rocketmq/broker/store:/home/rocketmq/store \
+-v /home/rocketmq/conf:/home/rocketmq/conf \
+-e "NAMESRV_ADDR=namesrv:9876" \
+-e "MAX_POSSIBLE_HEAP=200000000" \
+-e "JAVA_OPT_EXT=-Xms512M -Xmx512M -Xmn128m" \
+foxiswho/rocketmq:4.8.0 \
+sh mqbroker -c /home/rocketmq/conf/broker.conf
+```
+
+### 创建 rockermq-console 容器
+
+```bash
+docker run -d \
+--name rmqconsole \
+--link rmqnamesrv:namesrv \
+-e "JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \
+-Dcom.rocketmq.sendMessageWithVIPChannel=false" \
+-p 8090:8080 \
+-t styletang/rocketmq-console-ng
+```
+
+## XXL-JOB
+
+### 拉取镜像
+
+```bash
+docker pull xuxueli/xxl-job-admin:2.3.1
+```
+
+### 创建数据映射文件夹
+
+```bash
+mkdir -p /home/xxl-job/logs
+```
+
+### 文件夹赋权
+
+```bash
+chmod -R 777 /home/xxl-job/
+```
+
+### 创建容器并运行
+
+```bash
+/**
+* 如需自定义 mysql 等配置，可通过 "-e PARAMS" 指定，参数格式 PARAMS="--key=value --key2=value2" ；
+* 配置项参考文件：/xxl-job/xxl-job-admin/src/main/resources/application.properties
+* 如需自定义 JVM内存参数 等配置，可通过 "-e JAVA_OPTS" 指定，参数格式 JAVA_OPTS="-Xmx512m" ；
+*/
+docker run -e PARAMS="--spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai --spring.datasource.username=root --spring.datasource.password=88888888" -p 8080:8080 -v /home/xxl-job/logs:/data/applogs --name xxl-job-admin -d xuxueli/xxl-job-admin:2.3.1
+```
+
+## Spring Boot
 
 ### 编写Dockerfile文件
 
