@@ -8,21 +8,21 @@ title: MongoDB
 
 ## 安装（Windows）
 
-![](https://z3.ax1x.com/2021/09/27/42hQKA.png)
+![Next](https://z3.ax1x.com/2021/09/27/42hQKA.png)
 
-![](https://z3.ax1x.com/2021/09/27/42hJ58.png)
+![End-User License Agreement](https://z3.ax1x.com/2021/09/27/42hJ58.png)
 
-![](https://z3.ax1x.com/2021/09/27/42hjsA.png)
+![Choose Setup Type](https://z3.ax1x.com/2021/09/27/42hjsA.png)
 
-![](https://z3.ax1x.com/2021/09/27/424SdP.png)
+![Custom Setup](https://z3.ax1x.com/2021/09/27/424SdP.png)
 
-![](https://z3.ax1x.com/2021/09/27/424cwt.png)
+![Service Configuration](https://z3.ax1x.com/2021/09/27/424cwt.png)
 
-![](https://z3.ax1x.com/2021/09/27/424WY8.png)
+![Install MongoDB Compass](https://z3.ax1x.com/2021/09/27/424WY8.png)
 
-![](https://z3.ax1x.com/2021/09/27/425cjJ.png)
+![Install](https://z3.ax1x.com/2021/09/27/425cjJ.png)
 
-![](https://z3.ax1x.com/2021/09/27/4245lQ.png)
+![Finish](https://z3.ax1x.com/2021/09/27/4245lQ.png)
 
 ### 配置环境变量
 
@@ -307,13 +307,13 @@ mongod -f /opt/mongodb/etc/mongo.conf
 
 ## 常用命令
 
-- 停止服务（Windows)
++ 停止服务（Windows)
 
 ```bash
 net stop MongoDB
 ```
 
-- 启动服务（Windows)
++ 启动服务（Windows)
 
 ```bash
 net start MongoDB
@@ -321,25 +321,25 @@ net start MongoDB
 
 **注意：`MongoDB` 是安装时候定义的服务名称**
 
-- 查看当前库下的用户
++ 查看当前库下的用户
 
 ```bash
 show users
 ```
 
-- 删除用户
++ 删除用户
 
 ```bash
 db.dropUser('admin')
 ```
 
-- 修改用户密码
++ 修改用户密码
 
 ```bash
 db.updateUser('admin', {pwd: '123456'})
 ```
 
-- 密码认证
++ 密码认证
 
 ```bash
 db.auth('admin', '123456')
