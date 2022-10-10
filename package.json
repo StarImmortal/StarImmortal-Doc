@@ -16,9 +16,10 @@
     "@vuepress/plugin-pwa": "^1.9.7",
     "sass": "1.52.1",
     "sass-loader": "10.2.1",
-    "swiper": "^7.4.1",
+    "swiper": "^8.4.2",
     "vuepress": "^1.9.7",
     "vuepress-plugin-code-copy": "^1.0.6",
+    "vuepress-plugin-container": "^2.1.5",
     "vuepress-plugin-copyright": "^1.0.2",
     "vuepress-plugin-dynamic-title": "^1.0.0",
     "vuepress-plugin-sakura": "^1.2.1"
