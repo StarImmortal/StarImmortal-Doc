@@ -14,7 +14,7 @@ title: 微信小程序
                             <div :class="['swiper-slide']">
                                 <div class="card">
                                     <span class="background"></span>
-                                    <figure class="photo"><img src="/assets/image/cool-wallpaper.png"></figure>
+                                    <figure class="photo"><img src="/assets/images/cool-wallpaper.png"></figure>
                                     <article class="text">
                                         <p class="name">库壁啦</p>
                                         <p class="description">壁纸小程序</p>
@@ -24,7 +24,7 @@ title: 微信小程序
                             <div :class="['swiper-slide']">
                                 <div class="card">
                                     <span class="background"></span>
-                                    <figure class="photo"><img src="/assets/image/time-sheet.png"></figure>
+                                    <figure class="photo"><img src="/assets/images/time-sheet.png"></figure>
                                     <article class="text">
                                         <p class="name">TimeSheet</p>
                                         <p class="description">请假小程序</p>
@@ -34,9 +34,9 @@ title: 微信小程序
                             <div :class="['swiper-slide']">
                                 <div class="card">
                                     <span class="background"></span>
-                                    <figure class="photo"><img src="/assets/image/serein.png"></figure>
+                                    <figure class="photo"><img src="/assets/images/serein.png"></figure>
                                     <article class="text">
-                                        <p class="name">茶挽</p>
+                                        <p class="name">茶椀</p>
                                         <p class="description">电商小程序</p>
                                     </article>
                                 </div>
@@ -78,19 +78,6 @@ export default {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev"
             },
-            breakpoints: {
-                1180: {
-                    slidesPerView: 2,
-                    spaceBetween: 40,
-                    centeredSlides: false,
-                },
-                799: {
-                    slidesPerView: 1,
-                    spaceBetween: 20,
-                    centeredSlides: true,
-                    loop: true,
-                },
-            }
         })
     },
     methods: {}
@@ -412,7 +399,7 @@ body {
                     }
 
                     .swiper-button-prev {
-                        background-image: url(/assets/icon/arrow-prev.svg);
+                        background-image: url(/assets/icons/arrow-prev.svg);
                         background-position-x: 5px;
                         transform: translateX(5px);
 
@@ -422,7 +409,7 @@ body {
                     }
 
                     .swiper-button-next {
-                        background-image: url(/assets/icon/arrow-next.svg);
+                        background-image: url(/assets/icons/arrow-next.svg);
                         background-position-x: -5px;
                         transform: translateX(-5px);
 
