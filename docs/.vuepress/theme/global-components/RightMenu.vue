@@ -4,7 +4,7 @@
       <li v-for="(item, index) in hrefArr"
           :key="index">
         <img v-show="item === activeClass"
-             src="../asserts/icon/2.png" />
+             src="../asserts/icons/circle.png" />
         <a :href="item"
            :id="item"
            :class="{active: item === activeClass}">{{item.slice(1)}}

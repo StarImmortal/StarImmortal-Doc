@@ -1,7 +1,7 @@
 <template>
     <ParentLayout>
         <template v-slot:page-bottom>
-            <img src="../asserts/image/bottom-logo.png"
+            <img src="../asserts/images/bottom-logo.png"
                  style="position:absolute;width:135px;left:calc(100% / 2 + 50px);transform:translateX(-50%);">
 
         </template>
