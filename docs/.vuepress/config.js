@@ -3,7 +3,6 @@ const highlight = require('./public/js/highlight')
 module.exports = {
   title: "StarImmortal",
   evergreen: false,
-  host: "localhost",
   port: 3000,
   base: "/",
   dest: "./dist",
@@ -85,7 +84,23 @@ module.exports = {
           importWorkboxFrom: 'local'
         }
       }
-    ]
+    ],
+    [
+      'vuepress-plugin-container',
+      {
+        type: 'vue',
+        before: '<pre class="vue-container"><code>',
+        after: '</code></pre>'
+      }
+    ],
+    [
+      'vuepress-plugin-container',
+      {
+        type: 'upgrade',
+        before: info => `<UpgradePath title="${info}">`,
+        after: '</UpgradePath>'
+      }
+    ],
   ],
   chainMarkdown (config) {
     config
@@ -96,7 +111,7 @@ module.exports = {
   themeConfig: {
     docsDir: "docs",
     // 导航栏Logo
-    logo: "/assets/image/left-logo.png",
+    logo: "/assets/images/left-logo.png",
     // 页面滚动
     smoothScroll: true,
     // 导航栏
