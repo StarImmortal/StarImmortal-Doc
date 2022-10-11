@@ -153,6 +153,9 @@ Visual Studio Code是一个轻量且强大的跨平台开源代码编辑器（ID
 + markdownlint
 + GitHub Pull Requests and Issues
 + Vue 3 Snippets
++ EditorConfig for VS Code
++ Ant Design Vue helper
++ Vue VSCode Snippets
 
 ## Navicat Premium
 
