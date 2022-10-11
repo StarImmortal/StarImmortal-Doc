@@ -85,6 +85,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '/assets/font/font.css';
+
 @mixin lg {
   @media screen and (max-width: 1180px) {
     @content;
@@ -175,7 +177,7 @@ body {
         text-align: center;
         margin-bottom: 80px;
         color: #6f7073;
-        font-size: 44px;
+        font-size: 40px !important;
         line-height: normal;
         text-transform: uppercase;
         font-weight: bold;
@@ -185,6 +187,7 @@ body {
         justify-content: center;
         align-items: flex-start;
         height: 100px;
+        font-family: 'Drinking';
 
         &:before {
           content: '';
