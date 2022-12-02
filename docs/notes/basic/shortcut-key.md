@@ -68,17 +68,18 @@ title: 快捷键
 ### MacOS
 
 1. 代码格式化：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>F</kbd>
-2. 选中下一个相同的内容：<kbd>⌘</kbd> + <kbd>D</kbd>
-3. 删除整行：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>K</kbd>
-4. 向上移动行：<kbd>⌥</kbd> + <kbd>↑</kbd>
-5. 向下移动行：<kbd>⌥</kbd> + <kbd>↓</kbd>
-6. 向上复制行：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>↑</kbd>
-7. 向下复制行：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>↓</kbd>
-8. 下一行插入：<kbd>⌘</kbd> + <kbd>enter</kbd>
-9.  上一行插入：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>enter</kbd>
-10. 折叠代码块：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>[</kbd>
-11. 展开代码块：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>]</kbd>
-12. 显示命令版：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>P</kbd>
+2. 选中下一个相同内容：<kbd>⌘</kbd> + <kbd>D</kbd>
+3. 选中所有相同内容：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>L</kbd>
+4. 删除整行：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>K</kbd>
+5. 向上移动行：<kbd>⌥</kbd> + <kbd>↑</kbd>
+6. 向下移动行：<kbd>⌥</kbd> + <kbd>↓</kbd>
+7. 向上复制行：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>↑</kbd>
+8. 向下复制行：<kbd>⌥</kbd> + <kbd>shift</kbd> + <kbd>↓</kbd>
+9. 下一行插入：<kbd>⌘</kbd> + <kbd>enter</kbd>
+10. 上一行插入：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>enter</kbd>
+11. 折叠代码块：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>[</kbd>
+12. 展开代码块：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>]</kbd>
+13. 显示命令版：<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>P</kbd>
 
 ## MacOS Monterey
 
@@ -96,5 +97,17 @@ title: 快捷键
 
 1. 跳转首行：<kbd>⌃</kbd> + <kbd>A</kbd>
 2. 跳转行尾：<kbd>⌃</kbd> + <kbd>E</kbd>
+3. 单词跳转：<kbd>⌃</kbd> + <kbd>←/→</kbd>
+4. 剪切文字（光标前）：<kbd>⌃</kbd> + <kbd>U</kbd>
+5. 剪切文字（光标后）：<kbd>⌃</kbd> + <kbd>K</kbd>
+6. 粘贴内容：<kbd>⌃</kbd> + <kbd>Y</kbd>
+7. 删除光标左方位置字符（单个）：<kbd>⌃</kbd> + <kbd>H</kbd>
+8.  删除光标右方位置字符（单个）：<kbd>⌃</kbd> + <kbd>D</kbd>
+9.  删除光标左方位置字符（整行）：<kbd>⌃</kbd> + <kbd>W</kbd>
+10. 显示上一条历史命令：<kbd>⌃</kbd> + <kbd>P</kbd>
+11. 显示下一条历史命令：<kbd>⌃</kbd> + <kbd>N</kbd>
+12. 搜索历史命令：<kbd>⌃</kbd> + <kbd>R</kbd>
+13. 退出历史搜索模式：<kbd>⌃</kbd> + <kbd>G</kbd>
+14. 清屏：<kbd>⌃</kbd> + <kbd>L</kbd>
 
 <right-menu />
