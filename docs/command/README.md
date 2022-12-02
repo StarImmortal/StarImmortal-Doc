@@ -108,6 +108,9 @@ yarn init
 # 列出当前项目依赖
 yarn list
 
+# 列出全局安装模块
+yarn global list
+
 # 安装
 yarn add <package...>
 
@@ -116,6 +119,9 @@ yarn global add <package...>
 
 # 移除
 yarn remove <package...>
+
+# 全局移除
+yarn global remove <package...>
 
 # 更新
 yarn upgrade <package...>
@@ -151,6 +157,7 @@ yarn config set cache-folder <path>
 ## React
 
 ```bash
+# 创建项目
 npx create-react-app <project-name>
 ```
 
@@ -185,12 +192,24 @@ vue create <project-name>
 npm init vite-app <project-name>
 ```
 
+## Uni-App
+
+```bash
+# 创建Vue3/Vite版
+npx degit dcloudio/uni-preset-vue#vite my-vue3-project
+
+# 更新到最新 alpha 版
+npx @dcloudio/uvm alpha
+```
+
 ## Maven
 
 ```bash
+# 清除旧包后重新打包并跳过测试类
 mvn clean package -Dmaven.test.skip=true
 
-scp jar包路径 root@服务器ip地址:存放路径
+# 远程拷贝文件
+scp [原路径] root@<ip>:[目标路径]
 ```
 
 ## Java
@@ -582,7 +601,7 @@ git push --tags
 - 解决端口占用
 
 ```bash
-netstat -ano | findstr 8081
+netstat -ano | findstr "8081"
 
 taskkill /F /PID 27520
 ```
@@ -656,6 +675,66 @@ brew cleanup <package>
 
 # 查看可清理的旧版本包，不执行实际操作
 brew cleanup -n
+```
+
+## Linux
+
+### 防火墙
+
+- 查看防火墙状态
+
+```bash
+systemctl status firewalld
+```
+
+- 打开防火墙
+
+```bash
+systemctl start firewalld
+```
+
+- 查看所有已开放临时端口（默认为空）
+
+```bash
+firewall-cmd --list-ports
+```
+
+- 查看所有永久开放端口（默认为空）
+
+```bash
+firewall-cmd --list-ports --permanent
+```
+
+- 添加临时开放端口
+
+```bash
+firewall-cmd --add-port=223/tcp
+```
+
+- 添加永久开放的端口
+
+```bash
+firewall-cmd --add-port=223/tcp --permanent
+```
+
+- 关闭临时端口
+
+```bash
+firewall-cmd --remove-port=80/tcp
+```
+
+- 关闭永久端口
+
+```bash
+firewall-cmd --remove-port=80/tcp --permanent
+```
+
+- 重载配置并重启防火墙
+
+```bash
+firewall-cmd --reload
+
+systemctl restart firewalld
 ```
 
 <RightMenu />
